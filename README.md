@@ -6,7 +6,7 @@ Uber(- Eats), Lieferando, Taxis, Paketdienste, Lieferservices (z.B. Rewe), sowie
 
 Stand heute existieren viele verschiedene - nicht selten auch in Konkurrenz stehende, Plattformen, Websites, Apps, usw. für die einzelnen Dienste, auf welchen sich die beiden Gruppen koordinieren und miteinander in Kontakt treten können(z.B. Free Now). Unser Projekt verfolgt die Idee eine univeerselle Plattform zum Ustauch zwischen Fahrern und Auftraggebern zu kreieren. So können Ressourcen (z.B. aus Sicht der Auftraggeber die Fahrer) geteilt werden. Konkret wäre das eine Websit, auf der man die Möglichkeit hat  
 - sich ein Profil zu erstellen  
-- - Nachrichten auszutauschen  
+- Nachrichten auszutauschen  
 - Gesuche/ Angebote zu schalten
 
 Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:  
