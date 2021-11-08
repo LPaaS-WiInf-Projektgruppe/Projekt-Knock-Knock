@@ -16,11 +16,11 @@ Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:
 - Auftraggeber können auf Bedarfsschwankungen besser reagieren  
 - Auftragnehmer können Aufträge von unterschiedlichen Arbeitnehmern annehmen
 
-Die Infrastruktur der vorher erwähten Webanwendungen wollen wir dabei wie folgt aufbauen: 
-##Backend:   
+Die Infrastruktur der vorher erwähten Webanwendungen wollen wir dabei wie folgt aufbauen:  
+## Backend:   
 - Für den server verwenden wir unsere eigene Maschine (bzw. sofern die Universität Hardware bereitstellt gerne auch diese)
 - das Backend wird mit der Sprache Python und dem Webframework Flask umgesetzt  
 
-##Frontend:
+## Frontend:
 - Service wird über eine (responisive) Website über den Browser der Nutzer dargestellt  
 - Frontend wird mit HTML, CSS und JS entwickelt
