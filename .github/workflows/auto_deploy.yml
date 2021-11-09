@@ -55,12 +55,15 @@
 #           file: ./Dockerfile
 
 
-name: Redeploy on Push
-on: 
+name: Redeploy
+
+on:
   push:
     branches: [ main ]
+  release:
     types:
       - published
+        
 
 jobs:
     
