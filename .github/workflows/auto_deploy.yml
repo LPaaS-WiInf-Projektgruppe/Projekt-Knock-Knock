@@ -71,7 +71,7 @@ jobs:
       name: Redeploy - Webhook call
       runs-on: ubuntu-latest
       steps:
-        - name: Deploy docker container webhook
+        - name: Send Webhook Request
           uses: joelwmale/webhook-action@master
           env:
             WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL  }}
