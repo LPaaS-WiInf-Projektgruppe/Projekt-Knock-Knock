@@ -24,13 +24,15 @@ def activate_job():
     initilize state of the system when restarting """
 
 
-    db.create_all()
+
 
 
     # CREATE INITIAL TABLE ENTRIES FOR SETTINGS
     settings = Settings(
-        id=1,
+        id=1
     )
+
+    db.create_all()
 
 
     with session as sess:

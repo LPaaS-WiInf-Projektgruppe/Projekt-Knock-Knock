@@ -5,9 +5,7 @@ from sqlalchemy import Column, Integer, String, Boolean
 from extensions import db, Base
 
 
-class Settings(Base):
-    __tablename__ = 'settings'
-
+class Settings(db.Model):
     id = Column(Integer, primary_key=True)
 
 
