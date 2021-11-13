@@ -23,8 +23,6 @@ def activate_job():
     if they are not yet initialized (first start)
     initilize state of the system when restarting """
 
-    sql_db = SQLDatabase(uri)
-    sql_db.add_database()
 
     db.create_all()
 
