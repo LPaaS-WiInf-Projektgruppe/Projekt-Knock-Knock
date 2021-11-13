@@ -27,8 +27,8 @@ Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:
 
 ## Table of Contents  
 
-- [Structure](##Structure)
-- [How to Run](##How-to-run)
+- [Structure](#Structure)
+- [How to Run](#How-to-run)
 
 ## Structure
 
@@ -77,12 +77,20 @@ Die Infrastruktur der vorher erwähnten Webanwendung wollen wir dabei wie folgt 
 
 ## How to run  
 
+
+Clone the Repository in a Directory of your choice  
 `git clone https://github.com/LPaaS-WiInf-Projektgruppe/Projekt-Knock-Knock.git`  
+
+navigate into the project_knock_knock directory  
 `cd Projekt_knock_knock/project_knock_knock`  
-`pip install requirements.txt`  
+
+Install dependencies  
+`pip install requirements.txt`
+
+Change example configuration for actual configuration    
 `type example_config.py > config.py`  
 
-set  
+ open config.py and set  
 
 ```
 DB_NAME = 'project_knock_knock'  
@@ -90,8 +98,11 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'
 USER_APP_NAME = "Project Knock Knock"  
 ```
 
+Set enviroment variables
 `set FLASK_APP=wsgi.py`  
 `set FLASK_ENV=development`  
+
+Run Flask App
 `flask run --host localhost`  
 
 In Browser navigate to localhost:5000 to set the WebApp
