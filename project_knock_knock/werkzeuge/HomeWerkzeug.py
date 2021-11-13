@@ -22,4 +22,4 @@ def home_func():
     return render_template(
         "home.html",
         view_name='Home',
-        refill_time = refill_time)
+        )
