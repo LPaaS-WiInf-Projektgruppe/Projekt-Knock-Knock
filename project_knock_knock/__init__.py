@@ -4,9 +4,9 @@ from flask_user import UserManager
 from flask_sqlalchemy import SQLAlchemy
 
 
-from project_knock_knock.werkzeuge.HomeWerkzeug import  home, index
-from project_knock_knock.werkzeuge.SettingsWerkzeug import settings
-from project_knock_knock.werkzeuge.AboutWerkzeug import about
+from werkzeuge.HomeWerkzeug import  home, index
+from werkzeuge.SettingsWerkzeug import settings
+from werkzeuge.AboutWerkzeug import about
 
 from .Models import User
 from .extensions import db
