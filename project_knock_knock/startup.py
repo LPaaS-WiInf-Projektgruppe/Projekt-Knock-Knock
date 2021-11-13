@@ -12,11 +12,6 @@ from extensions import db
 from materialien.Database import SQLDatabase
 
 
-uri = URI(db_name = DB_NAME)
-uri_string = uri.get_uri_string()
-engine = create_engine(uri_string)
-session = Session(engine)
-
 
 initialCode = Blueprint('initialCode', __name__)
 
