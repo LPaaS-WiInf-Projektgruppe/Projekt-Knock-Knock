@@ -28,6 +28,7 @@ Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:
 ## Table of Contents  
 
 - [Structure](##Structure)
+- [How to Run](##How to run)
 
 ## Structure
 
@@ -46,7 +47,7 @@ Die Infrastruktur der vorher erwähnten Webanwendung wollen wir dabei wie folgt 
 
 ### Codestruktur
 
-- wir verwenden die WAM Softwarearchitektur, die ORdnerstruktur ist dabei wie folgt:  
+- wir verwenden die WAM Softwarearchitektur, die Ordnerstruktur ist dabei wie folgt:  
 
 |  
 |__Fachwerte  
@@ -71,26 +72,26 @@ Die Infrastruktur der vorher erwähnten Webanwendung wollen wir dabei wie folgt 
 **static**
 - contains css and js files  
 
-**templates**
-- contains html files
+**templates**  
+- contains html files  
 
 ## How to run  
 
-`git clone https://github.com/LPaaS-WiInf-Projektgruppe/Projekt-Knock-Knock.git`
-`cd Projekt_knock_knock/project_knock_knock`
-`pip install requirements.txt`
-`type example_config.py > config.py`
+`git clone https://github.com/LPaaS-WiInf-Projektgruppe/Projekt-Knock-Knock.git`  
+`cd Projekt_knock_knock/project_knock_knock`  
+`pip install requirements.txt`  
+`type example_config.py > config.py`  
 
-set
+set  
 
 ```
-DB_NAME = 'project_knock_knock'
-SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'
-USER_APP_NAME = "Project Knock Knock"
+DB_NAME = 'project_knock_knock'  
+SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'  
+USER_APP_NAME = "Project Knock Knock"  
 ```
 
-`set FLASK_APP=wsgi.py`
-`set FLASK_ENV=development`
-`flask run --host localhost`
+`set FLASK_APP=wsgi.py`  
+`set FLASK_ENV=development`  
+`flask run --host localhost`  
 
 In Browser navigate to localhost:5000 to set the WebApp
