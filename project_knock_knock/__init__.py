@@ -8,9 +8,9 @@ from werkzeuge.HomeWerkzeug import  home, index
 from werkzeuge.SettingsWerkzeug import settings
 from werkzeuge.AboutWerkzeug import about
 
-from .Models import User
-from .extensions import db
-from .startup import initialCode
+from Models import User
+from extensions import db
+from startup import initialCode
 
 
 
