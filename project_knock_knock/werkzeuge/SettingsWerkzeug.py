@@ -29,6 +29,6 @@ def settings_page():
     return render_template(
         "settings.html",
         form = form,
-        settings = settings
+        settings = settings,
         view_name= Settings
     )
