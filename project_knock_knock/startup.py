@@ -6,10 +6,10 @@ from sqlalchemy import create_engine
 from flask_user import login_required
 from flask import Flask, render_template, Blueprint
 
-from project_knock_knock.config import DB_NAME, SQLALCHEMY_DATABASE_URI
-from project_knock_knock.Models import Settings
-from project_knock_knock.extensions import db
-from project_knock_knock.materialien.Database import SQLDatabase
+from config import DB_NAME, SQLALCHEMY_DATABASE_URI
+from Models import Settings
+from extensions import db
+from materialien.Database import SQLDatabase
 
 
 uri = URI(db_name = DB_NAME)
