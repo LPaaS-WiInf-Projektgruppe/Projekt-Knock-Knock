@@ -1,5 +1,3 @@
-import time
-
 from flask import Flask, Blueprint
 from flask_fontawesome import FontAwesome
 from flask_user import UserManager
