@@ -10,3 +10,4 @@ tests/
 config.py
 **.log
 setup.py
+env/

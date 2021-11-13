@@ -18,13 +18,8 @@ initialCode = Blueprint('initialCode', __name__)
 
 
 @initialCode.before_app_first_request
-def activate_job():
-    """initialize database tables (create and add an entry)
-    if they are not yet initialized (first start)
-    initilize state of the system when restarting """
-
-
-
+def def_initial_code():
+    """initialize services that are requiered at startup """
 
 
     # CREATE INITIAL TABLE ENTRIES FOR SETTINGS
@@ -33,10 +28,3 @@ def activate_job():
     )
 
     db.create_all()
-
-
-    with session as sess:
-        # ADD NEW TABLE ENTRY IF NONE EXIST YET
-        if sess.query(Settings).first() == None:
-            sess.add(settings)
-        sess.commit()
