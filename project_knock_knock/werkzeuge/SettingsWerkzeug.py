@@ -30,4 +30,5 @@ def settings_page():
         "settings.html",
         form = form,
         settings = settings
+        view_name= Settings
     )
