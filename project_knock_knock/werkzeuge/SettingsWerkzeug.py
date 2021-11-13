@@ -12,7 +12,7 @@ settings = Blueprint('settings', __name__)
 
 
 @settings.route("/settings", methods= ['GET', 'POST'])
-@login_required
+# @login_required
 def settings_page():
     form = SettingsForm()
 
