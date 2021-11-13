@@ -2,10 +2,10 @@
 from flask import Flask, render_template, Blueprint
 from flask_user import login_required
 
-from project_knock_knock.Models import Settings
-from project_knock_knock.forms.settings_form import SettingsForm
+from Models import Settings
+from forms.settings_form import SettingsForm
 
-from project_knock_knock.materialien.Database import SQLDatabase
+from materialien.Database import SQLDatabase
 
 
 settings = Blueprint('settings', __name__)
