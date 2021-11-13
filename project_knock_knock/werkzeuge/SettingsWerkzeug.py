@@ -17,6 +17,7 @@ def settings_page():
     form = SettingsForm()
 
     if form.validate_on_submit():
+        pass
         # handle form submission
         # print('form submitted')
 
