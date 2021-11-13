@@ -105,7 +105,7 @@ Set enviroment variables
 `set FLASK_APP=wsgi.py`  
 `set FLASK_ENV=development`  
 
-Run Flask App
+Run Flask App  
 `flask run --host localhost`  
 
 In Browser navigate to localhost:5000 to set the WebApp
