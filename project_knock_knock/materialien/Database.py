@@ -1,8 +1,6 @@
-
-from WateringApp.Fachwerte.URI import URI
 from sqlalchemy_utils import create_database, database_exists
 from abc import ABC, abstractmethod
-from WateringApp.config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_DATABASE_URI
 
 
 class Database(ABC):
