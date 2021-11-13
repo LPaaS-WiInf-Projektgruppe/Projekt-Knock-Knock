@@ -32,6 +32,9 @@ Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:
 
 ## Structure
 
+
+![architecture](architecture.png)
+
 Die Infrastruktur der vorher erwähnten Webanwendung wollen wir dabei wie folgt aufbauen:  
 
 ### Backend:   
