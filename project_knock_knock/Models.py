@@ -2,7 +2,7 @@ from flask_user import UserMixin
 
 from sqlalchemy import Column, Integer, String, Boolean
 
-from extensions import db, Base
+from extensions import db
 
 
 class Settings(db.Model):
