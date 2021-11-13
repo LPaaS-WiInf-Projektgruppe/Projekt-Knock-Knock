@@ -28,7 +28,7 @@ Für beteiligte würde ein solches Angebot mit diversen Vorteilen einhergehen:
 ## Table of Contents  
 
 - [Structure](##Structure)
-- [How to Run](##How to run)
+- [How to Run](##How-to-run)
 
 ## Structure
 
