@@ -101,7 +101,7 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'
 USER_APP_NAME = "Project Knock Knock"  
 ```
 
-Set enviroment variables
+Set enviroment variables  
 `set FLASK_APP=wsgi.py`  
 `set FLASK_ENV=development`  
 
