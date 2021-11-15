@@ -106,4 +106,4 @@ Set enviroment variables
 Run Flask App  
 `flask run --host localhost`  
 
-In Browser navigate to localhost:5000 to set the WebApp
+In Browser navigate to localhost:5000 to see the WebApp
