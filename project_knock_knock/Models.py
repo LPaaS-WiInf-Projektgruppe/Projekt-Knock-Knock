@@ -15,3 +15,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     active = db.Column(db.Boolean(), nullable=False)
+
+
+# Datenbank-Table für die Angebote
+class Offers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.String(50), nullable=False)
+    end = db.Column(db.String(50), nullable=False)
+    money = db.Column(db.Integer(), nullable=False)

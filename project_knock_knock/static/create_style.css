@@ -1,0 +1,23 @@
+body
+{
+    color: #FFFFFF;
+}
+
+h1
+{
+  text-align: center;
+}
+
+.Table
+{
+  align-items: center;
+  color: white;
+  border: thin solid;
+  border-color: white;
+  /*background-color: #8a9da8;*/
+}
+
+.Label
+{
+  color: white;
+}
