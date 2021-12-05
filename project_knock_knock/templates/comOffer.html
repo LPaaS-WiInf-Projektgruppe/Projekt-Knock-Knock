@@ -1,0 +1,86 @@
+
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+
+<link href="{{url_for('static', filename='comOffer_style.css')}}" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+
+<script type=text/javascript src="{{url_for('static', filename='comOffer__script.js') }}"></script>
+
+<style media="screen">
+  p
+  {
+    color: white;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<br>
+
+<div>
+  <h1>
+      Angebote von Unternehmen:
+  </h1>
+
+<br>
+
+  <table class="Table" style="table-layout:fixed;">
+      <tr>
+        <th style="width:50px;"> ID </th>
+        <th style="width:150px;"> Start </th>
+        <th style="width:150px;"> Ende </th>
+        <th style="width:150px;"> Zeit </th>
+        <th style="width:150px;"> Geld </th>
+        <th style="width:100px;"> Aktionen </th>
+      </tr>
+      {% for comOffer in allComOffers %}
+        <tr>
+          <td>{{ comOffer.id }}</td>
+          <td>{{ comOffer.start }}</td>
+          <td>{{ comOffer.end }}</td>
+          <td>{{ comOffer.time }}</td>
+          <td>{{ comOffer.money }} Euro</td>
+          <td>
+            <a href="/deleteComOffer/{{comOffer.id}}">Löschen</a>
+            <br>
+            <a href = "">Kontakt</a>
+          </td>
+        </tr>
+        {% endfor %}
+  </table>
+
+  <br>
+  <br>
+  <p>
+    Nichts passendes gefunden? Dann kannst du hier ein entsprechendes Gesuch einstellen!
+  </p>
+  <br>
+<form style="color: black; align-items: center;" action="/comOffer" method="POST">
+  <label for "start" class="Label"> Start:</label><br>
+  <input type="text" name="start" id="start" required><br>
+
+  <label for "ende" class="Label"> Ende:</label><br>
+  <input type="text" name="ende" id="ende" required><br>
+
+  <label for "zeit" class="Label"> Zeit:</label><br>
+  <input type="datetime-local" name="zeit" id="zeit" required><br>
+
+  <label for "geld" class="Label"> Geld:</label><br>
+  <input type="number" step="0.01" min=1 name="geld" id="geld" required><br>
+  <br>
+  <input type="submit" value="Angebot hinzufügen">
+</form>
+
+</div>
+
+
+
+{% endblock %}

@@ -17,9 +17,27 @@ class User(db.Model, UserMixin):
     active = db.Column(db.Boolean(), nullable=False)
 
 
-# Datenbank-Table für die Angebote
+# Entwurf Datenbank-Table für die Angebote
 class Offers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start = db.Column(db.String(50), nullable=False)
     end = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.DateTime, nullable=True)
     money = db.Column(db.Integer(), nullable=False)
+
+# Datenbank-Table für die Angebote der Unternehmen
+class comOffers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.String(50), nullable=False)
+    end = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.DateTime, nullable=False)
+    money = db.Column(db.Integer(), nullable=False)
+
+# Datenbank-Table für die Angebote der Fahrer
+class driverOffers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String(50), nullable=False)
+    vehicle = db.Column(db.String(50), nullable=False)
+    availFrom = db.Column(db.DateTime, nullable=False)
+    availUntil = db.Column(db.DateTime, nullable=False)
+    kmPrice = db.Column(db.Integer(), nullable=False)
