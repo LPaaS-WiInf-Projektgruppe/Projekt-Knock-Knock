@@ -86,7 +86,7 @@ navigate into the project_knock_knock directory
 `cd Projekt_knock_knock/project_knock_knock`  
 
 Install dependencies  
-`pip install requirements.txt`
+`pip install -r requirements.txt`
 
 Change example configuration for actual configuration    
 `type example_config.py > config.py`  
