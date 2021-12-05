@@ -22,4 +22,13 @@ class Offers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start = db.Column(db.String(50), nullable=False)
     end = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.DateTime, nullable=True)
+    money = db.Column(db.Integer(), nullable=False)
+
+# Datenbank-Table für die Angebote der Unternehmen
+class comOffers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.String(50), nullable=False)
+    end = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.DateTime, nullable=True)
     money = db.Column(db.Integer(), nullable=False)
