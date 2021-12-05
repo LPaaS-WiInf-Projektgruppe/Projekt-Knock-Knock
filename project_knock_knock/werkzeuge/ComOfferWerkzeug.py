@@ -3,10 +3,10 @@ from Models import comOffers
 from extensions import db
 from datetime import datetime
 
-create = Blueprint('create', __name__)
+comOffer = Blueprint('comOffer', __name__)
 
 
-@create.route('/create', methods=['POST', 'GET'])
+@comOffer.route('/comOffer', methods=['POST', 'GET'])
 def createComOffer():
     if request.method == 'POST':
         content_start = request.form['start']
@@ -18,20 +18,19 @@ def createComOffer():
         try:
             db.session.add(new_ComOffer)
             db.session.commit()
-            return redirect('/create')
+            return redirect('/comOffer')
         except:
-            #return 'An Error occured, while trying to add your offer :('
-            return content_zeit
+            return 'An Error occured, while trying to add your offer :('
     else:
-        allOffers = comOffers.query.order_by(comOffers.id).all()
-        return render_template('create.html', view_name ='Create', allOffers=allOffers)
+        allComOffers = comOffers.query.order_by(comOffers.id).all()
+        return render_template('comOffer.html', view_name ='Company Offer', allComOffers=allComOffers)
 
-@create.route('/deleteComOffer/<int:id>')
+@comOffer.route('/deleteComOffer/<int:id>')
 def delete(id):
-    offer_to_delete = comOffers.query.get_or_404(id)
+    comOffer_to_delete = comOffers.query.get_or_404(id)
     try:
-        db.session.delete(offer_to_delete)
+        db.session.delete(comOffer_to_delete)
         db.session.commit()
-        return redirect('/create')
+        return redirect('/comOffer')
     except:
         return 'The offer could not be deleted :('

@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeuge.HomeWerkzeug import  home, index
 from werkzeuge.SettingsWerkzeug import settings
 from werkzeuge.AboutWerkzeug import about
-from werkzeuge.CreateWerkzeug import create
+from werkzeuge.ComOfferWerkzeug import comOffer
 from werkzeuge.DriverOfferWerkzeug import driverOffer
 
 from Models import User
@@ -31,7 +31,7 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(index)
     app.register_blueprint(settings)
     app.register_blueprint(about)
-    app.register_blueprint(create)
+    app.register_blueprint(comOffer)
     app.register_blueprint(driverOffer)
 
 

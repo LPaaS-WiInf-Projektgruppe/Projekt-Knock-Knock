@@ -5,12 +5,12 @@
 
 {% block extra_css %}
 
-<link href="{{url_for('static', filename='create_style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{url_for('static', filename='comOffer_style.css')}}" rel="stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 
-<script type=text/javascript src="{{url_for('static', filename='settings__script.js') }}"></script>
+<script type=text/javascript src="{{url_for('static', filename='comOffer__script.js') }}"></script>
 
 <style media="screen">
   p
@@ -41,15 +41,15 @@
         <th style="width:150px;"> Geld </th>
         <th style="width:100px;"> Aktionen </th>
       </tr>
-      {% for offer in allOffers %}
+      {% for comOffer in allComOffers %}
         <tr>
-          <td>{{ offer.id }}</td>
-          <td>{{ offer.start }}</td>
-          <td>{{ offer.end }}</td>
-          <td>{{ offer.time }}</td>
-          <td>{{ offer.money }} Euro</td>
+          <td>{{ comOffer.id }}</td>
+          <td>{{ comOffer.start }}</td>
+          <td>{{ comOffer.end }}</td>
+          <td>{{ comOffer.time }}</td>
+          <td>{{ comOffer.money }} Euro</td>
           <td>
-            <a href="/deleteComOffer/{{offer.id}}">Löschen</a>
+            <a href="/deleteComOffer/{{comOffer.id}}">Löschen</a>
             <br>
             <a href = "">Kontakt</a>
           </td>
@@ -63,7 +63,7 @@
     Nichts passendes gefunden? Dann kannst du hier ein entsprechendes Gesuch einstellen!
   </p>
   <br>
-<form style="color: black; align-items: center;" action="/create" method="POST">
+<form style="color: black; align-items: center;" action="/comOffer" method="POST">
   <label for "start" class="Label"> Start:</label><br>
   <input type="text" name="start" id="start" required><br>
 
