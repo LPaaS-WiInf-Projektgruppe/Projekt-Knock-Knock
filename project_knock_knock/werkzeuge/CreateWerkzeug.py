@@ -33,3 +33,5 @@ def delete(id):
         return redirect('/create')
     except:
         return 'The offer could not be deleted :('
+
+#Test
