@@ -8,6 +8,7 @@ from werkzeuge.HomeWerkzeug import  home, index
 from werkzeuge.SettingsWerkzeug import settings
 from werkzeuge.AboutWerkzeug import about
 from werkzeuge.CreateWerkzeug import create
+from werkzeuge.DriverOfferWerkzeug import driverOffer
 
 from Models import User
 from extensions import db
@@ -31,6 +32,7 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(settings)
     app.register_blueprint(about)
     app.register_blueprint(create)
+    app.register_blueprint(driverOffer)
 
 
     db.init_app(app)

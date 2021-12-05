@@ -26,7 +26,7 @@ def createComOffer():
         allOffers = comOffers.query.order_by(comOffers.id).all()
         return render_template('create.html', view_name ='Create', allOffers=allOffers)
 
-@create.route('/delete/<int:id>')
+@create.route('/deleteComOffer/<int:id>')
 def delete(id):
     offer_to_delete = comOffers.query.get_or_404(id)
     try:
