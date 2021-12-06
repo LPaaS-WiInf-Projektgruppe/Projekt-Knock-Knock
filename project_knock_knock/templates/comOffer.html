@@ -45,9 +45,10 @@
         <tr>
           <td>{{ comOffer.id }}</td>
           <td>{{ comOffer.start }}</td>
-          <td>{{ comOffer.end }}</td>
-          <td>{{ comOffer.time }}</td>
-          <td>{{ comOffer.money }} Euro</td>
+          <td>{{ comOffer.destination }}</td>
+          <td>{{ comOffer.created_at }}</td>
+          <td>{{ comOffer.kilometerpreis }} Euro</td>
+          <td>{{ comOffer.duration }} Euro</td>
           <td>
             <a href="/deleteComOffer/{{comOffer.id}}">Löschen</a>
             <br>
@@ -64,17 +65,20 @@
   </p>
   <br>
 <form style="color: black; align-items: center;" action="/comOffer" method="POST">
-  <label for "start" class="Label"> Start:</label><br>
+  <label for="start" class="Label"> Start:</label><br>
   <input type="text" name="start" id="start" required><br>
 
-  <label for "ende" class="Label"> Ende:</label><br>
+  <label for="ende" class="Label"> Ende:</label><br>
   <input type="text" name="ende" id="ende" required><br>
 
-  <label for "zeit" class="Label"> Zeit:</label><br>
+  <label for="zeit" class="Label"> Zeit:</label><br>
   <input type="datetime-local" name="zeit" id="zeit" required><br>
 
-  <label for "geld" class="Label"> Geld:</label><br>
+  <label for="geld" class="Label"> Geld:</label><br>
   <input type="number" step="0.01" min=1 name="geld" id="geld" required><br>
+
+  <label for="dauer" class="Label"> Dauer in Tagen:</label><br>
+  <input type="number" step="0.01" min=1 name="dauer" id="dauer" required><br>
   <br>
   <input type="submit" value="Angebot hinzufügen">
 </form>

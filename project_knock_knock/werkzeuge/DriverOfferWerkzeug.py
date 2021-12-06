@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Blueprint, request, redirect
-from Models import driverOffers
+from Models import DriverOffers
 from extensions import db
 from datetime import datetime
 
@@ -14,17 +14,32 @@ def createDriverOffer():
         content_von = request.form['von']
         content_bis = request.form['bis']
         content_preis = request.form['preis']
+        content_dauer = request.form['dauer']
+        content_position = request.form['position']
+        content_radius = request.form['radius']
+        content_text = request.form['bemerkungen']
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
-        new_DriverOffer = driverOffers(location = content_ort, vehicle = content_fahrzeug, availFrom = vonAlsPythonObjekt, availUntil = bisAlsPythonObjekt, kmPrice = content_preis)
+
+        driver_offer = DriverOffers(
+            location = content_ort,
+            vehicle = content_fahrzeug,
+            # created_at = vonAlsPythonObjekt,
+            # duration = bisAlsPythonObjekt,
+            kilometerpreis = content_preis,
+            duration = content_dauer,
+            position = content_position,
+            radius = content_radius,
+            text = content_text
+        )
         try:
-            db.session.add(new_DriverOffer)
+            db.session.add(driver_offer)
             db.session.commit()
             return redirect('/driverOffer')
         except:
             return 'An Error occured, while trying to add your offer :('
     else:
-        allDriverOffers = driverOffers.query.order_by(driverOffers.id).all()
+        allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers)
 
 @driverOffer.route('/deleteDriverOffer/<int:id>')

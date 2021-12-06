@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Blueprint, request, redirect
-from Models import comOffers
+from Models import ComOffers
 from extensions import db
 from datetime import datetime
 
@@ -13,16 +13,22 @@ def createComOffer():
         content_ende = request.form['ende']
         content_zeit = request.form['zeit']
         content_geld = request.form['geld']
+        content_dauer = request.form['dauer']
         zeitAlsPythonObjekt = datetime.strptime(content_zeit, '%Y-%m-%dT%H:%M')
-        new_ComOffer = comOffers(start = content_start, end = content_ende, time = zeitAlsPythonObjekt, money = content_geld)
-        try:
-            db.session.add(new_ComOffer)
-            db.session.commit()
-            return redirect('/comOffer')
-        except:
-            return 'An Error occured, while trying to add your offer :('
+        comoffer = ComOffers(
+            start = content_start,
+            destination = content_ende,
+            kilometerpreis = content_geld,
+            duration = content_dauer
+        )
+        # try:
+        db.session.add(comoffer)
+        db.session.commit()
+        return redirect('/comOffer')
+        # except:
+        #     return 'An Error occured, while trying to add your offer :('
     else:
-        allComOffers = comOffers.query.order_by(comOffers.id).all()
+        allComOffers = ComOffers.query.order_by(ComOffers.id).all()
         return render_template('comOffer.html', view_name ='Company Offer', allComOffers=allComOffers)
 
 @comOffer.route('/deleteComOffer/<int:id>')
