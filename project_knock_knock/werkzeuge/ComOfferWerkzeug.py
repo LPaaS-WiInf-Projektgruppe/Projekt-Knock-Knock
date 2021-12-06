@@ -17,8 +17,6 @@ def createComOffer():
 
         startZeitAlsPythonObjekt = datetime.strptime(content_start_zeit, '%Y-%m-%dT%H:%M')
 
-        print('content_end_date: ' + content_end_zeit)
-
 
         if content_end_zeit == "":
             comoffer = ComOffers(
