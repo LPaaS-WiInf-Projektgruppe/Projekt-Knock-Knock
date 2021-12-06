@@ -5,12 +5,10 @@
 
 {% block extra_css %}
 
-<link href="{{url_for('static', filename='comOffer_style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{url_for('static', filename='comOffer__style.css')}}" rel="stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
-
-<script type=text/javascript src="{{url_for('static', filename='comOffer__script.js') }}"></script>
 
 <style media="screen">
   p
@@ -34,25 +32,25 @@
 
   <table class="Table" style="table-layout:fixed;">
       <tr>
-        <th style="width:50px;"> ID </th>
-        <th style="width:150px;"> Start </th>
-        <th style="width:150px;"> Ende </th>
-        <th style="width:150px;"> Zeit </th>
-        <th style="width:150px;"> Geld </th>
+        <!-- <th style="width:50px;"> ID </th> -->
+        <th style="width:150px;"> von </th>
+        <th style="width:150px;"> nach </th>
+        <th style="width:150px;"> gewünschte Zeit </th>
+        <!-- TODO: absolutpreis automatisch berechnen und angeben -->
+        <th style="width:150px;"> Kilometerpreis </th>
         <th style="width:100px;"> Aktionen </th>
       </tr>
       {% for comOffer in allComOffers %}
         <tr>
-          <td>{{ comOffer.id }}</td>
+          <!-- <td>{{ comOffer.id }}</td> -->
           <td>{{ comOffer.start }}</td>
           <td>{{ comOffer.destination }}</td>
-          <td>{{ comOffer.created_at }}</td>
+          <td>{{ comOffer.start_time}}</td>
           <td>{{ comOffer.kilometerpreis }} Euro</td>
-          <td>{{ comOffer.duration }} Euro</td>
           <td>
             <a href="/deleteComOffer/{{comOffer.id}}">Löschen</a>
             <br>
-            <a href = "">Kontakt</a>
+            <a href = "">Details</a>
           </td>
         </tr>
         {% endfor %}
@@ -65,19 +63,23 @@
   </p>
   <br>
 <form style="color: black; align-items: center;" action="/comOffer" method="POST">
-  <label for="start" class="Label"> Start:</label><br>
-  <input type="text" name="start" id="start" required><br>
+  <label for="von" class="Label"> von </label><br>
+  <input type="text" name="von" id="von" required><br>
 
-  <label for="ende" class="Label"> Ende:</label><br>
-  <input type="text" name="ende" id="ende" required><br>
+  <label for="nach" class="Label"> nach</label><br>
+  <input type="text" name="nach" id="nach" required><br>
 
-  <label for="zeit" class="Label"> Zeit:</label><br>
-  <input type="datetime-local" name="zeit" id="zeit" required><br>
+  <label for="input_start_date" class="Label">gewünschte Zeit:</label><br>
+  <input type="datetime-local" name="input_start_date" id="input_start_date" required><br>
 
-  <label for="geld" class="Label"> Geld:</label><br>
+  <button type="button" id="btn_end_date" name="button">bis</button>
+
+  <input type="datetime-local" name="input_end_date" id="input_end_date"><br>
+
+  <label for="geld" class="Label"> Kilometerpreis</label><br>
   <input type="number" step="0.01" min=1 name="geld" id="geld" required><br>
 
-  <label for="dauer" class="Label"> Dauer in Tagen:</label><br>
+  <label for="dauer" class="Label"> Angebotsdauer in Tagen:</label><br>
   <input type="number" step="0.01" min=1 name="dauer" id="dauer" required><br>
   <br>
   <input type="submit" value="Angebot hinzufügen">
@@ -85,6 +87,9 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 
+<script type=text/javascript src="{{url_for('static', filename='comOffer__script.js') }}"></script>
 
 {% endblock %}

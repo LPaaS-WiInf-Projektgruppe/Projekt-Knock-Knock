@@ -5,7 +5,7 @@
 
 {% block extra_css %}
 
-<link href="{{url_for('static', filename='driverOffer_style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{url_for('static', filename='driverOffer__style.css')}}" rel="stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
@@ -34,26 +34,28 @@
 
   <table class="Table" style="table-layout:fixed;">
       <tr>
-        <th style="width:50px;"> ID </th>
-        <th style="width:150px;"> Ort </th>
+        <!-- <th style="width:50px;"> ID </th> -->
+        <!-- <th style="width:150px;"> Ort </th> -->
         <th style="width:150px;"> Fahrzeug </th>
-        <th style="width:150px;"> Verfügbar ab: </th>
-        <th style="width:150px;"> Verfügbar bis: </th>
+        <!-- TODO: automatisch nach angeboten Filtern die in einem angegebenen Zeitraum liegen -->
+        <!-- <th style="width:150px;"> Verfügbar ab: </th>
+        <th style="width:150px;"> Verfügbar bis: </th> -->
+        <!-- TODO: absolutpreis automatisch berechnen und angeben -->
         <th style="width:150px;"> Kilometerpreis </th>
         <th style="width:100px;"> Aktionen </th>
       </tr>
       {% for driverOffer in allDriverOffers %}
         <tr>
-          <td>{{ driverOffer.id }}</td>
-          <td>{{ driverOffer.location }}</td>
+          <!-- <td>{{ driverOffer.id }}</td> -->
+          <!-- <td>{{ driverOffer.location }}</td> -->
           <td>{{ driverOffer.vehicle }}</td>
-          <td>{{ driverOffer.created_at }}</td>
-          <td>{{ driverOffer.duration}}</td>
+          <!-- <td>{{ driverOffer.created_at }}</td>
+          <td>{{ driverOffer.duration}}</td> -->
           <td>{{ driverOffer.kilometerpreis }} Euro</td>
           <td>
             <a href="/deleteDriverOffer/{{driverOffer.id}}">Löschen</a>
             <br>
-            <a href = "">Kontakt</a>
+            <a href = "">Details</a>
           </td>
         </tr>
         {% endfor %}
@@ -72,23 +74,60 @@
   <label for="fahrzeug" class="Label"> Fahrzeug:</label><br>
   <input type="text" name="fahrzeug" id="fahrzeug" required><br>
 
-  <label for="von" class="Label"> Verfügbar ab:</label><br>
-  <input type="datetime-local" name="von" id="von" required><br>
+  <label for="start_date" class="Label"> Verfügbar ab:</label><br>
+  <input type="datetime-local" name="start_date" id="start_date" required><br>
 
-  <label for="preis" class="Label">Preis</label><br>
+  <label for="end_date" class="Label"> Verfügbar bis:</label><br>
+  <input type="datetime-local" name="end_date" id="end_date" required><br>
+
+  <label for="Mo" class="Label"> Arbeitszeit</label><br>
+
+
+  <div class= "input_weekday">
+  <label for="Mo" class="Label"> Mo</label><br>
+  <input type="time" name="monday" id="monday" required>
+  </div>
+
+  <div class="input_weekday">
+    <label for="Di" class="Label"> Di</label><br>
+    <input type="time" name="tuesday" id="tuesday" required>
+  </div>
+
+  <div class="input_weekday">
+    <label for="Mi" class="Label"> Mi</label><br>
+    <input type="time" name="wednesday" id="wednesday" required>
+  </div>
+
+  <div class="input_weekday">
+    <label for="Do" class="Label"> Do</label><br>
+    <input type="time" name="thursday" id="thursday" required>
+  </div>
+
+  <br>
+
+  <div class="input_weekday">
+    <label for="Fr" class="Label"> Fr</label><br>
+    <input type="time" name="fridayy" id="friday" required>
+  </div>
+
+  <div class="input_weekday">
+    <label for="Sa" class="Label"> Sa</label><br>
+    <input type="time" name="saturday" id="saturday" required>
+  </div>
+
+  <div class="input_weekday">
+      <label for="So" class="Label"> So</label><br>
+      <input type="time" name="sunday" id="sunday" required><br>
+  </div>
+
+  <br>
+
+
+  <label for="preis" class="Label">Kilometerpreis</label><br>
   <input type="number" name="preis" id="preis" required><br>
 
-  <label for="bis" class="Label"> Verfügbar bis:</label><br>
-  <input type="datetime-local" name="bis" id="bis" required><br>
-
-  <label for="dauer" class="Label"> Dauer:</label><br>
-  <input type="number" step="0.01" min=0.05 name="dauer" id="dauer" required><br>
-
-  <label for="position" class="Label"> Position:</label><br>
-  <input type="text" name="position" id="position" required><br>
-
-  <label for="radius" class="Label"> Radius:</label><br>
-  <input type="number" step="0.01" min=0.05 name="radius" id="radius" required><br>
+  <label for="umkreis" class="Label"> Umkreis in km:</label><br>
+  <input type="number" step="0.01" min=0.05 name="radius" id="umkreis" required><br>
 
   <label for="text" class="Label"> Bemerkungen :</label><br>
   <input type="text" name="bemerkungen" id="bemerkungen" required><br>
