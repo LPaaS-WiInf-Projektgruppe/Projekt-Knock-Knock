@@ -21,3 +21,8 @@ h1
 {
   color: white;
 }
+
+.input_weekday
+{
+  display:inline-block;
+}

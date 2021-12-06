@@ -2,7 +2,7 @@
 from flask import Flask, render_template, Blueprint
 from flask_user import login_required
 
-from Models import Settings
+# from Models import Settings
 from forms.settings_form import SettingsForm
 
 from materialien.Database import SQLDatabase

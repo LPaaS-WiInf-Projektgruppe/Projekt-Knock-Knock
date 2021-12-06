@@ -14,9 +14,6 @@ from Models import User
 from extensions import db
 from startup import initialCode
 
-
-
-
 def createApp(config_file= 'config.py'):
     app = Flask(__name__)
     app.config.from_pyfile(config_file)

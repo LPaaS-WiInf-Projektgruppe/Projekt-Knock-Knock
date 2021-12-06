@@ -7,7 +7,7 @@ from flask_user import login_required
 from flask import Flask, render_template, Blueprint
 
 from config import DB_NAME, SQLALCHEMY_DATABASE_URI
-from Models import Settings
+# from Models import Settings
 from extensions import db
 from materialien.Database import SQLDatabase
 
@@ -23,8 +23,8 @@ def def_initial_code():
 
 
     # CREATE INITIAL TABLE ENTRIES FOR SETTINGS
-    settings = Settings(
-        id=1
-    )
+    # settings = Settings(
+    #     id=1
+    # )
 
     db.create_all()

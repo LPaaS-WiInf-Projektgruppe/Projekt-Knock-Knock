@@ -21,3 +21,15 @@ h1
 {
   color: white;
 }
+
+
+.btn_enddate
+{
+  color: white;
+  border: 1px solid white;
+}
+
+#input_end_date
+{
+  display: none;
+}
