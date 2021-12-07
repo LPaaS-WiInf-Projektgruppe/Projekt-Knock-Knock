@@ -1,0 +1,32 @@
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+      <link href="{{url_for('static', filename='com_offer_detail__style.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block header %}
+
+
+ {% endblock %}
+
+ {% block content %}
+
+<div class="content">
+
+
+<p>Username {{ data.creator.first().username }}</p>
+<p>von {{ data.start }}</p>
+<p>nach {{ data.destination }}</p>
+<p>gewünschte Uhrzeit {{ data.start_time }}</p>
+<p>bis {{ data.start_time }}</p>
+<p>Kilometerpreis {{ data.kilometerpreis }}</p>
+<p>erstellt am {{ data.created_at }}</p>
+
+
+  </div>
+
+
+{% endblock %}

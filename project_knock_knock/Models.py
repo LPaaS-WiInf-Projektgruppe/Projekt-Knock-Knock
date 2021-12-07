@@ -59,11 +59,25 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    active = db.Column(db.Boolean(), nullable = False, server_default='0')
 
-    messages = db.relationship("Message", secondary= message_identifier)
-    received_messages = db.relationship("ReceivedMessage", secondary= received_message_identifier)
-    com_offers = db.relationship("ComOffers", secondary= com_offer_identifier)
-    driver_offers = db.relationship("DriverOffers", secondary= driver_offer_identifier)
+    messages = db.relationship(
+        "Message",
+        secondary= message_identifier
+    )
+    received_messages = db.relationship(
+        "ReceivedMessage",
+        secondary= received_message_identifier
+    )
+    com_offers = db.relationship(
+        "ComOffers",
+        secondary= com_offer_identifier,
+        backref= db.backref("creator", lazy ="dynamic")
+    )
+    driver_offers = db.relationship(
+        "DriverOffers",
+        secondary= driver_offer_identifier
+    )
 
 
 class Rating(db.Model):
@@ -96,18 +110,6 @@ class Weekday(db.Model):
     weekday = db.Column(db.String(50), nullable = False)
 
 
-
-
-# # Entwurf Datenbank-Table für die Angebote
-# class Offers(db.Model):
-#     __tablename__ = ""
-#     id = db.Column(db.Integer, primary_key=True)
-#     start = db.Column(db.String(50), nullable=False)
-#     end = db.Column(db.String(50), nullable=False)
-#     time = db.Column(db.DateTime, nullable=True)
-#     money = db.Column(db.Integer(), nullable=False)
-
-# Datenbank-Table für die Angebote der Unternehmen
 class ComOffers(db.Model):
     __tablename__ = "com_offers"
     id = db.Column(db.Integer, primary_key=True)
