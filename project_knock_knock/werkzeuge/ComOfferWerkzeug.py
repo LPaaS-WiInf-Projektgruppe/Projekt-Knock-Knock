@@ -25,9 +25,9 @@ def createComOffer():
         content_end_zeit = request.form['zeit_ende']
         content_geld = request.form['geld']
 
-        formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
+        #formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
 
-        startZeitAlsPythonObjekt = datetime.strptime(formatted_datetime, '%d.%m.%y-%H:%M')
+        startZeitAlsPythonObjekt = datetime.strptime(content_start_zeit, '%d.%m.%Y-%H:%M')
 
 
         if content_end_zeit == "":

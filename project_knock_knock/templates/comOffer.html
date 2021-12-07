@@ -65,6 +65,7 @@
   <form method ="POST" action="/comOffer">
           {{ form.csrf_token }}
           {{ form.von.label }}
+          <br>
           {{ form.von }}
           <br>
           {% for error in form.von.errors %}
@@ -73,6 +74,7 @@
           <br>
 
           {{ form.nach.label }}
+          <br>
           {{ form.nach }}
           <br>
           {% for error in form.nach.errors %}
@@ -81,6 +83,7 @@
           <br>
 
           {{ form.zeit_start.label }}
+          <br>
           {{ form.zeit_start }}
           <br>
           {% for error in form.zeit_start.errors %}
@@ -89,6 +92,7 @@
           <br>
 
           {{ form.zeit_ende.label }}
+          <br>
           {{ form.zeit_ende }}
           <br>
           {% for error in form.zeit_ende.errors %}
@@ -97,6 +101,7 @@
           <br>
 
           {{ form.geld.label }}
+          <br>
           {{ form.geld }}
           <br>
           {% for error in form.geld.errors %}
@@ -105,6 +110,7 @@
           <br>
 
           {{ form.dauer.label }}
+          <br>
           {{ form.dauer }}
           <br>
           {% for error in form.dauer.errors %}
