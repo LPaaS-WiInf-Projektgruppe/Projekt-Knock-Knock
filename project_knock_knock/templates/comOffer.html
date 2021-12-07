@@ -30,15 +30,15 @@
 
 <br>
 
-  <table class="Table" style="table-layout:fixed;">
+  <table class="Table">
       <tr>
         <!-- <th style="width:50px;"> ID </th> -->
-        <th style="width:150px;"> von </th>
-        <th style="width:150px;"> nach </th>
-        <th style="width:150px;"> gewünschte Zeit </th>
+        <th style=> von </th>
+        <th style=> nach </th>
+        <th style=> gewünschte Zeit </th>
         <!-- TODO: absolutpreis automatisch berechnen und angeben -->
-        <th style="width:150px;"> Kilometerpreis </th>
-        <th style="width:100px;"> Aktionen </th>
+        <th style=> Kilometerpreis </th>
+        <th> Aktionen </th>
       </tr>
       {% for comOffer in allComOffers %}
         <tr>
@@ -84,6 +84,26 @@
   <br>
   <input type="submit" value="Angebot hinzufügen">
 </form>
+
+
+
+
+
+
+
+
+<!-- <form method ="POST" action="{{ url_for('/comOffer') }}">
+        {{ form.csrf_token }}
+     </form> -->
+
+
+
+
+
+
+
+
+
 
 </div>
 

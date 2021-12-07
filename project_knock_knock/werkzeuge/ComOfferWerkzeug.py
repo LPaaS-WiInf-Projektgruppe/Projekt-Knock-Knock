@@ -1,8 +1,9 @@
-from flask import Flask, render_template, Blueprint, request, redirect
+from flask import Flask, render_template, Blueprint, request, redirect, url_for
 from flask_user import current_user, login_required
 from Models import ComOffers
 from extensions import db
 from datetime import datetime
+from forms.comOffer_form import ComOfferForm
 
 
 comOffer = Blueprint('comOffer', __name__)
@@ -11,6 +12,9 @@ comOffer = Blueprint('comOffer', __name__)
 @comOffer.route('/comOffer', methods=['POST', 'GET'])
 @login_required
 def createComOffer():
+
+ #form = ComOfferForm()
+
     if request.method == 'POST':
         content_start = request.form['von']
         content_ende = request.form['nach']

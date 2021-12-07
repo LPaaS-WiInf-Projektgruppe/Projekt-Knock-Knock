@@ -96,6 +96,7 @@ Change example configuration for actual configuration
 ```
 DB_NAME = 'project_knock_knock'  
 SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'  
+USER_ENABLE_REGISTER = True
 USER_APP_NAME = "Project Knock Knock"  
 ```
 
