@@ -30,15 +30,15 @@
 
 <br>
 
-  <table class="Table" style="table-layout:fixed;">
+  <table class="Table">
       <tr>
         <!-- <th style="width:50px;"> ID </th> -->
-        <th style="width:150px;"> von </th>
-        <th style="width:150px;"> nach </th>
-        <th style="width:150px;"> gewünschte Zeit </th>
+        <th style=> von </th>
+        <th style=> nach </th>
+        <th style=> gewünschte Zeit </th>
         <!-- TODO: absolutpreis automatisch berechnen und angeben -->
-        <th style="width:150px;"> Kilometerpreis </th>
-        <th style="width:100px;"> Aktionen </th>
+        <th style=> Kilometerpreis </th>
+        <th> Aktionen </th>
       </tr>
       {% for comOffer in allComOffers %}
         <tr>
@@ -62,28 +62,58 @@
     Nichts passendes gefunden? Dann kannst du hier ein entsprechendes Gesuch einstellen!
   </p>
   <br>
-<form style="color: black; align-items: center;" action="/comOffer" method="POST">
-  <label for="von" class="Label"> von </label><br>
-  <input type="text" name="von" id="von" required><br>
+  <form method ="POST" action="/comOffer">
+          {{ form.csrf_token }}
+          {{ form.von.label }}
+          {{ form.von }}
+          <br>
+          {% for error in form.von.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <label for="nach" class="Label"> nach</label><br>
-  <input type="text" name="nach" id="nach" required><br>
+          {{ form.nach.label }}
+          {{ form.nach }}
+          <br>
+          {% for error in form.nach.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <label for="input_start_date" class="Label">gewünschte Zeit:</label><br>
-  <input type="datetime-local" name="input_start_date" id="input_start_date" required><br>
+          {{ form.zeit_start.label }}
+          {{ form.zeit_start }}
+          <br>
+          {% for error in form.zeit_start.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <button type="button" id="btn_end_date" name="button">bis</button>
+          {{ form.zeit_ende.label }}
+          {{ form.zeit_ende }}
+          <br>
+          {% for error in form.zeit_ende.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <input type="datetime-local" name="input_end_date" id="input_end_date"><br>
+          {{ form.geld.label }}
+          {{ form.geld }}
+          <br>
+          {% for error in form.geld.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <label for="geld" class="Label"> Kilometerpreis</label><br>
-  <input type="number" step="0.01" min=1 name="geld" id="geld" required><br>
+          {{ form.dauer.label }}
+          {{ form.dauer }}
+          <br>
+          {% for error in form.dauer.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
 
-  <label for="dauer" class="Label"> Angebotsdauer in Tagen:</label><br>
-  <input type="number" step="0.01" min=1 name="dauer" id="dauer" required><br>
-  <br>
-  <input type="submit" value="Angebot hinzufügen">
-</form>
+          {{ form.submit(id='create-save-offer') }}
+       </form>
 
 </div>
 
