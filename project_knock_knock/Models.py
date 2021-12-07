@@ -6,6 +6,11 @@ from sqlalchemy.sql import func
 from extensions import db
 
 
+
+
+
+# association tables for n:m relationships between tables
+
 message_identifier =  db.Table(
     "message_identifier",
     db.Column("nachrichten_id", db.Integer, db.ForeignKey("messages.id")),
@@ -54,6 +59,17 @@ workingtime_identifier = db.Table(
     db.Column("weekdays", db.Integer, db.ForeignKey("weekdays.id"))
 )
 
+
+# Table that represents a users
+# a user can have the following attributes:
+#     - :id: identifies a users
+#     - :username: a unique name to login with
+#     - :password: the corresponding password
+# a user has the following relationships:
+#     - :messages: links users to the corresponding written messages
+#     - :received_messages: links users to the corresponding written messages
+#     - :com_offers: links users to their created offers as a "company"
+#     - :driver_offers: links users to their created offers as a driver
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -63,11 +79,13 @@ class User(db.Model, UserMixin):
 
     messages = db.relationship(
         "Message",
-        secondary= message_identifier
+        secondary= message_identifier,
+        backref= db.backref("creator", lazy ="dynamic")
     )
     received_messages = db.relationship(
         "ReceivedMessage",
-        secondary= received_message_identifier
+        secondary= received_message_identifier,
+        backref= db.backref("receiver", lazy ="dynamic")
     )
     com_offers = db.relationship(
         "ComOffers",
@@ -76,7 +94,8 @@ class User(db.Model, UserMixin):
     )
     driver_offers = db.relationship(
         "DriverOffers",
-        secondary= driver_offer_identifier
+        secondary= driver_offer_identifier,
+        backref= db.backref("creator", lazy ="dynamic")
     )
 
 
