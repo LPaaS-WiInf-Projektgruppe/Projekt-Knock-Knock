@@ -4,6 +4,7 @@ from Models import ComOffers
 from extensions import db
 from datetime import datetime
 from forms.comOffer_form import ComOfferForm
+import re
 
 
 comOffer = Blueprint('comOffer', __name__)
@@ -13,16 +14,20 @@ comOffer = Blueprint('comOffer', __name__)
 @login_required
 def createComOffer():
 
- #form = ComOfferForm()
+    form = ComOfferForm()
 
-    if request.method == 'POST':
+    # if request.method == 'POST':
+
+    if form.validate_on_submit():
         content_start = request.form['von']
         content_ende = request.form['nach']
-        content_start_zeit = request.form['input_start_date']
-        content_end_zeit = request.form['input_end_date']
+        content_start_zeit = request.form['zeit_start']
+        content_end_zeit = request.form['zeit_ende']
         content_geld = request.form['geld']
 
-        startZeitAlsPythonObjekt = datetime.strptime(content_start_zeit, '%Y-%m-%dT%H:%M')
+        formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
+
+        startZeitAlsPythonObjekt = datetime.strptime(formatted_datetime, '%d.%m.%y-%H:%M')
 
 
         if content_end_zeit == "":
@@ -53,7 +58,12 @@ def createComOffer():
             return 'An Error occured, while trying to add your offer :('
     else:
         allComOffers = ComOffers.query.order_by(ComOffers.id).all()
-        return render_template('comOffer.html', view_name ='Company Offer', allComOffers=allComOffers)
+        return render_template(
+            'comOffer.html',
+            view_name ='Company Offer',
+            allComOffers = allComOffers,
+            form = form
+        )
 
 @comOffer.route('/deleteComOffer/<int:id>')
 @login_required
