@@ -20,6 +20,8 @@ def createDriverOffer():
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
 
+        form = DriverOfferForm()
+
 
         i = 0
         for results in request.form:
