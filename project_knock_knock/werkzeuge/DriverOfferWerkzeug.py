@@ -1,7 +1,8 @@
 from flask import Flask, render_template, Blueprint, request, redirect
-from Models import DriverOffers
+from flask_user import current_user
+from Models import DriverOffers, WorkingTime
 from extensions import db
-from datetime import datetime
+from datetime import datetime, timedelta
 
 driverOffer = Blueprint('driverOffer', __name__)
 
@@ -19,6 +20,24 @@ def createDriverOffer():
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
 
+
+        i = 0
+        for results in request.form:
+            if (results == "monday" or results == "tuesday" or results == "wednesday" or \
+                results == "thursday" or results == "friday" or results == "saturday" or \
+                results == "sunday"):
+
+                bis = datetime.strptime(request.form[results],'%H:%M')
+                bis += timedelta(hours=8)
+                working_time = WorkingTime(
+                    weekday = i,
+                    start_time = request.form[results],
+                    end_time = bis
+                )
+                db.session.add(working_time)
+                working_time.driver.append(current_user)
+                i+=1
+
         driver_offer = DriverOffers(
             location = content_ort,
             vehicle = content_fahrzeug,
@@ -28,12 +47,12 @@ def createDriverOffer():
             radius = content_radius,
             text = content_text
         )
-        # try:
-        db.session.add(driver_offer)
-        db.session.commit()
-        return redirect('/driverOffer')
-        # except:
-            # return 'An Error occured, while trying to add your offer :('
+        try:
+            db.session.add(driver_offer)
+            db.session.commit()
+            return redirect('/driverOffer')
+        except:
+            return 'An Error occured, while trying to add your offer :('
     else:
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers)
