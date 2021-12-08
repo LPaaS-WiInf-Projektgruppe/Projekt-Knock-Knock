@@ -31,19 +31,10 @@ def profil_func():
             work_time.end_time
         )
         work_times.append(work_time)
-        # TODO handle querying when there are no work times
-
     try:
         user_profile = Profil(result[0][0].username, work_times,  0, result[0][0].username)
     except IndexError:
         pass
-
-    for _, work_times in result:
-        print(work_times.start_time)
-
-    # for item in result:
-    #     item.start_time
-    # print(result)
-
+        # TODO handle querying when there are no work times
 
     return render_template("profil.html", view_name='Profil', profile = user_profile)

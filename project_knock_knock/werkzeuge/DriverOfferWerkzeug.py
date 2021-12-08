@@ -20,14 +20,12 @@ def createDriverOffer():
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
 
-        # print(request.form)
 
         i = 0
         for results in request.form:
             if (results == "monday" or results == "tuesday" or results == "wednesday" or \
                 results == "thursday" or results == "friday" or results == "saturday" or \
                 results == "sunday"):
-                # print(request.form[results])
 
                 bis = datetime.strptime(request.form[results],'%H:%M')
                 bis += timedelta(hours=8)
@@ -39,20 +37,6 @@ def createDriverOffer():
                 db.session.add(working_time)
                 working_time.driver.append(current_user)
                 i+=1
-        # monday = request.form['monday']
-        # tuesday = request.form['tuesday']
-        # wednesday = request.form['wednesday']
-        # thursday = request.form['thursday']
-        # friday = request.form['friday']
-        # saturday = request.form['saturday']
-        # sunday = request.form['sunday']
-
-        # working_time = WorkingTime(
-        #     weekday = monday
-        #     start_time = monday.
-        #     end_time =
-        # )
-        # working_time.weekday.append(current_user)
 
         driver_offer = DriverOffers(
             location = content_ort,
@@ -63,12 +47,12 @@ def createDriverOffer():
             radius = content_radius,
             text = content_text
         )
-        # try:
-        db.session.add(driver_offer)
-        db.session.commit()
-        return redirect('/driverOffer')
-        # except:
-            # return 'An Error occured, while trying to add your offer :('
+        try:
+            db.session.add(driver_offer)
+            db.session.commit()
+            return redirect('/driverOffer')
+        except:
+            return 'An Error occured, while trying to add your offer :('
     else:
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers)
