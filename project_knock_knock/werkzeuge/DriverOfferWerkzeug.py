@@ -16,24 +16,7 @@ def createDriverOffer():
     form = DriverOfferForm()
 
 
-    # add work time information from form to database and append it to current user
-    i = 0
-    for results in request.form:
-        if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
-        results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
-        results == "from_zeitSo"):
 
-            bis = datetime.strptime(request.form[results],'%H:%M')
-            bis += timedelta(hours=8)
-            bis.strftime("%H:%M")
-            working_time = WorkingTime(
-                weekday = i,
-                start_time = request.form[results],
-                end_time = bis
-            )
-            db.session.add(working_time)
-            working_time.driver.append(current_user)
-        i+=1
 
 
     if form.validate_on_submit():
@@ -52,7 +35,27 @@ def createDriverOffer():
         content_umkreis = request.form['umkreis']
         content_bemerkungen = request.form['bemerkungen']
 
-        #formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
+
+        # add work time information from form to database and append it to current user
+        i = 0
+        for results in request.form:
+            if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
+            results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
+            results == "from_zeitSo"):
+
+                bis = datetime.strptime(request.form[results],'%H:%M')
+                bis += timedelta(hours=8)
+                bis.strftime("%H:%M")
+                working_time = WorkingTime(
+                    weekday = i,
+                    start_time = request.form[results],
+                    end_time = bis
+                )
+                db.session.add(working_time)
+                working_time.driver.append(current_user)
+                i+=1
+
+        formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
 
         verfügbarVonAlsPythonObjekt = datetime.strptime(content_verfügbarVon, '%d.%m.%Y-%H:%M')
         verfügbarBisAlsPythonObjekt = datetime.strptime(content_verfügbarBis, '%d.%m.%Y-%H:%M')
