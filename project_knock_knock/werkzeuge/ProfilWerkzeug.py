@@ -20,6 +20,7 @@ def profil_func():
     result = db.session.query(User, WorkingTime) \
         .join(WorkingTime.driver) \
         .filter_by(username = curr_user) \
+        .order_by(WorkingTime.weekday) \
         .all()
 
     work_times = []
@@ -32,9 +33,12 @@ def profil_func():
         )
         work_times.append(work_time)
     try:
+        # TODO: add a rating currently uses 0 as default
+        # TODO: ad a description, currently uses username as default
         user_profile = Profil(result[0][0].username, work_times,  0, result[0][0].username)
     except IndexError:
-        pass
-        # TODO handle querying when there are no work times
+        # handle case where the are no working_ times save for the user
+        result = User.query.filter_by(username =current_user.username).first()
+        user_profile = Profil(result.username,[],  0,"")
 
     return render_template("profil.html", view_name='Profil', profile = user_profile)
