@@ -33,6 +33,8 @@ def profil_func():
         )
         work_times.append(work_time)
     try:
+        # TODO: add a rating currently uses 0 as default
+        # TODO: ad a description, currently uses username as default
         user_profile = Profil(result[0][0].username, work_times,  0, result[0][0].username)
     except IndexError:
         # handle case where the are no working_ times save for the user
