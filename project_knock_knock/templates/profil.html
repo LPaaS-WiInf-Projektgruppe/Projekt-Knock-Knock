@@ -1,0 +1,37 @@
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+      <link href="{{url_for('static', filename='home__style.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block header %}
+
+
+ {% endblock %}
+
+ {% block content %}
+
+<div class="content">
+
+
+
+  <p>Username: {{profile.get_username()}}<p>
+
+  <p>Arbeitszeiten:</p>
+
+  {% for work_time in profile.get_working_times() %}
+  <p>{{ work_time.weekday_to_string_short() }}</p>
+  <p>{{ work_time.get_start_time() }}</p>
+  <p>{{ work_time.get_end_time() }}</p>
+  {% endfor %}
+
+
+
+
+  </div>
+
+
+{% endblock %}
