@@ -9,7 +9,10 @@ driverOffer = Blueprint('driverOffer', __name__)
 
 @driverOffer.route('/driverOffer', methods=['POST', 'GET'])
 def createDriverOffer():
-    if request.method == 'POST':
+
+    form = DriverOfferForm()
+
+    if form.validate_on_submit():
         content_ort = request.form['ort']
         content_fahrzeug = request.form['fahrzeug']
         content_von = request.form['start_date']
@@ -20,7 +23,7 @@ def createDriverOffer():
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
 
-        form = DriverOfferForm()
+
 
 
         i = 0
