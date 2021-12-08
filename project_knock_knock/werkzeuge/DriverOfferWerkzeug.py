@@ -4,6 +4,8 @@ from Models import DriverOffers, WorkingTime
 from extensions import db
 from datetime import datetime, timedelta
 
+from forms.driverOffer_form import DriverOfferForm
+
 driverOffer = Blueprint('driverOffer', __name__)
 
 
@@ -28,12 +30,13 @@ def createDriverOffer():
 
         i = 0
         for results in request.form:
-            if (results == "monday" or results == "tuesday" or results == "wednesday" or \
-                results == "thursday" or results == "friday" or results == "saturday" or \
-                results == "sunday"):
+            if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
+                results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
+                results == "from_zeitSo"):
 
                 bis = datetime.strptime(request.form[results],'%H:%M')
                 bis += timedelta(hours=8)
+                bis.strftime('%H:%M')
                 working_time = WorkingTime(
                     weekday = i,
                     start_time = request.form[results],
