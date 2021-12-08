@@ -11,6 +11,8 @@ from werkzeuge.ComOfferWerkzeug import comOffer
 from werkzeuge.DriverOfferWerkzeug import driverOffer
 from werkzeuge.ComOfferDetailWerkzeug import com_offer_detail
 from werkzeuge.ProfilWerkzeug import profil
+from werkzeuge.MyDriverOffersWerkzeug import my_offers
+from werkzeuge.MyComOffersWerkzeug import my_orders
 
 from Models import User
 from extensions import db
@@ -31,8 +33,10 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(settings)
     app.register_blueprint(about)
     app.register_blueprint(comOffer)
+    app.register_blueprint(my_orders)
     app.register_blueprint(com_offer_detail)
     app.register_blueprint(driverOffer)
+    app.register_blueprint(my_offers)
     app.register_blueprint(profil)
 
 

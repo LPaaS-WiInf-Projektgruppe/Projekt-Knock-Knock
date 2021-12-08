@@ -15,38 +15,39 @@ def createDriverOffer():
 
     form = DriverOfferForm()
 
-#        i = 0
-#        for results in request.form:
-#            if (results == "monday" or results == "tuesday" or results == "wednesday" or \
-#                results == "thursday" or results == "friday" or results == "saturday" or \
-#                results == "sunday"):
-#
-#                bis = datetime.strptime(request.form[results],'%H:%M')
-#                bis += timedelta(hours=8)
-#                working_time = WorkingTime(
-#                    weekday = i,
-#                    start_time = request.form[results],
-#                    end_time = bis
-#                )
-#                db.session.add(working_time)
-#                working_time.driver.append(current_user)
-#                i+=1
 
+    # add work time information from form to database and append it to current user
+    i = 0
+    for results in request.form:
+        if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
+        results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
+        results == "from_zeitSo"):
 
-    # if request.method == 'POST':
+            bis = datetime.strptime(request.form[results],'%H:%M')
+            bis += timedelta(hours=8)
+            bis.strftime("%H:%M")
+            working_time = WorkingTime(
+                weekday = i,
+                start_time = request.form[results],
+                end_time = bis
+            )
+            db.session.add(working_time)
+            working_time.driver.append(current_user)
+        i+=1
+
 
     if form.validate_on_submit():
         content_ort = request.form['ort']
         content_fahrzeug = request.form['fahrzeug']
         content_verfügbarVon = request.form['verfügbarVon']
         content_verfügbarBis = request.form['verfügbarBis']
-        content_zeitMo = request.form['zeitMo']
-        content_zeitDi = request.form['zeitDi']
-        content_zeitMi = request.form['zeitMi']
-        content_zeitDo = request.form['zeitDo']
-        content_zeitFr = request.form['zeitFr']
-        content_zeitSa = request.form['zeitSa']
-        content_zeitSo = request.form['zeitSo']
+        content_zeitMo = request.form['from_zeitMo']
+        content_zeitDi = request.form['from_zeitDi']
+        content_zeitMi = request.form['from_zeitMi']
+        content_zeitDo = request.form['from_zeitDo']
+        content_zeitFr = request.form['from_zeitFr']
+        content_zeitSa = request.form['from_zeitSa']
+        content_zeitSo = request.form['from_zeitSo']
         content_preis = request.form['preis']
         content_umkreis = request.form['umkreis']
         content_bemerkungen = request.form['bemerkungen']
@@ -76,7 +77,7 @@ def createDriverOffer():
         try:
             db.session.add(driver_offer)
             # associate a driver_offer with a specific user
-            #driver_offer.creator.append(current_user)
+            driver_offer.creator.append(current_user)
             db.session.commit()
             return redirect('/driverOffer')
         except:

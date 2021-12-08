@@ -1,0 +1,34 @@
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+      <link href="{{url_for('static', filename='my_drive_offers__style.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block header %}
+
+
+ {% endblock %}
+
+ {% block content %}
+
+<div class="content">
+
+  {% for offer in offers %}
+
+  <div class="drive-offer-container">
+    {{ offer.get_location() }}
+    {{ offer.get_radius() }}
+    {{ offer.get_created_at() }}
+    {{ offer.get_start_time() }}
+    {{ offer.get_end_time() }}
+    {{ offer.kilometerpreis() }}
+  </div>
+  {% endfor %}
+
+  </div>
+
+
+{% endblock %}
