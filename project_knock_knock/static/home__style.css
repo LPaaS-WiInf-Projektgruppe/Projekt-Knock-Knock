@@ -13,6 +13,11 @@ body
 .content
 {
     padding: 16px;
-    background: #33322F;
+    #background: #33322F;
     color: white;
+}
+
+h1
+{
+  text-align: center;
 }
