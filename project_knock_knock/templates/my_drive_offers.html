@@ -19,13 +19,15 @@
   {% for offer in offers %}
 
   <div class="drive-offer-container">
-    {{ offer.get_location() }}
-    {{ offer.get_radius() }}
-    {{ offer.get_created_at() }}
-    {{ offer.get_start_time() }}
-    {{ offer.get_end_time() }}
-    {{ offer.get_kilometerpreis() }}
+    <div>Ort: {{ offer.get_location() }}</div>
+    <div>Radius: {{ offer.get_radius() }}</div>
+      <div>erstellt am: {{ offer.get_created_at() }}</div>
+      <div>verfügbar von: {{ offer.get_start_time() }}</div>
+      <div>verfügbar bis: {{ offer.get_end_time() }}</div>
+    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
+    <a href="/delete_driver_offer"> Löschen</a>
   </div>
+  <br>
   {% endfor %}
 
   </div>
