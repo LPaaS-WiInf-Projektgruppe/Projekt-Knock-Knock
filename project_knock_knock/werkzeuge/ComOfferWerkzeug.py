@@ -16,8 +16,6 @@ def createComOffer():
 
     form = ComOfferForm()
 
-    # if request.method == 'POST':
-
     if form.validate_on_submit():
         content_start = request.form['von']
         content_ende = request.form['nach']
@@ -65,14 +63,3 @@ def createComOffer():
             allComOffers = allComOffers,
             form = form
         )
-
-@comOffer.route('/deleteComOffer/<int:id>')
-@login_required
-def delete(id):
-    comOffer_to_delete = ComOffers.query.get_or_404(id)
-    try:
-        db.session.delete(comOffer_to_delete)
-        db.session.commit()
-        return redirect('/comOffer')
-    except:
-        return 'The offer could not be deleted :('

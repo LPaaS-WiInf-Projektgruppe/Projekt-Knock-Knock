@@ -1,6 +1,6 @@
 
 from flask_user import login_required, current_user
-from flask import Flask, render_template, Blueprint
+from flask import Flask, render_template, Blueprint, redirect
 
 from Models import User, DriverOffers
 from extensions import db
@@ -11,6 +11,8 @@ from materialien.drive_offer import DriveOffer
 
 
 my_offers = Blueprint('my_offers', __name__)
+
+delete_driver_offer = Blueprint("delete_driver_offer", __name__)
 
 
 
@@ -26,24 +28,18 @@ def my_offers_func():
         .all()
 
 
-
-
-    print(results)
-
-
     drive_offers = []
     for _, offer in results:
-        # work_time = WorkingTime(
-        #     driver_offer.weekday,
-        #     driver_offer.start_time,
-        #     driver_offer.end_time
-        # )
-
-        # print(driver_offer.vehicle)
-
-
+    #     work_time = WorkingTime(
+    #         driver_offer.weekday,
+    #         driver_offer.start_time,
+    #         driver_offer.end_time
+    #     )
+    #
+    #     print(driver_offer.vehicle)
 
         drive_offer = DriveOffer(
+            offer.id,
             offer.location,
             offer.vehicle,
             offer.created_at,
@@ -57,8 +53,27 @@ def my_offers_func():
             3
         )
         drive_offers.append(drive_offer)
-    print(drive_offers)
-
-
 
     return render_template("my_drive_offers.html", view_name='My Offers', offers = drive_offers)
+
+
+@my_offers.route("/delete_driver_offer/<int:offer_id>")
+@login_required
+def delete_driver_offer_func(offer_id):
+    results = db.session.query(User, DriverOffers) \
+        .join(DriverOffers.creator) \
+        .filter_by(username = current_user.username) \
+        .all()
+
+    for _, offer in results:
+        if offer_id == offer.id:
+
+            offer_to_delete = DriverOffers.query.get_or_404(offer.id)
+            print(offer_to_delete)
+            db.session.delete(offer_to_delete)
+            db.session.commit()
+    return redirect('/my_offers')
+
+    # offer_to_delete = DriverOffers.query.get_or_404(id)
+    # db.session.delete(offer_to_delete)
+    # db.session.commit()

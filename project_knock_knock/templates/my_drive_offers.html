@@ -25,7 +25,7 @@
       <div>verfügbar von: {{ offer.get_start_time() }}</div>
       <div>verfügbar bis: {{ offer.get_end_time() }}</div>
     <div>Preis: {{ offer.get_kilometerpreis() }}</div>
-    <a href="/delete_driver_offer"> Löschen</a>
+    <a href="/delete_driver_offer/{{offer.get_id()}}"> Löschen</a>
   </div>
   <br>
   {% endfor %}

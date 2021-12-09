@@ -77,13 +77,3 @@ def createDriverOffer():
     else:
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers, form = form)
-
-@driverOffer.route('/deleteDriverOffer/<int:id>')
-def delete(id):
-    driverOffer_to_delete = DriverOffers.query.get_or_404(id)
-    try:
-        db.session.delete(driverOffer_to_delete)
-        db.session.commit()
-        return redirect('/driverOffer')
-    except:
-        return 'The offer could not be deleted :('

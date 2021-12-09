@@ -46,15 +46,9 @@
       </tr>
       {% for driverOffer in allDriverOffers %}
         <tr>
-          <!-- <td>{{ driverOffer.id }}</td> -->
-          <!-- <td>{{ driverOffer.location }}</td> -->
           <td>{{ driverOffer.vehicle }}</td>
-          <!-- <td>{{ driverOffer.created_at }}</td>
-          <td>{{ driverOffer.duration}}</td> -->
           <td>{{ driverOffer.kilometerpreis }} Euro</td>
           <td>
-            <a href="/deleteDriverOffer/{{driverOffer.id}}">Löschen</a>
-            <br>
             <a href = "/driver_offer_detail/{{driverOffer.id}}">Details</a>
           </td>
         </tr>

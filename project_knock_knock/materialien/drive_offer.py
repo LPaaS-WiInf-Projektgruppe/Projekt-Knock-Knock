@@ -1,16 +1,8 @@
 class DriveOffer(object):
     def __init__(
-        self,
-        location,
-        vehicle,
-        created_at,
-        start_time,
-        end_time,
-        kilometerpreis,
-        radius,
-        text,
-        rating):
-
+            self, id, location, vehicle, created_at, start_time, end_time,
+            kilometerpreis, radius, text, rating):
+        self.__id = id
         self.__location = location
         self.__vehicle = vehicle
         self.__created_at = created_at
@@ -21,6 +13,8 @@ class DriveOffer(object):
         self.__text = text
         self.__rating = rating
 
+    def set_id(self, location):
+        self.__id = id
 
     def set_location(self, location):
         self.__location = location
@@ -48,6 +42,9 @@ class DriveOffer(object):
 
     def set_rating(self, rating):
         self.__rating = rating
+
+    def get_id(self):
+        return self.__id
 
     def get_location(self):
         return self.__location

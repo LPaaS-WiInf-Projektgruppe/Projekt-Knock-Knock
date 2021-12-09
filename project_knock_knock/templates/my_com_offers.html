@@ -3,7 +3,7 @@
 
 {% block extra_css %}
      {{ fontawesome_html() }}
-      <link href="{{url_for('static', filename='my_com_offers__style.css')}}" rel="stylesheet" type="text/css">
+      <link href="{{url_for('static', filename='my_drive_offers__style.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -16,7 +16,19 @@
 
 <div class="content">
 
-  <p>TODO !!</p>
+  {% for offer in offers %}
+
+  <div class="drive-offer-container">
+    <div>Ort: {{ offer.get_location() }}</div>
+    <div>Radius: {{ offer.get_radius() }}</div>
+      <div>erstellt am: {{ offer.get_created_at() }}</div>
+      <div>verfügbar von: {{ offer.get_start_time() }}</div>
+      <div>verfügbar bis: {{ offer.get_end_time() }}</div>
+    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
+    <a href="/delete_driver_offer/{{offer.get_id()}}"> Löschen</a>
+  </div>
+  <br>
+  {% endfor %}
 
   </div>
 
