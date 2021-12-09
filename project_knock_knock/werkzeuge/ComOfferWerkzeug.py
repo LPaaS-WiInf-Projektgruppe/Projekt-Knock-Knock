@@ -38,7 +38,7 @@ def createComOffer():
                 kilometerpreis = content_geld,
             )
         else:
-            endZeitAlsPythonObjekt = datetime.strptime(content_end_zeit, '%Y-%m-%dT%H:%M')
+            endZeitAlsPythonObjekt = datetime.strptime(content_end_zeit, '%d.%m.%Y-%H:%M')
             com_offer = ComOffers(
                 start = content_start,
                 destination = content_ende,

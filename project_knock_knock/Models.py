@@ -104,7 +104,7 @@ class Rating(db.Model):
     __tablename__ = "ratings"
     id = db.Column(db.Integer, primary_key=True)
     stars = db.Column(db.Integer, nullable = True)
-    drive_offer_id = db.Column(db.Integer, db.ForeignKey("drive_offer.id"))
+    drive_offer_id = db.Column(db.Integer, db.ForeignKey("driver_offers.id"))
 
 class Message(db.Model):
     __tablename__ = "messages"
@@ -149,6 +149,5 @@ class DriverOffers(db.Model):
     kilometerpreis = db.Column(db.Integer, nullable=False, default = 0)
     radius = db.Column(db.Integer, nullable = True)
     text = db.Column(db.String(140), nullable = True)
-    rating_id = db.Column(db.Integer, db.ForeignKey('ratings.id'))
 
     rating = db.relationship("Rating", backref='drive_offer')

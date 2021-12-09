@@ -24,27 +24,27 @@ def createDriverOffer():
         content_text = request.form['bemerkungen']
         vonAlsPythonObjekt = datetime.strptime(content_von, '%Y-%m-%dT%H:%M')
         bisAlsPythonObjekt = datetime.strptime(content_bis, '%Y-%m-%dT%H:%M')
+        print("hello world")
 
-
-
-
-        i = 0
-        for results in request.form:
-            if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
-                results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
-                results == "from_zeitSo"):
-
-                bis = datetime.strptime(request.form[results],'%H:%M')
-                bis += timedelta(hours=8)
-                bis.strftime('%H:%M')
-                working_time = WorkingTime(
-                    weekday = i,
-                    start_time = request.form[results],
-                    end_time = bis
-                )
-                db.session.add(working_time)
-                working_time.driver.append(current_user)
-                i+=1
+        # i = 0
+        # for results in request.form:
+        #     if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
+        #         results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
+        #         results == "from_zeitSo"):
+        #
+        #         bis = datetime.strptime(request.form[results],'%H:%M')
+        #         bis += timedelta(hours=8)
+        #         bis.strftime('%H:%M')
+        #         working_time = WorkingTime(
+        #             weekday = i,
+        #             start_time = request.form[results],
+        #             end_time = bis
+        #         )
+        #
+        #         working_time.driver.append(current_user)
+        #         db.session.add(working_time)
+        #
+        #         i+=1
 
         driver_offer = DriverOffers(
             location = content_ort,
@@ -55,12 +55,14 @@ def createDriverOffer():
             radius = content_radius,
             text = content_text
         )
-        try:
-            db.session.add(driver_offer)
-            db.session.commit()
-            return redirect('/driverOffer')
-        except:
-            return 'An Error occured, while trying to add your offer :('
+        # try:
+
+        # print(driver_offer)
+        db.session.add(driver_offer)
+        db.session.commit()
+        return redirect('/driverOffer')
+        # except:
+        # return 'An Error occured, while trying to add your offer :('
     else:
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers, form = form)
