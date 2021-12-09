@@ -25,9 +25,10 @@ def createComOffer():
         content_end_zeit = request.form['zeit_ende']
         content_geld = request.form['geld']
 
-        #formatted_datetime = content_start_zeit[:8] + '-' + content_start_zeit[9:]
+        formatted_start_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
+        formatted_end_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
 
-        startZeitAlsPythonObjekt = datetime.strptime(content_start_zeit, '%d.%m.%Y-%H:%M')
+        startZeitAlsPythonObjekt = datetime.strptime(formatted_start_zeit, '%d.%m.%Y-%H:%M')
 
 
         if content_end_zeit == "":
@@ -38,7 +39,7 @@ def createComOffer():
                 kilometerpreis = content_geld,
             )
         else:
-            endZeitAlsPythonObjekt = datetime.strptime(content_end_zeit, '%d.%m.%Y-%H:%M')
+            endZeitAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
             com_offer = ComOffers(
                 start = content_start,
                 destination = content_ende,

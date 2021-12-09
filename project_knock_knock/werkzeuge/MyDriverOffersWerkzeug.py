@@ -20,34 +20,45 @@ def my_offers_func():
 
     # TODO: handle querying when there are no ratings or drive offers
     # TODO: add querying for ratings
-    offers = db.session.query(User, DriverOffers) \
+    results = db.session.query(User, DriverOffers) \
         .join(DriverOffers.creator) \
         .filter_by(username = current_user.username) \
         .all()
 
 
 
-    for _, driver_offer in offers:
-        work_time = WorkingTime(
-            driver_offers.weekday,
-            driver_offers.start_time,
-            driver_offers.end_time
-        )
 
-        offer = DriveOffer(
-            driver_offer.location,
-            driver_offer.vehicle,
-            driver_offer.created_at,
-            driver_offer.start_time,
-            driver_offer.end_time,
-            driver_offer.kilometerpreis,
-            driver_offer.radius,
+    print(results)
+
+
+    drive_offers = []
+    for _, offer in results:
+        # work_time = WorkingTime(
+        #     driver_offer.weekday,
+        #     driver_offer.start_time,
+        #     driver_offer.end_time
+        # )
+
+        # print(driver_offer.vehicle)
+
+
+
+        drive_offer = DriveOffer(
+            offer.location,
+            offer.vehicle,
+            offer.created_at,
+            offer.start_time,
+            offer.end_time,
+            offer.kilometerpreis,
+            offer.radius,
             # TODO: add actual text
             "driver_offer.text",
             # TODO: add actual rating
-            3,
+            3
         )
+        drive_offers.append(drive_offer)
+    print(drive_offers)
 
 
 
-    return render_template("my_drive_offers.html", view_name='My Offers', offers = offers)
+    return render_template("my_drive_offers.html", view_name='My Offers', offers = drive_offers)

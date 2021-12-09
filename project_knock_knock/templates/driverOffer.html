@@ -89,20 +89,20 @@
           {% endfor %}
           <br>
 
-          {{ form.verfügbarVon.label }}
+          {{ form.zeit_start.label }}
           <br>
-          {{ form.verfügbarVon }}
+          {{ form.zeit_start }}
           <br>
-          {% for error in form.verfügbarVon.errors %}
+          {% for error in form.zeit_start.errors %}
             <p style="color: red;"> {{ error }} </p> <br>
           {% endfor %}
           <br>
 
-          {{ form.verfügbarBis.label }}
+          {{ form.zeit_ende.label }}
           <br>
-          {{ form.verfügbarBis }}
+          {{ form.zeit_ende }}
           <br>
-          {% for error in form.verfügbarBis.errors %}
+          {% for error in form.zeit_ende.errors %}
             <p style="color: red;"> {{ error }} </p> <br>
           {% endfor %}
           <br>
@@ -179,11 +179,11 @@
           {% endfor %}
           <br>
 
-          {{ form.umkreis.label }}
+          {{ form.radius.label }}
           <br>
-          {{ form.umkreis }}
+          {{ form.radius }}
           <br>
-          {% for error in form.umkreis.errors %}
+          {% for error in form.radius.errors %}
             <p style="color: red;"> {{ error }} </p> <br>
           {% endfor %}
           <br>

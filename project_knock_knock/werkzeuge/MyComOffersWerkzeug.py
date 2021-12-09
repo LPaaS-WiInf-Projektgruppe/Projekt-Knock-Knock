@@ -15,4 +15,4 @@ my_orders = Blueprint('my_orders', __name__)
 @login_required
 def redirect_home():
 
-    return render_template("my_orders.html", view_name='My Orders')
+    return render_template("my_drive_orders.html", view_name='My Orders')
