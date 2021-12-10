@@ -89,10 +89,11 @@ Install dependencies
 `pip install -r requirements.txt`
 
 Change example configuration for actual configuration  
-Windows
+
+Windows  
 `type example_config.py > config.py`  
 
-Mac OS / Linux
+Mac OS / Linux  
 `example_config.py > config.py`  
 
  open config.py and set  
@@ -103,13 +104,15 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'
 USER_ENABLE_REGISTER = True
 USER_APP_NAME = "Project Knock Knock"  
 ```
-Windows  
+
 Set enviroment variables  
+Windows  
+
 `set FLASK_APP=wsgi.py`  
 `set FLASK_ENV=development`
 
 Mac OS / Linux 
-Set enviroment variables  
+
 `export FLASK_APP=wsgi.py`  
 `export FLASK_ENV=development`  
 
