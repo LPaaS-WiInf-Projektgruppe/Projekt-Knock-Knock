@@ -16,7 +16,19 @@
 
 <div class="content">
 
-  <p>TODO !!</p>
+  {% for offer in offers %}
+
+  <div class="com-offer-container">
+    <div>Start: {{ offer.get_start() }}</div>
+    <div>Ziel: {{ offer.get_destination() }}</div>
+    <div>verfügbar von: {{ offer.get_start_time() }}</div>
+    <div>verfügbar bis: {{ offer.get_end_time() }}</div>
+    <div>erstellt am: {{ offer.get_created_at() }}</div>
+    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
+    <a href="/delete_com_offer"> Löschen</a>
+  </div>
+  <br>
+  {% endfor %}
 
   </div>
 
