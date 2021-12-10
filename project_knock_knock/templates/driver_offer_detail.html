@@ -3,7 +3,7 @@
 
 {% block extra_css %}
      {{ fontawesome_html() }}
-      <link href="{{url_for('static', filename='com_offer_detail__style.css')}}" rel="stylesheet" type="text/css">
+      <link href="{{url_for('static', filename='driver_offer_detail_style.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -18,12 +18,14 @@
 
 
 <p>Username {{ data.creator.first().username }}</p>
-<p>von {{ data.start }}</p>
-<p>nach {{ data.destination }}</p>
-<p>gewünschte Uhrzeit {{ data.start_time }}</p>
-<p>bis {{ data.start_time }}</p>
+<p>Ort {{ data.location }}</p>
+<p>Fahrzeug {{ data.vehicle }}</p>
+<p>Verfügbar ab {{ data.start_time }}</p>
+<p>Verfügbar bis {{ data.end_time }}</p>
 <p>Kilometerpreis {{ data.kilometerpreis }}</p>
+<p>Umkreis in km {{ data.radius }}</p>
 <p>erstellt am {{ data.created_at }}</p>
+<p>Bemerkungen {{ data.text }}</p>
 
 
   </div>
@@ -39,5 +41,6 @@
   <form>
    <input type="button" value="Kontakt aufnehmen" onclick="" class="button">
   </form>
+
 
 {% endblock %}
