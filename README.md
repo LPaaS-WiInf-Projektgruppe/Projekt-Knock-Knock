@@ -88,8 +88,12 @@ navigate into the project_knock_knock directory
 Install dependencies  
 `pip install -r requirements.txt`
 
-Change example configuration for actual configuration    
+Change example configuration for actual configuration  
+Windows
 `type example_config.py > config.py`  
+
+Mac OS / Linux
+`example_config.py > config.py`  
 
  open config.py and set  
 
@@ -99,10 +103,15 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///project_knock_knock.db'
 USER_ENABLE_REGISTER = True
 USER_APP_NAME = "Project Knock Knock"  
 ```
-
+Windows  
 Set enviroment variables  
 `set FLASK_APP=wsgi.py`  
-`set FLASK_ENV=development`  
+`set FLASK_ENV=development`
+
+Mac OS / Linux 
+Set enviroment variables  
+`export FLASK_APP=wsgi.py`  
+`export FLASK_ENV=development`  
 
 Run Flask App  
 `flask run --host localhost`  
