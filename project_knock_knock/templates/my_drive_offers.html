@@ -29,7 +29,7 @@
     <div>Preis: {{ offer.get_kilometerpreis() }}</div>
     <div>Angenommen von: {{ offer.get_accepted_by_username() }}</div>
     <a href="/delete_driver_offer"> Löschen</a>
-        <a href="/delete_driver_offer"> Kontaktiere {{get_accepted_by_username()}}</a>
+        <a href="/todo"> Kontaktiere {{offer.get_accepted_by_username()}} TODO</a>
   </div>
   <br>
 

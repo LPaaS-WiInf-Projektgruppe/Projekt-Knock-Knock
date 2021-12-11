@@ -14,6 +14,7 @@ from materialien.Database import SQLDatabase
 
 
 initialCode = Blueprint('initialCode', __name__)
+todo = Blueprint('todo', __name__)
 
 
 
@@ -21,10 +22,10 @@ initialCode = Blueprint('initialCode', __name__)
 def def_initial_code():
     """initialize services that are requiered at startup """
 
-
-    # CREATE INITIAL TABLE ENTRIES FOR SETTINGS
-    # settings = Settings(
-    #     id=1
-    # )
-
     db.create_all()
+
+@todo.route("/todo")
+def todo_func():
+    """return todo page"""
+
+    return "This functionality is unfortunatly not supported yet. Try again later"
