@@ -27,20 +27,18 @@
 <p>erstellt am {{ data.created_at }}</p>
 <p>Bemerkungen {{ data.text }}</p>
 
+<form>
+ <input type="button" value="Back" onclick="history.back()" class="button">
+ <input type="button" value="Kontakt aufnehmen" onclick="" class="button">
+
+</form>
+<a href="/accept_drive_offer/{{data.id}}"> Annehmen </a>
 
   </div>
 
   <br>
 
-  <form>
-   <input type="button" value="Back" onclick="history.back()" class="button">
-  </form>
 
-  <br>
-
-  <form>
-   <input type="button" value="Kontakt aufnehmen" onclick="" class="button">
-  </form>
 
 
 {% endblock %}
