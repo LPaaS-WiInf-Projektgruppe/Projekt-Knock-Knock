@@ -72,6 +72,9 @@ class User(db.Model, UserMixin):
     text = db.Column(db.String(140), nullable=True)
     active = db.Column(db.Boolean(), nullable = False, server_default='0')
 
+    accepted_drive_offer = db.relationship("DriverOffers", backref='driver_offers.accepted_by')
+    accepted_com_offer = db.relationship("ComOffers", backref='com_offers.accepted_by')
+
     messages = db.relationship(
         "Message",
         secondary= message_identifier,
@@ -135,12 +138,14 @@ class ComOffers(db.Model):
     end_time = db.Column(db.DateTime, nullable = True)
     kilometerpreis = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
+    accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 # Datenbank-Table für die Angebote der Fahrer
 class DriverOffers(db.Model):
     __tablename__ = "driver_offers"
     id = db.Column(db.Integer, primary_key=True)
+    driver_accepted = db.Column(db.Boolean, nullable = True)
     location = db.Column(db.String(50), nullable=False)
     vehicle = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -149,5 +154,5 @@ class DriverOffers(db.Model):
     kilometerpreis = db.Column(db.Integer, nullable=False, default = 0)
     radius = db.Column(db.Integer, nullable = True)
     text = db.Column(db.String(140), nullable = True)
-
+    accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'), default="NULL")
     rating = db.relationship("Rating", backref='drive_offer')

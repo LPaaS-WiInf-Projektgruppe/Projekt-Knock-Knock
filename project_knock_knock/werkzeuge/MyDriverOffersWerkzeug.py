@@ -27,7 +27,6 @@ def my_offers_func():
         .filter_by(username = current_user.username) \
         .all()
 
-
     drive_offers = []
     for _, offer in results:
     #     work_time = WorkingTime(
@@ -47,6 +46,7 @@ def my_offers_func():
             offer.end_time,
             offer.kilometerpreis,
             offer.radius,
+            offer.accepted_by,
             # TODO: add actual text
             "driver_offer.text",
             # TODO: add actual rating

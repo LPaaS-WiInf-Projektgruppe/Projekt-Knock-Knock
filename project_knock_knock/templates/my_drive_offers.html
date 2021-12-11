@@ -16,8 +16,31 @@
 
 <div class="content">
 
+  <h3>Akzeptierte Angebote</h3>
   {% for offer in offers %}
 
+  {% if offer.is_accepted() %}
+  <div class="drive-offer-container" style="background-color: light-green">
+    <div>Ort: {{ offer.get_location() }}</div>
+    <div>Radius: {{ offer.get_radius() }}</div>
+      <div>erstellt am: {{ offer.get_created_at() }}</div>
+      <div>verfügbar von: {{ offer.get_start_time() }}</div>
+      <div>verfügbar bis: {{ offer.get_end_time() }}</div>
+    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
+    <div>Angenommen von: {{ offer.get_accepted_by_username() }}</div>
+    <a href="/delete_driver_offer"> Löschen</a>
+        <a href="/todo"> Kontaktiere {{offer.get_accepted_by_username()}} TODO</a>
+  </div>
+  <br>
+
+  {% endif %}
+  {% endfor %}
+
+  <h3>Offene Angebote</h3>
+
+  {% for offer in offers %}
+
+  {% if  not offer.is_accepted() %}
   <div class="drive-offer-container">
     <div>Ort: {{ offer.get_location() }}</div>
     <div>Radius: {{ offer.get_radius() }}</div>
@@ -28,6 +51,7 @@
     <a href="/delete_driver_offer/{{offer.get_id()}}"> Löschen</a>
   </div>
   <br>
+  {% endif %}
   {% endfor %}
 
   </div>

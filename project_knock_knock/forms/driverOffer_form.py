@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Regexp
 GELD_ERROR = "Please enter a a valid amount of money! (Must be a number und have a maximum amount of 2 decimal places: e.g 12.99 Euro) "
 LOCATION_ERROR = "Please enter a valid location! (Must be an actual place in the format: street + number)"
 FAHRZEUG_ERROR = "Please enter a valid vehicle! (Must be an actual vehicle e.g. Mercedes Sprinter)"
-TIME_ERROR = "Please enter a valid time! (Must be in the format DD.MM.YYYY-HH:MM and can't be in the past)"
+TIME_ERROR = "Please enter a valid time! (Must be in the format DD.MM.YYYY HH:MM and can't be in the past)"
 UMKREIS_ERROR = "Must be a valid range! (Must be a number between 0 and 99) "
 BEMERKUNGEN_ERROR = "Please enter a valid input! (Must be below 100 characters!)"
 UHRZEIT_ERROR = "Please enter a valid time! (Must be in the format HH:MM)"

@@ -63,17 +63,45 @@ def createDriverOffer():
             text = content_text
         )
 
-
-
-        # try:
-
-        # print(driver_offer)
-        db.session.add(driver_offer)
-        driver_offer.creator.append(current_user)
-        db.session.commit()
-        return redirect('/driverOffer')
-        # except:
-        # return 'An Error occured, while trying to add your offer :('
+        try:
+            db.session.add(driver_offer)
+            driver_offer.creator.append(current_user)
+            db.session.commit()
+            return redirect('/driverOffer')
+        except:
+            return 'An Error occured, while trying to add your offer :('
     else:
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers, form = form)
+
+
+@driverOffer.route('/deleteDriverOffer/<int:id>')
+def delete(id):
+    ''' delete the drive offer specified by the id in the url
+    '''
+    driverOffer_to_delete = DriverOffers.query.get_or_404(id)
+    try:
+        db.session.delete(driverOffer_to_delete)
+        db.session.commit()
+        return redirect('/driverOffer')
+    except:
+        return 'The offer could not be deleted :('
+
+
+
+@driverOffer.route('/accept_drive_offer/<int:offer_id>')
+def accept_offer(offer_id):
+    ''' accept the drive offer specified by the id in the url by adding the id
+    of the user who accepted the offer to the respective entry in the drive offer
+    "accepted_by" column
+    '''
+
+    # TODO: prevent users from accepting their own offers
+    # TODO: contact users who accepted an offer
+    # TODO: prevent accepted offers from being deleted
+    result = DriverOffers.query.filter_by(id = offer_id).first()
+    result.accepted_by = current_user.id
+    db.session.commit()
+
+    return redirect('/driverOffer')
+

@@ -1,0 +1,44 @@
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+      <link href="{{url_for('static', filename='driver_offer_detail_style.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block header %}
+
+
+ {% endblock %}
+
+ {% block content %}
+
+<div class="content">
+
+
+<p>Username {{ data.creator.first().username }}</p>
+<p>Ort {{ data.location }}</p>
+<p>Fahrzeug {{ data.vehicle }}</p>
+<p>Verfügbar ab {{ data.start_time }}</p>
+<p>Verfügbar bis {{ data.end_time }}</p>
+<p>Kilometerpreis {{ data.kilometerpreis }}</p>
+<p>Umkreis in km {{ data.radius }}</p>
+<p>erstellt am {{ data.created_at }}</p>
+<p>Bemerkungen {{ data.text }}</p>
+
+<form>
+ <input type="button" value="Back" onclick="history.back()" class="button">
+ <input type="button" value="Kontakt aufnehmen" onclick="" class="button">
+
+</form>
+<a href="/accept_drive_offer/{{data.id}}"> Annehmen </a>
+
+  </div>
+
+  <br>
+
+
+
+
+{% endblock %}
