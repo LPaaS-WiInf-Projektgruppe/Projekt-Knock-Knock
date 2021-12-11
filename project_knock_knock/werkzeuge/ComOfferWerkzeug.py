@@ -69,6 +69,7 @@ def createComOffer():
 @comOffer.route('/deleteComOffer/<int:id>')
 @login_required
 def delete(id):
+    '''delete the comOffer specified in the url'''
     comOffer_to_delete = ComOffers.query.get_or_404(id)
     try:
         db.session.delete(comOffer_to_delete)
@@ -76,3 +77,16 @@ def delete(id):
         return redirect('/comOffer')
     except:
         return 'The offer could not be deleted :('
+
+
+@comOffer.route('/accept_com_offer/<int:offer_id>')
+def accept_offer(offer_id):
+    ''' accept the com offer specified by the id in the url by adding the id
+    of the user who accepted the offer to the respective entry in the com offer
+    "accepted_by" column
+    '''
+    result = ComOffers.query.filter_by(id = offer_id).first()
+    result.accepted_by = current_user.id
+    db.session.commit()
+
+    return redirect('/comOffer')
