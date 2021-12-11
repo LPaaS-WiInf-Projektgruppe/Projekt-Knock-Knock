@@ -3,17 +3,9 @@ from Models import User
 
 class DriveOffer(object):
     def __init__(
-        self,
-        location,
-        vehicle,
-        created_at,
-        start_time,
-        end_time,
-        kilometerpreis,
-        radius,
-        accepted_by,
-        text,
-        rating):
+            self, id, location, vehicle, created_at, start_time, end_time,
+            kilometerpreis, radius, text, rating):
+        self.__id = id
 
         self.__location = location
         self.__vehicle = vehicle
@@ -26,6 +18,8 @@ class DriveOffer(object):
         self.__rating = rating
         self.__accepted_by = accepted_by
 
+    def set_id(self, location):
+        self.__id = id
 
     def set_location(self, location):
         self.__location = location
@@ -54,11 +48,16 @@ class DriveOffer(object):
     def set_rating(self, rating):
         self.__rating = rating
 
+
+    def get_id(self):
+        return self.__id
+
     def set_accepted_by(self, accepted_by):
         self.__accepted_by = accepted_by
 
     def is_accepted(self):
         return self.__accepted_by != "NULL"
+
 
     def get_location(self):
         return self.__location

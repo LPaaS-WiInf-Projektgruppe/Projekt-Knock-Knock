@@ -16,8 +16,6 @@ def createComOffer():
 
     form = ComOfferForm()
 
-    # if request.method == 'POST':
-
     if form.validate_on_submit():
         content_start = request.form['von']
         content_ende = request.form['nach']

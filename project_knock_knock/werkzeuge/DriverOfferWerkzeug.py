@@ -74,6 +74,7 @@ def createDriverOffer():
         allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
         return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers, form = form)
 
+
 @driverOffer.route('/deleteDriverOffer/<int:id>')
 def delete(id):
     ''' delete the drive offer specified by the id in the url
@@ -103,3 +104,4 @@ def accept_offer(offer_id):
     db.session.commit()
 
     return redirect('/driverOffer')
+
