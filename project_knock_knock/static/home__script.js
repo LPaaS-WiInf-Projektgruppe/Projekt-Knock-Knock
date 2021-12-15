@@ -6,7 +6,7 @@ $(document).ready(() =>
 
   function ajaxRequest()
   {
-
+Hallo
     $.ajax({url:'/json', success: (result) =>
   {
       var obj = JSON.parse(result);
