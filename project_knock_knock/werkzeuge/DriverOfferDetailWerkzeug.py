@@ -7,7 +7,7 @@ from Models import DriverOffers
 driver_offer_detail = Blueprint('driver_offer_detail', __name__)
 
 
-@driver_offer_detail.route('/driver_offer_detail/<int:offer_id>')
+@driver_offer_detail.route('/drive_offer_detail/<int:offer_id>')
 @login_required
 def driver_offer_detail_func(offer_id):
 

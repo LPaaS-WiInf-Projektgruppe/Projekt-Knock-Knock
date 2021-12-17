@@ -13,6 +13,41 @@ comOffer = Blueprint('comOffer', __name__)
 @comOffer.route('/comOffer', methods=['POST', 'GET'])
 @login_required
 def createComOffer():
+    allComOffers = ComOffers.query.order_by(ComOffers.id).all()
+    return render_template(
+        'comOffer.html',
+        view_name ='Company Offer',
+        allComOffers = allComOffers,
+    )
+
+@comOffer.route('/deleteComOffer/<int:id>')
+@login_required
+def delete(id):
+    '''delete the comOffer specified in the url'''
+    comOffer_to_delete = ComOffers.query.get_or_404(id)
+    try:
+        db.session.delete(comOffer_to_delete)
+        db.session.commit()
+        return redirect('/comOffer')
+    except:
+        return 'The offer could not be deleted :('
+
+
+@comOffer.route('/accept_com_offer/<int:offer_id>')
+def accept_offer(offer_id):
+    ''' accept the com offer specified by the id in the url by adding the id
+    of the user who accepted the offer to the respective entry in the com offer
+    "accepted_by" column
+    '''
+    result = ComOffers.query.filter_by(id = offer_id).first()
+    result.accepted_by = current_user.id
+    db.session.commit()
+
+    return redirect('/comOffer')
+
+@comOffer.route("/create_com_offer", methods=["GET", "POST"])
+@login_required
+def create_com_offer():
 
     form = ComOfferForm()
 
@@ -55,36 +90,9 @@ def createComOffer():
             return redirect('/comOffer')
         except:
             return 'An Error occured, while trying to add your offer :('
-    else:
-        allComOffers = ComOffers.query.order_by(ComOffers.id).all()
-        return render_template(
-            'comOffer.html',
-            view_name ='Company Offer',
-            allComOffers = allComOffers,
-            form = form
-        )
 
-@comOffer.route('/deleteComOffer/<int:id>')
-@login_required
-def delete(id):
-    '''delete the comOffer specified in the url'''
-    comOffer_to_delete = ComOffers.query.get_or_404(id)
-    try:
-        db.session.delete(comOffer_to_delete)
-        db.session.commit()
-        return redirect('/comOffer')
-    except:
-        return 'The offer could not be deleted :('
-
-
-@comOffer.route('/accept_com_offer/<int:offer_id>')
-def accept_offer(offer_id):
-    ''' accept the com offer specified by the id in the url by adding the id
-    of the user who accepted the offer to the respective entry in the com offer
-    "accepted_by" column
-    '''
-    result = ComOffers.query.filter_by(id = offer_id).first()
-    result.accepted_by = current_user.id
-    db.session.commit()
-
-    return redirect('/comOffer')
+    return render_template(
+        "create_drive_offer.html",
+        view_name = "Create ComOffer",
+        form = form
+    )
