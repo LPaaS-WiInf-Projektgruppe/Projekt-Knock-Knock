@@ -37,6 +37,7 @@ def my_offers_func():
     #
     #     print(driver_offer.vehicle)
 
+
         drive_offer = DriveOffer(
             offer.id,
             offer.location,
@@ -46,11 +47,12 @@ def my_offers_func():
             offer.end_time,
             offer.kilometerpreis,
             offer.radius,
-            offer.accepted_by,
             # TODO: add actual text
             "driver_offer.text",
             # TODO: add actual rating
-            3
+            3,
+            offer.accepted_by
+
         )
         drive_offers.append(drive_offer)
 

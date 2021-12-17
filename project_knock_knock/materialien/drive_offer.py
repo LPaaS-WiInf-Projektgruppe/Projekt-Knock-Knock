@@ -4,9 +4,9 @@ from Models import User
 class DriveOffer(object):
     def __init__(
             self, id, location, vehicle, created_at, start_time, end_time,
-            kilometerpreis, radius, accepted_by, text, rating):
-        self.__id = id
+            kilometerpreis, radius, text, rating, accepted_by):
 
+        self.__id = id
         self.__location = location
         self.__vehicle = vehicle
         self.__created_at = created_at

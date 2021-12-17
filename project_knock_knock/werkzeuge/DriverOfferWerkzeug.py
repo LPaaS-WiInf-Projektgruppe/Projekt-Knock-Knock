@@ -11,11 +11,56 @@ driverOffer = Blueprint('driverOffer', __name__)
 
 @driverOffer.route('/driverOffer', methods=['POST', 'GET'])
 @login_required
-def createDriverOffer():
+def driver_offer():
+
+    allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
+    return render_template(
+        'driverOffer.html',
+        view_name ='Driver Offer',
+        allDriverOffers=allDriverOffers
+        )
+
+
+@driverOffer.route('/deleteDriverOffer/<int:id>')
+def delete(id):
+    ''' delete the drive offer specified by the id in the url
+    :param id int: the id of the drive offer to delete
+    '''
+    driverOffer_to_delete = DriverOffers.query.get_or_404(id)
+    try:
+        db.session.delete(driverOffer_to_delete)
+        db.session.commit()
+        return redirect('/driverOffer')
+    except:
+        return 'The offer could not be deleted :('
+
+
+
+@driverOffer.route('/accept_drive_offer/<int:offer_id>')
+def accept_offer(offer_id):
+    ''' accept the drive offer specified by the id in the url by adding the id
+    of the user who accepted the offer to the respective entry in the drive offer
+    "accepted_by" column
+    :param offer_id int: the id of the offer to accept
+    '''
+
+    # TODO: prevent users from accepting their own offers
+    # TODO: contact users who accepted an offer
+    # TODO: prevent accepted offers from being deleted
+    result = DriverOffers.query.filter_by(id = offer_id).first()
+    result.accepted_by = current_user.id
+    db.session.commit()
+
+    return redirect('/driverOffer')
+
+
+@driverOffer.route("/create_drive_offer", methods=["GET", "POST"])
+@login_required
+def create_drive_offer():
+    '''creates a new drive offer
+    '''
 
     form = DriverOfferForm()
-
-    print("hello world")
 
     if form.validate_on_submit():
         content_ort = request.form['ort']
@@ -48,7 +93,7 @@ def createDriverOffer():
                     end_time = bis
                 )
 
-                working_time.driver.append(current_user)
+                working_time.user.append(current_user)
                 db.session.add(working_time)
 
                 i+=1
@@ -57,7 +102,7 @@ def createDriverOffer():
             location = content_ort,
             vehicle = content_fahrzeug,
             start_time = vonAlsPythonObjekt,
-            end_time = bisAlsPythonObjekt,
+            valid_until = bisAlsPythonObjekt,
             kilometerpreis = content_preis,
             radius = content_radius,
             text = content_text
@@ -70,38 +115,9 @@ def createDriverOffer():
             return redirect('/driverOffer')
         except:
             return 'An Error occured, while trying to add your offer :('
-    else:
-        allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
-        return render_template('driverOffer.html', view_name ='Driver Offer', allDriverOffers=allDriverOffers, form = form)
 
-
-@driverOffer.route('/deleteDriverOffer/<int:id>')
-def delete(id):
-    ''' delete the drive offer specified by the id in the url
-    '''
-    driverOffer_to_delete = DriverOffers.query.get_or_404(id)
-    try:
-        db.session.delete(driverOffer_to_delete)
-        db.session.commit()
-        return redirect('/driverOffer')
-    except:
-        return 'The offer could not be deleted :('
-
-
-
-@driverOffer.route('/accept_drive_offer/<int:offer_id>')
-def accept_offer(offer_id):
-    ''' accept the drive offer specified by the id in the url by adding the id
-    of the user who accepted the offer to the respective entry in the drive offer
-    "accepted_by" column
-    '''
-
-    # TODO: prevent users from accepting their own offers
-    # TODO: contact users who accepted an offer
-    # TODO: prevent accepted offers from being deleted
-    result = DriverOffers.query.filter_by(id = offer_id).first()
-    result.accepted_by = current_user.id
-    db.session.commit()
-
-    return redirect('/driverOffer')
-
+    return render_template(
+        "create_drive_offer.html",
+        view_name = "Create Driver Offer",
+        form = form
+    )

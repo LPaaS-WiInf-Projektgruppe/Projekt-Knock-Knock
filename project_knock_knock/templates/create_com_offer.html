@@ -1,0 +1,86 @@
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+     <link href="{{url_for('static', filename='create_com_offer__style.css')}}" rel="stylesheet" type="text/css">
+     <!-- <link href="{{url_for('static', filename='user__style.css')}}" rel="stylesheet" type="text/css"> -->
+{% endblock %}
+
+
+ {% block content %}
+
+<div class="content">
+
+  <form method ="POST" action="/create_com_offer">
+          {{ form.csrf_token }}
+          {{ form.von.label }}
+          <br>
+          {{ form.von }}
+          <br>
+          {% for error in form.von.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.nach.label }}
+          <br>
+          {{ form.nach }}
+          <br>
+          {% for error in form.nach.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.zeit_start.label }}
+          <br>
+          {{ form.zeit_start }}
+          <br>
+          {% for error in form.zeit_start.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.zeit_ende.label }}
+          <br>
+          {{ form.zeit_ende }}
+          <br>
+          {% for error in form.zeit_ende.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.geld.label }}
+          <br>
+          {{ form.geld }}
+          <br>
+          {% for error in form.geld.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.dauer.label }}
+          <br>
+          {{ form.dauer }}
+          <br>
+          {% for error in form.dauer.errors %}
+            <p style="color: red;"> {{ error }} </p> <br>
+          {% endfor %}
+          <br>
+
+          {{ form.submit(id='create-save-offer') }}
+       </form>
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+
+<script type=text/javascript src="{{url_for('static', filename='create_com_offer__script.js') }}"></script>
+
+
+
+{% endblock %}

@@ -19,6 +19,11 @@
 
 
   <p>Username: {{profile.get_username()}}<p>
+  <p>
+    <!-- TODO: Handle Assertion Error -->
+    Rating: {{ profile.get_rating().calculate_average() }}
+    ({{ profile.get_rating().get_rate_count() }})
+  <p>
 
   <p>Arbeitszeiten:</p>
 
@@ -28,8 +33,16 @@
   <p>{{ work_time.get_end_time() }}</p>
   {% endfor %}
 
+  <p>aktuelle Aufträge und Angebote</p>
+
+  {% for offer in profile.get_accepted_offers() %}
+  <p> {{ offer.get_location() }} </p>
+  <a  href="/rate_offer/{{ offer.get_id() }} ">Als Beendet Markieren</a>
+  {% endfor %}
+
   <a  href="/my_offers">My Offers</a>
   <a  href="/my_orders">My Orders</a>
+
 
 
   </div>
