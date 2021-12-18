@@ -165,4 +165,4 @@ class ExchangedMessages(db.Model):
     receiver = db.Column(db.Integer, nullable = False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     text = db.Column(db.String(200), nullable = False)
-    read = db.Column(db.Boolean, nullable = False)
+    read = db.Column(db.Boolean, nullable = False) #Zwecks Prüfung ob bereits gelesen

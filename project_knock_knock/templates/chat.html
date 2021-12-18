@@ -18,6 +18,37 @@
 
   <h1>Chat mit {{ dude.username }}</h1>
 
+  <br>
+
+    <table class="Table"">
+        <tr>
+          <th> Von </th>
+          <th> An </th>
+          <th> Text </th>
+          <th> Uhrzeit </th>
+        </tr>
+        {% for message in messages %}
+          <tr>
+            <td>{{ message.transmitter }}</td>
+            <td>{{ message.receiver }}</td>
+            <td>{{ message.text }}</td>
+            <td>{{ message.created_at }}</td>
+          </tr>
+          {% endfor %}
+    </table>
+
+    <br>
+  <form style="color: black; align-items: center;" action="/chat/{{dude.id}}" method="POST">
+    <label for "send" class="Label"> Neue Nachricht:</label><br>
+    <input type="text" name="send" id="send"><br>
+    <input type="submit" value="Abschicken">
+  </form>
+
+
+    <br>
+    <br>
+
+
   <form>
    <input type="button" value="Back" onclick="history.back()" class="button">
   </form>
