@@ -22,19 +22,22 @@
 
     <table class="Table"">
         <tr>
-          <th> Von </th>
-          <th> An </th>
           <th> Text </th>
           <th> Uhrzeit </th>
         </tr>
         {% for message in messages %}
-          <tr>
-            <td>{{ message.transmitter }}</td>
-            <td>{{ message.receiver }}</td>
-            <td>{{ message.text }}</td>
-            <td>{{ message.created_at }}</td>
-          </tr>
-          {% endfor %}
+          {% if message.transmitter == dude.id %}
+              <tr>
+                <td><a1>{{ message.text }}</a1></td>
+                <td><a1>{{ message.created_at }}</a1></td>
+              </tr>
+          {% else %}
+              <tr>
+                <td><a2>{{ message.text }}</a2></td>
+                <td><a2>{{ message.created_at }}</a2></td>
+              </tr>
+          {% endif %}
+        {% endfor %}
     </table>
 
     <br>

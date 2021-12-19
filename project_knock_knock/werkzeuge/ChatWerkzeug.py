@@ -1,5 +1,5 @@
 from flask_user import login_required, current_user
-from flask import Flask, render_template, Blueprint, request, redirect, url_for
+from flask import Flask, render_template, Blueprint, request, redirect, url_for, session
 from Models import ExchangedMessages, User
 from extensions import db
 from sqlalchemy import or_, and_
@@ -25,18 +25,27 @@ def chat_func(dude_id):
     if request.method == 'POST' :
         content_text = request.form['send']
         new_message = ExchangedMessages(transmitter = self.id, receiver = dude.id, text = content_text, read = False)
-        #try:
-        db.session.add(new_message)
-        db.session.commit()
-        return redirect("/chat/<dude.id>")
-        #except:
-            #return 'Nachricht konnte nicht versendet werden :/'
+        try:
+            db.session.add(new_message)
+            db.session.commit()
+            return redirect("/chat/" + str(dude.id))
+        except:
+            return 'Nachricht konnte nicht versendet werden :/'
 
     else:
+        #messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(and_(
+        #            or_(ExchangedMessages.transmitter == dude.id),
+        #            or_(ExchangedMessages.transmitter == self.id),
+        #            or_(ExchangedMessages.receiver == dude.id),
+        #            or_(ExchangedMessages.receiver == self.id))
+        #            ).all()
+
+
         messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(and_(
-                    or_(ExchangedMessages.transmitter == dude.id),
-                    or_(ExchangedMessages.transmitter == self.id),
-                    or_(ExchangedMessages.receiver == dude.id),
-                    or_(ExchangedMessages.receiver == self.id))
+                    or_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.transmitter == self.id),
+                    or_(ExchangedMessages.receiver == dude.id, ExchangedMessages.receiver == self.id))
                     ).all()
+
+
+
         return render_template("chat.html", view_name='Chat', dude = dude, self = self, messages = messages)
