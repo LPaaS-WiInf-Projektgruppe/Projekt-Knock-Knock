@@ -76,11 +76,7 @@ class User(db.Model, UserMixin):
         secondary= message_identifier,
         backref= db.backref("creator", lazy ="dynamic")
     )
-    received_messages = db.relationship(
-        "ReceivedMessage",
-        secondary= received_message_identifier,
-        backref= db.backref("receiver", lazy ="dynamic")
-    )
+
     com_offers = db.relationship(
         "ComOffers",
         secondary= com_offer_identifier,
