@@ -4,6 +4,7 @@
 {% block extra_css %}
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='conversations__style.css')}}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 
@@ -22,18 +23,22 @@
 
     <table class="Table">
         <tr>
-          <th> Chat mit </th>
-          <th> Zeit </th>
-          <th> Gelesen </th>
-          <th> Öffnen </th>
+          <th></th>
+          <th> &nbsp  Name &nbsp  </th>
+          <th> &nbsp Zeit &nbsp </th>
+          <th> &nbsp Öffnen &nbsp </th>
         </tr>
         {% for data in information %}
           <tr>
-            <td>{{ data.name }}</td>
-            <td>{{ data.zeit }}</td>
-            <td>{{ data.gelesen }}</td>
+            {% if data.gelesen %}
+            <td>  </td>
+            {% else %}
+            <td> &nbsp <i style="font-size:16px; color: red;" class="fa">&#xf0a2;</i> &nbsp </td>
+            {% endif %}
+            <td> &nbsp {{ data.name }} &nbsp </td>
+            <td> &nbsp {{ data.zeit }} &nbsp </td>
             <td>
-              <a href="/chat/{{data.id}}">Kontakt</a>
+              &nbsp <a href="/chat/{{data.id}}">Chat</a> &nbsp
             </td>
         </tr>
         {% endfor %}

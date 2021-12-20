@@ -20,29 +20,30 @@
 
   <br>
 
-    <table class="Table"">
+    <table class="Table">
         <tr>
-          <th> Text </th>
-          <th> Uhrzeit </th>
+          <th> &nbsp Text &nbsp </th>
+          <th> &nbsp Uhrzeit &nbsp </th>
         </tr>
         {% for message in messages %}
           {% if message.transmitter == dude.id %}
               <tr>
-                <td><a1>{{ message.text }}</a1></td>
-                <td><a1>{{ message.created_at }}</a1></td>
+                <td><a1> &nbsp {{ message.text }} &nbsp </a1></td>
+                <td><a1> &nbsp {{ message.created_at }} &nbsp </a1></td>
               </tr>
           {% else %}
               <tr>
-                <td><a2>{{ message.text }}</a2></td>
-                <td><a2>{{ message.created_at }}</a2></td>
+                <td><a2>&nbsp {{ message.text }} &nbsp</a2></td>
+                <td><a2>&nbsp {{ message.created_at }} &nbsp</a2></td>
               </tr>
           {% endif %}
         {% endfor %}
     </table>
 
     <br>
-  <form style="color: black; align-items: center;" action="/chat/{{dude.id}}" method="POST">
-    <label for "send" class="Label"> Neue Nachricht:</label><br>
+    <br>
+    <p> Neue Nachricht versenden </p>
+  <form style="color: green; align-items: center;" action="/chat/{{dude.id}}" method="POST">
     <input type="text" name="send" id="send"><br>
     <input type="submit" value="Abschicken">
   </form>
@@ -53,7 +54,7 @@
 
 
   <form>
-   <input type="button" value="Back" onclick="history.back()" class="button">
+   <input type="button" value="Back" onclick="history.back()" class="button" style="color: black;">
   </form>
 
 </div>

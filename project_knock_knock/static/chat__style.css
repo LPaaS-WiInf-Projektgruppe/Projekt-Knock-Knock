@@ -35,9 +35,17 @@ h2
 a2
 {
   color: green;
+  text-align: right;
 }
 
 a1
 {
   color: grey;
+  text-align: left;
+}
+
+.Table
+{
+  border-spacing: 80px;
+  padding: 10px;
 }
