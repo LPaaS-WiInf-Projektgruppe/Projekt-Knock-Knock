@@ -15,6 +15,8 @@ from werkzeuge.MyDriverOffersWerkzeug import my_offers
 from werkzeuge.MyComOffersWerkzeug import my_orders
 from werkzeuge.ChatWerkzeug import chat
 from werkzeuge.ConversationsWerkzeug import conversations
+from werkzeuge.RateOfferWerkzeug import rate_offer
+
 
 from Models import User
 from extensions import db
@@ -43,6 +45,8 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(profil)
     app.register_blueprint(chat)
     app.register_blueprint(conversations)
+    app.register_blueprint(rate_offer)
+
 
 
     db.init_app(app)

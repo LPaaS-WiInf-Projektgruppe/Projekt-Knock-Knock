@@ -6,11 +6,12 @@ class Profil(object):
     :description: a bio the user can set
     '''
 
-    def __init__(self, username, working_times, rating, description):
+    def __init__(self, username, working_times, user_accepted_offers, rating, description):
         self.__username = username
         self.__working_times = working_times
         self.__rating = rating
         self.__description = description
+        self.__user_accepted_offers = user_accepted_offers
 
     def get_username(self):
         return self.__username
@@ -24,6 +25,9 @@ class Profil(object):
     def get_description(self):
         return self.__decription
 
+    def get_accepted_offers(self):
+        return self.__user_accepted_offers
+
     def set_username(self, username):
         self.__username = username
 
@@ -33,5 +37,8 @@ class Profil(object):
     def set_rating(self, rating):
         self.__rating = rating
 
-    def set_description(description):
+    def set_description(self, description):
         self.__description = desciption
+
+    def set_accepted_offers(self, offers):
+        self.__user_accepted_offers = offers

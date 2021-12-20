@@ -1,0 +1,38 @@
+body
+{
+    color: #FFFFFF;
+}
+.roboto-font
+{
+  font-size: 19px;
+  font-size: 1.2rem;
+  font-family: roboto;
+  font-weight: 300;
+}
+
+.content
+{
+    padding: 16px;
+    #background: #33322F;
+    color: white;
+}
+
+h1
+{
+  text-align: center;
+}
+
+p
+{
+    color: #FFFFFF;
+}
+
+h2
+{
+    color: #FFFFFF;
+}
+
+input
+{
+  color: black;
+}

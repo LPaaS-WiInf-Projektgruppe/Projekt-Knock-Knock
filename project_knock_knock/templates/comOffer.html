@@ -21,14 +21,7 @@
 
 {% block content %}
 
-<br>
-
 <div>
-  <h1>
-      Angebote von Unternehmen:
-  </h1>
-
-<br>
 
   <table class="Table">
       <tr>
@@ -54,70 +47,8 @@
         {% endfor %}
   </table>
 
-  <br>
-  <br>
-  <p>
-    Nichts passendes gefunden? Dann kannst du hier ein entsprechendes Gesuch einstellen!
-  </p>
-  <br>
-  <form method ="POST" action="/comOffer">
-          {{ form.csrf_token }}
-          {{ form.von.label }}
-          <br>
-          {{ form.von }}
-          <br>
-          {% for error in form.von.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
+  <a href="/create_com_offer"> Create Com Offer</a>
 
-          {{ form.nach.label }}
-          <br>
-          {{ form.nach }}
-          <br>
-          {% for error in form.nach.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
-
-          {{ form.zeit_start.label }}
-          <br>
-          {{ form.zeit_start }}
-          <br>
-          {% for error in form.zeit_start.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
-
-          {{ form.zeit_ende.label }}
-          <br>
-          {{ form.zeit_ende }}
-          <br>
-          {% for error in form.zeit_ende.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
-
-          {{ form.geld.label }}
-          <br>
-          {{ form.geld }}
-          <br>
-          {% for error in form.geld.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
-
-          {{ form.dauer.label }}
-          <br>
-          {{ form.dauer }}
-          <br>
-          {% for error in form.dauer.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
-
-          {{ form.submit(id='create-save-offer') }}
-       </form>
 
 </div>
 
