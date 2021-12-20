@@ -41,11 +41,25 @@ def chat_func(dude_id):
         #            ).all()
 
 
-        messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(and_(
-                    or_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.transmitter == self.id),
-                    or_(ExchangedMessages.receiver == dude.id, ExchangedMessages.receiver == self.id))
-                    ).all()
+        # Setzen des Status der Nachrichten auf gelesen, da sie im Anschluss geöffnet werden
+        # Try Block, da nicht immer schon welche vorhanden
+        try:
+            message = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(
+                        and_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.receiver == self.id)
+                        ).first()
+            gelesen = ExchangedMessages.query.filter(ExchangedMessages.id == message.id).first().read
 
+            if gelesen == False:
+                ExchangedMessages.query.filter(ExchangedMessages.id == message.id).update({"read": True})
+                db.session.commit()
+        except:
+            pass
+
+        # Übergabe der Nachrichten aus dem ausgewählten Chat
+        messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(or_(
+                and_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.receiver == self.id),
+                and_(ExchangedMessages.transmitter == self.id, ExchangedMessages.receiver == dude.id)
+                    )).all()
 
 
         return render_template("chat.html", view_name='Chat', dude = dude, self = self, messages = messages)

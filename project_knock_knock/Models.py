@@ -157,7 +157,9 @@ class DriverOffers(db.Model):
     accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'), default="NULL")
     rating = db.relationship("Rating", backref='drive_offer')
 
-    # Datenbank-Table für alle ausgetauschten Nachrichten
+# Datenbank-Table für alle ausgetauschten Nachrichten
+    # Das Attribut read wird auf der Conversation Seite genutzt um zu prüfen ob
+    # die Nachricht bereits gelesen wurde
 class ExchangedMessages(db.Model):
     __tablename__ = "exchanged_messages"
     id = db.Column(db.Integer, primary_key=True)
@@ -165,4 +167,4 @@ class ExchangedMessages(db.Model):
     receiver = db.Column(db.Integer, nullable = False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     text = db.Column(db.String(200), nullable = False)
-    read = db.Column(db.Boolean, nullable = False) #Zwecks Prüfung ob bereits gelesen
+    read = db.Column(db.Boolean, nullable = False)

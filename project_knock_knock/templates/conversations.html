@@ -24,16 +24,16 @@
         <tr>
           <th> Chat mit </th>
           <th> Zeit </th>
-          <th> Ungelesen </th>
+          <th> Gelesen </th>
           <th> Öffnen </th>
         </tr>
-        {% for contact in allContacts %}
+        {% for data in information %}
           <tr>
-            <td>{{ contact.username }}</td>
-            <td>TODO</td>
-            <td>TODO</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.zeit }}</td>
+            <td>{{ data.gelesen }}</td>
             <td>
-              <a href="/chat/{{contact.id}}">Kontakt</a>
+              <a href="/chat/{{data.id}}">Kontakt</a>
             </td>
         </tr>
         {% endfor %}
