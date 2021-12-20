@@ -17,12 +17,6 @@ message_identifier =  db.Table(
     db.Column("user_id", db.Integer, db.ForeignKey("users.id"))
 )
 
-received_message_identifier =  db.Table(
-    "received_message_identifier",
-    db.Column("received_message_id", db.Integer, db.ForeignKey("received_messages.id")),
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"))
-)
-
 driver_offer_identifier =  db.Table(
     "driver_offer_identifier",
     db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
