@@ -1,0 +1,50 @@
+
+{% extends 'flask_user/_public_base.html' %}
+
+{% block extra_css %}
+     {{ fontawesome_html() }}
+      <link href="{{url_for('static', filename='conversations__style.css')}}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block header %}
+
+
+ {% endblock %}
+
+ {% block content %}
+
+<div class="content">
+
+  <h1>Konversationen</h1>
+
+  <br>
+
+    <table class="Table">
+        <tr>
+          <th></th>
+          <th> &nbsp  Name &nbsp  </th>
+          <th> &nbsp Zeit &nbsp </th>
+          <th> &nbsp Öffnen &nbsp </th>
+        </tr>
+        {% for data in information %}
+          <tr>
+            {% if data.gelesen %}
+            <td>  </td>
+            {% else %}
+            <td> &nbsp <i style="font-size:16px; color: red;" class="fa">&#xf0a2;</i> &nbsp </td>
+            {% endif %}
+            <td> &nbsp {{ data.name }} &nbsp </td>
+            <td> &nbsp {{ data.zeit }} &nbsp </td>
+            <td>
+              &nbsp <a href="/chat/{{data.id}}">Chat</a> &nbsp
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+
+{% endblock %}
