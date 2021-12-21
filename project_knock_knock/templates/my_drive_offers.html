@@ -17,6 +17,7 @@
 <div class="content">
 
   <h3>Akzeptierte Angebote</h3>
+
   {% for offer in offers %}
 
   {% if offer.is_accepted() %}
@@ -29,6 +30,7 @@
     <div>Preis: {{ offer.get_kilometerpreis() }}</div>
     <div>Angenommen von: {{ offer.get_accepted_by_username() }}</div>
     <a href="/delete_driver_offer"> Löschen</a>
+    <!-- TODO: add chat functionality to the my offers page -->
         <a href="/todo"> Kontaktiere {{offer.get_accepted_by_username()}} TODO</a>
   </div>
   <br>
@@ -37,6 +39,11 @@
   {% endfor %}
 
   <h3>Offene Angebote</h3>
+
+
+  {% if offers | length == 0 %}
+  There are no accepted offers of you.
+  {% endif %}
 
   {% for offer in offers %}
 

@@ -1,10 +1,11 @@
 class Rating(object):
     def __init__(self,value):
+
+        # assert self.is_valid(value), "Rating List Cant be empty"
         self.__value = value
 
     def is_valid(self, rating):
-        '''
-        checks if the rating has a valid value
+        '''Checks if the rating has a valid value
         :param rating: the rating to check
         :return : True if the rating is valid
         '''
@@ -14,18 +15,18 @@ class Rating(object):
 
 
     def get_rate_count(self):
-        '''calculates the amount of ratings for a user
+        '''Returns the amount of Ratings for a User
         '''
         return len(self.__value)
 
     def calculate_average(self):
-        '''calculates the average over all ratings
-        :value_list: list of rating to calculate the
+        '''Calculates the average over all ratings
+        :param value_list: list of rating to calculate the
                      average of
-        :avg: the average of all ratings
+        :return avg: the average of all ratings
         '''
 
-        assert self.is_valid(self.__value), "Cant compute the average of an empty list."
+
 
         avg = 0
         for value in self.__value:

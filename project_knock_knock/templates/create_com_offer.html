@@ -15,61 +15,79 @@
 
   <form method ="POST" action="/create_com_offer">
           {{ form.csrf_token }}
-          {{ form.von.label }}
-          <br>
-          {{ form.von }}
-          <br>
-          {% for error in form.von.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
 
-          {{ form.nach.label }}
-          <br>
-          {{ form.nach }}
-          <br>
-          {% for error in form.nach.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
+          <div class="from-container">
 
-          {{ form.zeit_start.label }}
-          <br>
-          {{ form.zeit_start }}
-          <br>
-          {% for error in form.zeit_start.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
+            {{ form.von.label }}
+            <br>
+            {{ form.von }}
+            <br>
+            {% for error in form.von.errors %}
+              <p style="color: red;"> {{ error }} </p> <br>
+            {% endfor %}
 
-          {{ form.zeit_ende.label }}
-          <br>
-          {{ form.zeit_ende }}
-          <br>
-          {% for error in form.zeit_ende.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
+          </div>
 
-          {{ form.geld.label }}
-          <br>
-          {{ form.geld }}
-          <br>
-          {% for error in form.geld.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
-          <br>
+          <div class="to-container">
 
-          {{ form.dauer.label }}
-          <br>
-          {{ form.dauer }}
-          <br>
-          {% for error in form.dauer.errors %}
-            <p style="color: red;"> {{ error }} </p> <br>
-          {% endfor %}
+            {{ form.nach.label }}
+
+            <br>
+            {{ form.nach }}
+            <br>
+            {% for error in form.nach.errors %}
+              <p style="color: red;"> {{ error }} </p> <br>
+            {% endfor %}
+            <br>
+
+          </div>
+
+
+          <div class="label-container">
+            {{ form.zeit_ende.label }}
+            <br><br><br>
+            {{ form.zeit_start.label }}
+            <br><br><br>
+            {{ form.geld.label }}
+            <br><br><br>
+            {{ form.dauer.label }}
+          </div>
+
+          <div class="input-container">
+
+            {{ form.zeit_start }}
+            {% for error in form.zeit_start.errors %}
+              <p style="color: red;"> {{ error }} </p>
+            {% endfor %}
+
+            <br><br><br>
+
+            {{ form.zeit_ende }}
+            {% for error in form.zeit_ende.errors %}
+              <p style="color: red;"> {{ error }} </p>
+            {% endfor %}
+
+            <br><br><br>
+
+            {{ form.geld }}
+            {% for error in form.geld.errors %}
+              <p style="color: red;"> {{ error }} </p>
+            {% endfor %}
+
+            <br><br><br>
+
+            {{ form.dauer }}
+            {% for error in form.dauer.errors %}
+              <p style="color: red;"> {{ error }} </p>
+            {% endfor %}
+
+
+          </div>
+
           <br>
 
           {{ form.submit(id='create-save-offer') }}
+
        </form>
 
 </div>

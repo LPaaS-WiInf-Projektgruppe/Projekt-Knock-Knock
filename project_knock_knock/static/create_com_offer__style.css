@@ -1,21 +1,17 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
 body
 {
+
     color: #FFFFFF;
-}
-.roboto-font
-{
-  font-size: 19px;
-  font-size: 1.2rem;
-  font-family: roboto;
-  font-weight: 300;
+    font-size: 19px;
+    font-size: 1.2rem;
+    font-family: roboto;
+    font-weight: 300;
+
 }
 
-.content
-{
-    padding: 16px;
-    #background: #33322F;
-    color: white;
-}
 
 h1
 {
@@ -30,4 +26,89 @@ p
 h2
 {
     color: #FFFFFF;
+}
+
+.content
+{
+    padding: 16px;
+    #background: #33322F;
+    color: white;
+}
+
+
+.from-container
+{
+  float: left;
+  width: 50%
+}
+.to-container
+{
+  overflow: hidden;
+  width: 50%
+}
+
+.input-container
+{
+
+  overflow: hidden;
+}
+
+.label-container
+{
+  float: left;
+  padding-right: 16px;
+
+}
+
+a
+{
+  color: #2A6D87;
+}
+
+
+input
+{
+    background:  #33322F;
+    color: white;
+    border: 1px #7E888A solid;
+    border-radius: 2px;
+    width: 100%;
+    opacity: 0.7;
+}
+
+input:hover
+{
+  opacity: 1;
+}
+
+.roboto-font
+{
+  font-size: 19px;
+  font-size: 1.2rem;
+  font-family: roboto;
+  font-weight: 300;
+}
+
+.content
+{
+    padding: 16px;
+    background: #33322F;
+}
+
+.alert-box {
+	padding: 15px;
+  width:100%;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    z-index: 1;
+    position: relative;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: none;
+    position: absolute;
 }

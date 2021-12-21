@@ -1,17 +1,20 @@
 class Profil(object):
     '''Represents a User Profile with the following entities
-    :username: the name of the user
-    :working_times: the working times of a user
-    :rating: the average rating of a user
-    :description: a bio the user can set
+    :param username: the name of the user
+    :param working_times: the working times of a user
+    :param rating: the average rating of a user
+    :param description: a bio the user can set
     '''
 
-    def __init__(self, username, working_times, user_accepted_offers, rating, description):
+    def __init__(self, username, working_times, user_accepted_drive_offers,
+                          user_accepted_com_offers, rating, description):
+
         self.__username = username
         self.__working_times = working_times
         self.__rating = rating
         self.__description = description
-        self.__user_accepted_offers = user_accepted_offers
+        self.__user_accepted_drive_offers = user_accepted_drive_offers
+        self.__user_accepted_com_offers = user_accepted_com_offers
 
     def get_username(self):
         return self.__username
@@ -25,8 +28,11 @@ class Profil(object):
     def get_description(self):
         return self.__decription
 
-    def get_accepted_offers(self):
-        return self.__user_accepted_offers
+    def get_accepted_drive_offers(self):
+        return self.__user_accepted_drive_offers
+
+    def get_accepted_com_offers(self):
+        return self.__user_accepted_com_offers
 
     def set_username(self, username):
         self.__username = username
@@ -40,5 +46,8 @@ class Profil(object):
     def set_description(self, description):
         self.__description = desciption
 
-    def set_accepted_offers(self, offers):
-        self.__user_accepted_offers = offers
+    def set_accepted_drive_offers(self, offers):
+        self.__user_accepted_com_offers = offers
+
+    def set_accepted_com_offers(self, offers):
+        self.__user_accepted_drive_offers = offers

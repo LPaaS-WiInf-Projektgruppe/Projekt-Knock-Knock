@@ -92,7 +92,7 @@ def create_com_offer():
             return 'An Error occured, while trying to add your offer :('
 
     return render_template(
-        "create_drive_offer.html",
+        "create_com_offer.html",
         view_name = "Create ComOffer",
         form = form
     )

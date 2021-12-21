@@ -35,10 +35,10 @@ def my_orders_func():
         com_offer = ComOffer(
             offer.start,
             offer.destination,
-            offer.created_at,
             offer.start_time,
             offer.end_time,
             offer.kilometerpreis,
+            offer.created_at,
             # TODO: add actual text
             # TODO: add actual rating
             3
