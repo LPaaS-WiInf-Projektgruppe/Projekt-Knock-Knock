@@ -32,20 +32,36 @@ h2
     color: #FFFFFF;
 }
 
+a3
+{
+  font-size: 1.5rem;
+  color: black;
+  border-radius: 15px;
+  border-color: green;
+  background-color: lightgreen;
+}
+
 a2
 {
-  color: green;
+  color: black;
   text-align: right;
+  border-radius: 15px;
+  border-color: green;
+  background-color: lightgreen;
 }
 
 a1
 {
-  color: grey;
+  color: black;
   text-align: left;
+  border-radius: 15px;
+  border-color: grey;
+  background-color: lightgrey;
 }
 
-.Table
+#Tabelle
 {
-  border-spacing: 80px;
-  padding: 10px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
 }

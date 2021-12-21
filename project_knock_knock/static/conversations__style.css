@@ -31,3 +31,10 @@ h2
 {
     color: #FFFFFF;
 }
+
+#Tabelle
+{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}

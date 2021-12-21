@@ -20,7 +20,7 @@
 
   <br>
 
-    <table class="Table">
+    <table id="Tabelle">
         <tr>
           <th> &nbsp Text &nbsp </th>
           <th> &nbsp Uhrzeit &nbsp </th>
@@ -28,35 +28,37 @@
         {% for message in messages %}
           {% if message.transmitter == dude.id %}
               <tr>
-                <td><a1> &nbsp {{ message.text }} &nbsp </a1></td>
-                <td><a1> &nbsp {{ message.created_at }} &nbsp </a1></td>
+                <td><a1> &nbsp {{ message.text }} &nbsp</a1></td>
+                <td style="font-size: 1.0rem;"> &nbsp {{ message.created_at }} &nbsp </td>
               </tr>
           {% else %}
               <tr>
-                <td><a2>&nbsp {{ message.text }} &nbsp</a2></td>
-                <td><a2>&nbsp {{ message.created_at }} &nbsp</a2></td>
+                <td align="right"><a2>&nbsp {{ message.text }} &nbsp</a2></td>
+                <td style="font-size: 1.0rem;">&nbsp {{ message.created_at }} &nbsp</td>
               </tr>
           {% endif %}
         {% endfor %}
     </table>
 
-    <br>
-    <br>
-    <p> Neue Nachricht versenden </p>
-  <form style="color: green; align-items: center;" action="/chat/{{dude.id}}" method="POST">
-    <input type="text" name="send" id="send"><br>
-    <input type="submit" value="Abschicken">
-  </form>
-
-
-    <br>
-    <br>
-
-
-  <form>
-   <input type="button" value="Back" onclick="history.back()" class="button" style="color: black;">
-  </form>
-
 </div>
+
+<br>
+<br>
+
+<p align="center">
+  <a3> &nbsp Neue Nachricht versenden &nbsp</a3>
+</p>
+
+<form style="color: black; align-items: center;" align= "center" action="/chat/{{dude.id}}" method="POST">
+  <input type="text" name="send" id="send"><br><br>
+  <input type="submit" value="Abschicken">
+</form>
+
+<br>
+<br>
+
+<form>
+  <input type="button" value="Back" onclick="history.back()" class="button" style="color: black;" align= "center">
+</form>
 
 {% endblock %}
