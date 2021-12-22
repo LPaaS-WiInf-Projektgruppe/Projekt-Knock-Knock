@@ -1,9 +1,10 @@
 from flask import Flask, render_template, Blueprint, request, redirect, url_for
 from flask_user import current_user, login_required
-from Models import ComOffers
+from Models import ComOffers, User
 from extensions import db
 from datetime import datetime
 from forms.comOffer_form import ComOfferForm
+from materialien.com_offer import ComOffer
 import re
 
 
@@ -14,10 +15,30 @@ comOffer = Blueprint('comOffer', __name__)
 @login_required
 def createComOffer():
     allComOffers = ComOffers.query.order_by(ComOffers.id).all()
+
+    com_offers = []
+    for offer in allComOffers:
+        # format_start_time = datetime.strptime(offer.start_time,"%YYYY-mm-dd hh:mm:ss")
+        # format_end_time = datetime.strptime(offer.end_time,"%YYYY-mm-dd hh:mm:ss")
+        format_start_time = offer.start_time.strftime("%d.%m.%y %H:%M")
+        format_end_time = offer.end_time.strftime("%d.%m.%y %H:%M")
+        com_offer = ComOffer(
+            offer.id,
+            offer.start,
+            offer.destination,
+            format_start_time,
+            format_end_time,
+            offer.kilometerpreis,
+            offer.created_at,
+            offer.creator,
+            0
+        )
+        com_offers.append(com_offer)
+
     return render_template(
         'comOffer.html',
         view_name ='Company Offer',
-        allComOffers = allComOffers,
+        offers = com_offers,
     )
 
 @comOffer.route('/deleteComOffer/<int:id>')
@@ -26,9 +47,12 @@ def delete(id):
     '''delete the comOffer specified in the url'''
     comOffer_to_delete = ComOffers.query.get_or_404(id)
     try:
-        db.session.delete(comOffer_to_delete)
-        db.session.commit()
-        return redirect('/comOffer')
+        if comOffer_to_delete.accepted_by == "NULL":
+            db.session.delete(comOffer_to_delete)
+            db.session.commit()
+            return redirect('/comOffer')
+        else:
+            return "You cannot delete an offer that has already been accepted!"
     except:
         return 'The offer could not be deleted :('
 
@@ -39,11 +63,20 @@ def accept_offer(offer_id):
     of the user who accepted the offer to the respective entry in the com offer
     "accepted_by" column
     '''
-    result = ComOffers.query.filter_by(id = offer_id).first()
-    result.accepted_by = current_user.id
-    db.session.commit()
 
-    return redirect('/comOffer')
+    # query database for every drive offer that the user accepted
+    user, com_offer = db.session.query(User, ComOffers) \
+        .join(User, ComOffers.creator) \
+        .filter(ComOffers.id == offer_id) \
+        .first()
+
+
+    if user.username != current_user.username:
+        com_offer.accepted_by = current_user.id
+        db.session.commit()
+        return redirect('/comOffer')
+    else:
+        return "You cannot accept your own offers!"
 
 @comOffer.route("/create_com_offer", methods=["GET", "POST"])
 @login_required
@@ -69,7 +102,7 @@ def create_com_offer():
                 start = content_start,
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
-                kilometerpreis = content_geld,
+                kilometerpreis = content_geld
             )
         else:
             endZeitAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
@@ -78,7 +111,7 @@ def create_com_offer():
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
                 end_time = endZeitAlsPythonObjekt,
-                kilometerpreis = content_geld,
+                kilometerpreis = content_geld
             )
 
 

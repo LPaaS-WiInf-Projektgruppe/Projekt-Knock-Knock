@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Blueprint, request, redirect
 from flask_user import current_user, login_required
-from Models import DriverOffers, WorkingTime
+from Models import DriverOffers, WorkingTime, User
 from extensions import db
 from datetime import datetime, timedelta
 
@@ -31,9 +31,12 @@ def delete(id):
     '''
     driverOffer_to_delete = DriverOffers.query.get_or_404(id)
     try:
-        db.session.delete(driverOffer_to_delete)
-        db.session.commit()
-        return redirect('/driverOffer')
+        if driverOffer_to_delete.accepted_by == "NULL":
+            db.session.delete(driverOffer_to_delete)
+            db.session.commit()
+            return redirect('/driverOffer')
+        else:
+            return "You cannot delete a drive_offer that already has been accepted"
     except:
         return 'The offer could not be deleted :('
 
@@ -47,12 +50,24 @@ def accept_offer(offer_id):
     :param offer_id int: the id of the offer to accept
     '''
 
-    # TODO: prevent users from accepting their own offers
+
     # TODO: contact users who accepted an offer
     # TODO: prevent accepted offers from being deleted
-    result = DriverOffers.query.filter_by(id = offer_id).first()
-    result.accepted_by = current_user.id
-    db.session.commit()
+    # query database for every drive offer that the user accepted
+    user, drive_offer = db.session.query(User, DriverOffers) \
+        .join(User, DriverOffers.creator) \
+        .filter(DriverOffers.id == offer_id) \
+        .first()
+
+
+    # Check if the creator of the drive offer is the current user
+    # to prevent users from accepting their own offers
+    if user.username != current_user.username:
+        drive_offer.accepted_by = current_user.id
+        db.session.commit()
+        return redirect('/driverOffer')
+    else:
+        return "You cannot accept your own offers"
 
     return redirect('/driverOffer')
 

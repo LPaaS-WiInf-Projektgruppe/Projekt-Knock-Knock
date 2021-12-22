@@ -21,33 +21,31 @@
 
 {% block content %}
 
-<div>
+<div class="content">
 
-  <table class="Table">
-      <tr>
-        <!-- <th style="width:50px;"> ID </th> -->
-        <th style=> von </th>
-        <th style=> nach </th>
-        <th style=> gewünschte Zeit </th>
-        <!-- TODO: absolutpreis automatisch berechnen und angeben -->
-        <th style=> Kilometerpreis </th>
-        <th> Aktionen </th>
-      </tr>
-      {% for comOffer in allComOffers %}
-        <tr>
-          <!-- <td>{{ comOffer.id }}</td> -->
-          <td>{{ comOffer.start }}</td>
-          <td>{{ comOffer.destination }}</td>
-          <td>{{ comOffer.start_time}}</td>
-          <td>{{ comOffer.kilometerpreis }} Euro</td>
-          <td>
-            <a href = "/com_offer_detail/{{comOffer.id}}">Details</a>
-          </td>
-        </tr>
-        {% endfor %}
-  </table>
+{% for offer in offers %}
+<div class="offer-container"onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">
 
-  <a href="/create_com_offer"> Create Com Offer</a>
+  <div class="box1">
+    {{ offer.get_start() }} -> {{ offer.get_destination() }}
+  </div>
+  <div class="box2">
+      {{ offer.get_start_time() }}
+  </div>
+  <div class="box3">
+      {{ offer.get_end_time() }}
+  </div>
+  <div class="box4">
+      {{ offer.get_kilometerpreis() }} €
+  </div>
+<span class="stretch"></span>
+</div>
+{% endfor %}
+
+
+  <div class="btn" onClick="location.href='/create_com_offer'"">
+     Create Com Offer
+  </div>
 
 
 </div>

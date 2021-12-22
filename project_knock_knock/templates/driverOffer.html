@@ -1,55 +1,39 @@
 
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-
 {% extends 'flask_user/_public_base.html' %}
+
 
 {% block extra_css %}
 
 <link href="{{url_for('static', filename='driverOffer__style.css')}}" rel="stylesheet" type="text/css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
-
-<script type=text/javascript src="{{url_for('static', filename='driverOffer__script.js') }}"></script>
-
-<style media="screen">
-  p
-  {
-    color: white;
-  }
-</style>
-
 {% endblock %}
+
+{% block header %}
+
+
+ {% endblock %}
 
 {% block content %}
 
-{{form.von}} {{form.nach}} {{form.submit}}
-
-  <table class="Table">
-      <tr>
-        <!-- <th style="width:50px;"> ID </th> -->
-        <!-- <th style="width:150px;"> Ort </th> -->
-        <th style=> Fahrzeug </th>
-        <!-- TODO: automatisch nach angeboten Filtern die in einem angegebenen Zeitraum liegen -->
-        <!-- <th style="width:150px;"> Verfügbar ab: </th>
-        <th style="width:150px;"> Verfügbar bis: </th> -->
-        <!-- TODO: absolutpreis automatisch berechnen und angeben -->
-        <th style=> Kilometerpreis </th>
-        <th style=> Aktionen </th>
-      </tr>
-      {% for driverOffer in allDriverOffers %}
-        <tr>
-          <td>{{ driverOffer.vehicle }}</td>
-          <td>{{ driverOffer.kilometerpreis }} Euro</td>
-          <td>
-            <a href = "/drive_offer_detail/{{driverOffer.id}}">Details</a>
-          </td>
-        </tr>
-        {% endfor %}
-  </table>
+<div class="content">
 
 
-  <a href="/create_drive_offer"> Create Driver Offer</a>
+{{form.von(class_="location-input")}} <span>-></span> {{form.nach(class_="location-input")}} {{form.submit(class_="submit-btn")}}
+<div style="clear:both"></div>
+
+  {% for driverOffer in allDriverOffers %}
+  <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.id}}'">
+    <div class="box1">
+      {{ driverOffer.vehicle }}
+    </div>
+    <div class="box2">
+      {{ driverOffer.kilometerpreis }}
+    </div>
+  </div>
+  {% endfor %}
+
+
+  <div class="btn" onClick="location.href='/create_drive_offer'"> Create Driver Offer</div>
 
 
 

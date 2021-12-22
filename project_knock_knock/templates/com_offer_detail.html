@@ -16,16 +16,40 @@
 
 <div class="content">
 
+<div class="offer-label-container">
+  <p>Username </p>
+  <p>von </p>
+  <p>nach </p>
+  <p>gewünschte Uhrzeit </p>
+  <p>bis</p>
+  <p>Kilometerpreis </p>
+  <p>erstellt am </p>
+</div>
 
-<p>Username {{ data.creator.first().username }}</p>
-<p>von {{ data.start }}</p>
-<p>nach {{ data.destination }}</p>
-<p>gewünschte Uhrzeit {{ data.start_time }}</p>
-<p>bis {{ data.start_time }}</p>
-<p>Kilometerpreis {{ data.kilometerpreis }}</p>
-<p>erstellt am {{ data.created_at }}</p>
+<div class="offer-detail-container">
+  <p>{{ data.creator.first().username }}</p>
+  <p>{{ data.start }}</p>
+  <p>{{ data.destination }}</p>
+  <p>{{ data.start_time }}</p>
+  <p>{{ data.start_time }}</p>
+  <p>{{ data.kilometerpreis }}</p>
+  <p>{{ data.created_at }}</p>
+</div>
 
-<a href="/accept_drive_offer"></a>
+
+<div class="btn" onclick="history.back()">
+Back
+</div>
+
+
+
+<div class="btn" onclick="location.href='/accept_com_offer/{{ data.id }}'">
+Accept
+</div>
+
+<div class="btn" onclick="location.href='/chat/{{data.creator.first().id}}'">
+Contact Company
+</div>
 
 
   </div>

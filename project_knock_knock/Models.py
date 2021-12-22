@@ -161,6 +161,7 @@ class ComOffers(db.Model):
     kilometerpreis = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'))
+
     rating = db.relationship("Rating", backref='com_offer')
 
 

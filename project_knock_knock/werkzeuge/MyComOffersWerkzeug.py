@@ -23,22 +23,21 @@ def my_orders_func():
         .filter_by(username = current_user.username) \
         .all()
 
-
-
-
-    print(results)
+    # print(results)
 
 
     com_offers = []
     for _, offer in results:
 
         com_offer = ComOffer(
+            offer.id,
             offer.start,
             offer.destination,
             offer.start_time,
             offer.end_time,
             offer.kilometerpreis,
             offer.created_at,
+            offer.creator,
             # TODO: add actual text
             # TODO: add actual rating
             3

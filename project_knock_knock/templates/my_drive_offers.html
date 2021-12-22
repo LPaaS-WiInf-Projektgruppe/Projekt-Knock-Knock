@@ -21,19 +21,39 @@
   {% for offer in offers %}
 
   {% if offer.is_accepted() %}
-  <div class="drive-offer-container" style="background-color: light-green">
-    <div>Ort: {{ offer.get_location() }}</div>
-    <div>Radius: {{ offer.get_radius() }}</div>
-      <div>erstellt am: {{ offer.get_created_at() }}</div>
-      <div>verfügbar von: {{ offer.get_start_time() }}</div>
-      <div>verfügbar bis: {{ offer.get_end_time() }}</div>
-    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
-    <div>Angenommen von: {{ offer.get_accepted_by_username() }}</div>
-    <a href="/delete_driver_offer"> Löschen</a>
-    <!-- TODO: add chat functionality to the my offers page -->
-        <a href="/todo"> Kontaktiere {{offer.get_accepted_by_username()}} TODO</a>
+  <div class="drive-offer-container">
+
+    <div class="list-entry">
+        <b>Location</b> <br>
+        {{ offer.get_location() }}
+    </div>
+
+    <div class="list-entry">
+        <b>Cost</b> <br>
+        {{ offer.get_kilometerpreis() }}
+    </div>
+    <!-- TODO: remove offer when its end time is reached -->
+    <div class="list-entry">
+      <b>accepted by</b> <br>
+      {{ offer.get_accepted_by_username() }}
+    </div>
+
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
+    <div class="delete-btn" onClick="location.href='/chat/{{ offer.get_accepted_by() }}'"> Chat</div>
+    <div style="clear:both"></div>
   </div>
   <br>
+
+
+
+
+  <!-- {{ offer.get_radius() }}
+  {{ offer.get_formatted_created_at_time() }}
+  {{ offer.get_formatted_created_at_date() }}
+  {{ offer.get_formatted_start_time() }}
+  {{ offer.get_formatted_start_date() }}
+  {{ offer.get_formatted_end_time() }}
+  {{ offer.get_formatted_end_date() }} -->
 
   {% endif %}
   {% endfor %}
@@ -41,22 +61,47 @@
   <h3>Offene Angebote</h3>
 
 
-  {% if offers | length == 0 %}
-  There are no accepted offers of you.
-  {% endif %}
-
   {% for offer in offers %}
 
   {% if  not offer.is_accepted() %}
-  <div class="drive-offer-container">
-    <div>Ort: {{ offer.get_location() }}</div>
-    <div>Radius: {{ offer.get_radius() }}</div>
-      <div>erstellt am: {{ offer.get_created_at() }}</div>
-      <div>verfügbar von: {{ offer.get_start_time() }}</div>
-      <div>verfügbar bis: {{ offer.get_end_time() }}</div>
-    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
+
+  <!-- <div class="drive-offer-container">
+    <div>Ort:</div>
+    <div>Radius: </div>
+      <div>erstellt am: </div>
+      <div>verfügbar von: </div>
+      <div>verfügbar bis: </div>
+    <div>Preis: </div>
     <a href="/delete_driver_offer/{{offer.get_id()}}"> Löschen</a>
+  </div> -->
+
+<!--
+  <div class="offer-container">
+    {{ offer.get_location() }}
+    {{ offer.get_radius() }}
+    {{ offer.get_created_at() }}
+    {{ offer.get_start_time() }}
+    {{ offer.get_end_time() }}
+    {{ offer.get_kilometerpreis() }}
+  </div> -->
+
+
+  <div class="drive-offer-container">
+
+    <div class="list-entry">
+        <b>Location</b> <br>
+        {{ offer.get_location() }}
+    </div>
+
+    <div class="list-entry">
+        <b>Cost</b> <br>
+        {{ offer.get_kilometerpreis() }} €
+    </div>
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
+    <div style="clear:both"></div>
+    <!-- TODO: remove offer when its end time is reached -->
   </div>
+
   <br>
   {% endif %}
   {% endfor %}
