@@ -16,9 +16,15 @@
 
     <form method ="POST" action="/create_drive_offer">
             {{ form.csrf_token }}
+
+
+
+            <div class="label-container">
+
+
+
             {{ form.ort.label }}
-            <br>
-            {{ form.ort }}
+
             <br>
             {% for error in form.ort.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -26,8 +32,7 @@
             <br>
 
             {{ form.fahrzeug.label }}
-            <br>
-            {{ form.fahrzeug }}
+
             <br>
             {% for error in form.fahrzeug.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -35,8 +40,7 @@
             <br>
 
             {{ form.zeit_start.label }}
-            <br>
-            {{ form.zeit_start }}
+
             <br>
             {% for error in form.zeit_start.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -44,80 +48,17 @@
             <br>
 
             {{ form.zeit_ende.label }}
-            <br>
-            {{ form.zeit_ende }}
+
             <br>
             {% for error in form.zeit_ende.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
             {% endfor %}
+
             <br>
 
-            {{ form.from_zeitMo.label }}
-            <br>
-            {{ form.from_zeitMo }}
-            <br>
-            {% for error in form.from_zeitMo.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitDi.label }}
-            <br>
-            {{ form.from_zeitDi }}
-            <br>
-            {% for error in form.from_zeitDi.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitMi.label }}
-            <br>
-            {{ form.from_zeitMi }}
-            <br>
-            {% for error in form.from_zeitMi.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitDo.label }}
-            <br>
-            {{ form.from_zeitDo }}
-            <br>
-            {% for error in form.from_zeitDo.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitFr.label }}
-            <br>
-            {{ form.from_zeitFr }}
-            <br>
-            {% for error in form.from_zeitFr.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitSa.label }}
-            <br>
-            {{ form.from_zeitSa }}
-            <br>
-            {% for error in form.from_zeitSa.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.from_zeitSo.label }}
-            <br>
-            {{ form.from_zeitSo }}
-            <br>
-            {% for error in form.from_zeitSo.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
 
             {{ form.preis.label }}
-            <br>
-            {{ form.preis }}
+
             <br>
             {% for error in form.preis.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -125,8 +66,7 @@
             <br>
 
             {{ form.radius.label }}
-            <br>
-            {{ form.radius }}
+
             <br>
             {% for error in form.radius.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -134,8 +74,7 @@
             <br>
 
             {{ form.bemerkungen.label }}
-            <br>
-            {{ form.bemerkungen }}
+
             <br>
             {% for error in form.bemerkungen.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -143,6 +82,36 @@
             <br>
 
             {{ form.submit(id='create-save-offer') }}
+
+          </div>
+
+
+
+            <div class="input-container">
+
+
+            {{ form.ort(class_="input") }}
+            <br>
+            {{ form.fahrzeug(class_="input") }}
+            <br>
+            {{ form.zeit_start(class_="input") }}
+            <br>
+            {{ form.zeit_ende(class_="input") }}
+            <br>
+            {{ form.preis(class_="input") }}
+            <br>
+            {{ form.radius(class_="input") }}
+            <br>
+            {{ form.bemerkungen(class_="input") }}
+
+            {{ form.from_zeitMo(class_="input") }}
+            {{ form.from_zeitDi(class_="input") }}
+            {{ form.from_zeitMi(class_="input") }}
+            {{ form.from_zeitDo(class_="input") }}
+            {{ form.from_zeitFr(class_="input") }}
+            {{ form.from_zeitSa(class_="input") }}
+            {{ form.from_zeitSo(class_="input") }}
+            </div>
          </form>
 
 </div>

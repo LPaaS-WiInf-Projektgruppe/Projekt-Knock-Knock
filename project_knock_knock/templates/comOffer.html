@@ -36,14 +36,16 @@
       {{ offer.get_end_time() }}
   </div>
   <div class="box4">
-      {{ offer.get_kilometerpreis() }}
+      {{ offer.get_kilometerpreis() }} €
   </div>
 <span class="stretch"></span>
 </div>
 {% endfor %}
 
 
-  <div class="btn" href="/create_com_offer"> Create Com Offer</div>
+  <div class="btn" onClick="location.href='/create_com_offer'"">
+     Create Com Offer
+  </div>
 
 
 </div>

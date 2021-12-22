@@ -53,17 +53,18 @@ def accept_offer(offer_id):
 
     # TODO: contact users who accepted an offer
     # TODO: prevent accepted offers from being deleted
-    result = db.session.query(DriverOffers, User) \
-        .filter(User.id == DriverOffers.creator) \
-        .filter_by(id = offer_id) \
+    # query database for every drive offer that the user accepted
+    user, drive_offer = db.session.query(User, DriverOffers) \
+        .join(User, DriverOffers.creator) \
+        .filter(DriverOffers.id == offer_id) \
         .first()
+
 
     # Check if the creator of the drive offer is the current user
     # to prevent users from accepting their own offers
-    if result[1].username != current_user.username:
-        result[0].accepted_by = current_user.id
+    if user.username != current_user.username:
+        drive_offer.accepted_by = current_user.id
         db.session.commit()
-        print(type(current_user))
         return redirect('/driverOffer')
     else:
         return "You cannot accept your own offers"

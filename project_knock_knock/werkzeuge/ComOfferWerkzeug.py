@@ -30,6 +30,7 @@ def createComOffer():
             format_end_time,
             offer.kilometerpreis,
             offer.created_at,
+            offer.creator,
             0
         )
         com_offers.append(com_offer)
@@ -63,13 +64,15 @@ def accept_offer(offer_id):
     "accepted_by" column
     '''
 
-    result = db.session.query(ComOffers, User) \
+    # query database for every drive offer that the user accepted
+    user, com_offer = db.session.query(User, ComOffers) \
+        .join(User, ComOffers.creator) \
+        .filter(ComOffers.id == offer_id) \
         .first()
 
-    print(result)
 
-    if result[1].username != current_user.username:
-        result[0].accepted_by = current_user.id
+    if user.username != current_user.username:
+        com_offer.accepted_by = current_user.id
         db.session.commit()
         return redirect('/comOffer')
     else:
@@ -99,7 +102,7 @@ def create_com_offer():
                 start = content_start,
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
-                kilometerpreis = content_geld,
+                kilometerpreis = content_geld
             )
         else:
             endZeitAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
@@ -108,7 +111,7 @@ def create_com_offer():
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
                 end_time = endZeitAlsPythonObjekt,
-                kilometerpreis = content_geld,
+                kilometerpreis = content_geld
             )
 
 

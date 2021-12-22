@@ -1,15 +1,17 @@
 from Models import User
+import datetime
 
 
 class DriveOffer(object):
     def __init__(
-            self, id, location, vehicle, created_at, start_time, end_time,
+            self, id, location, vehicle, created_at, creator, start_time, end_time,
             kilometerpreis, radius, text, rating, accepted_by):
 
         self.__id = id
         self.__location = location
         self.__vehicle = vehicle
         self.__created_at = created_at
+        self.__creator = creator
         self.__start_time = start_time
         self.__end_time = end_time
         self.__kilometerpreis = kilometerpreis
@@ -29,6 +31,9 @@ class DriveOffer(object):
 
     def set_created_at(self, created_at):
         self.__created_at = created_at
+
+    def set_creator(self, creator):
+        self.__creator = creator
 
     def set_start_time(self, start_time):
         self.start_time = start_time
@@ -58,7 +63,6 @@ class DriveOffer(object):
     def is_accepted(self):
         return self.__accepted_by != "NULL"
 
-
     def get_location(self):
         return self.__location
 
@@ -67,6 +71,9 @@ class DriveOffer(object):
 
     def get_created_at(self):
         return self.__created_at
+
+    def get_creator(self):
+        return self.__creator
 
     def get_start_time(self):
         return self.__start_time
@@ -92,3 +99,22 @@ class DriveOffer(object):
     def get_accepted_by_username(self):
         accepted_by = User.query.filter_by(id = self.__accepted_by).first()
         return accepted_by.username
+
+    def get_formatted_created_at_time(self):
+        return self.__created_at.strftime("%H:%M")
+
+    def get_formatted_created_at_date(self):
+        return self.__created_at.strftime("%d.%m.%y")
+
+    def get_formatted_start_time(self):
+        return self.__start_time.strftime("%H:%M")
+
+    def get_formatted_end_time(self):
+        return self.__end_time.strftime("%H:%M")
+
+    def get_formatted_start_date(self):
+        return self.__start_time.strftime("%d.%m.%y")
+
+
+    def get_formatted_end_date(self):
+        return self.__end_time.strftime("%d.%m.%y")

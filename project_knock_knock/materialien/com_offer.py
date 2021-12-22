@@ -1,6 +1,6 @@
 class ComOffer(object):
     def __init__(self, id, start, destination, start_time, end_time,
-        kilometerpreis, created_at, rating):
+        kilometerpreis, created_at, creator, rating):
 
         self.__id = id
         self.__start = start
@@ -9,6 +9,7 @@ class ComOffer(object):
         self.__end_time = end_time
         self.__kilometerpreis = kilometerpreis
         self.__created_at = created_at
+        self.__creator = creator
         self.__rating = rating
 
     def set_id(self, id):
@@ -31,6 +32,9 @@ class ComOffer(object):
 
     def set_created_at(self, created_at):
         self.__created_at = created_at
+
+    def set_creator(self, creator):
+        self.__creator = creator
 
     def set_rating(self, rating):
         self.__rating = rating
@@ -56,5 +60,27 @@ class ComOffer(object):
     def get_created_at(self):
         return self.__created_at
 
+    def get_creator(self):
+        return self.__creator
+
     def get_rating(self):
         return self.__rating
+
+    def get_formatted_created_at_time(self):
+        return self.__created_at.strftime("%H:%M")
+
+    def get_formatted_created_at_date(self):
+        return self.__created_at.strftime("%d.%m.%y")
+
+    def get_formatted_start_time(self):
+        return self.__start_time.strftime("%H:%M")
+
+    def get_formatted_end_time(self):
+        return self.__end_time.strftime("%H:%M")
+
+    def get_formatted_start_date(self):
+        return self.__start_time.strftime("%d.%m.%y")
+
+
+    def get_formatted_end_date(self):
+        return self.__end_time.strftime("%d.%m.%y")

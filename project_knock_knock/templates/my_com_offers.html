@@ -3,7 +3,7 @@
 
 {% block extra_css %}
      {{ fontawesome_html() }}
-      <link href="{{url_for('static', filename='my_drive_offers__style.css')}}" rel="stylesheet" type="text/css">
+      <link href="{{url_for('static', filename='my_com_offers__style.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -15,19 +15,60 @@
 
 <div class="content">
 
-  {% for offer in offers %}
-
+    {% for offer in offers %}
 
   <div class="com-offer-container">
-    <div>Start: {{ offer.get_start() }}</div>
-    <div>Ziel: {{ offer.get_destination() }}</div>
-    <div>verfügbar von: {{ offer.get_start_time() }}</div>
-    <div>verfügbar bis: {{ offer.get_end_time() }}</div>
-    <div>erstellt am: {{ offer.get_created_at() }}</div>
-    <div>Preis: {{ offer.get_kilometerpreis() }}</div>
-    <a href="/deleteComOffer/{{offer.get_id()}}"> Löschen</a>
+
+
+  <div class="list-entry">
+    <b>Start</b> <br>
+  {{ offer.get_start() }}
   </div>
-  <br>
+
+  <div class="list-entry">
+    <br>
+    <b>-></b>
+  </div>
+
+  <div class="list-entry">
+    <b>Ziel</b> <br>
+     {{ offer.get_destination() }}
+  </div>
+
+
+
+
+<div class="list-entry">
+  <b>verfügbar von</b><br>
+  {{ offer.get_formatted_start_date() }}
+  {{ offer.get_formatted_start_time() }}
+</div>
+
+<div class="list-entry">
+  <b>verfügbar bis</b><br>
+  {{ offer.get_formatted_end_date() }}
+  {{ offer.get_formatted_end_time() }}
+</div>
+
+
+  <div class="list-entry">
+    <b>€/ km</b><br>
+    {{ offer.get_kilometerpreis() }}
+  </div>
+
+  <div class="delete-btn" onClick="location.href='/deleteComOffer/{{offer.get_id()}}'">x</div>
+
+    <div style="clear:both">
+  </div>
+
+
+</div>
+
+   <!--
+    {{ offer.get_end_time() }}
+    {{ offer.get_created_at() }}
+    {{ offer.get_kilometerpreis() }} -->
+
   {% endfor %}
 
   </div>

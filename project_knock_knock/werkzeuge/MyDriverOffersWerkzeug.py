@@ -34,6 +34,7 @@ def my_offers_func():
             offer.location,
             offer.vehicle,
             offer.created_at,
+            offer.creator,
             offer.start_time,
             offer.valid_until,
             offer.kilometerpreis,
@@ -46,6 +47,9 @@ def my_offers_func():
 
         )
         drive_offers.append(drive_offer)
+
+
+    # print(drive_offers[0].get_creator())
 
     return render_template("my_drive_offers.html", view_name='My Offers', offers = drive_offers)
 

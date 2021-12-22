@@ -23,10 +23,7 @@ def my_orders_func():
         .filter_by(username = current_user.username) \
         .all()
 
-
-
-
-    print(results)
+    # print(results)
 
 
     com_offers = []
@@ -40,6 +37,7 @@ def my_orders_func():
             offer.end_time,
             offer.kilometerpreis,
             offer.created_at,
+            offer.creator,
             # TODO: add actual text
             # TODO: add actual rating
             3

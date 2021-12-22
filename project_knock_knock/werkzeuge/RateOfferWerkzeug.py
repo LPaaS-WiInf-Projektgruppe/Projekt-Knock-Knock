@@ -36,7 +36,6 @@ def rate_offer_func(type, offer_id):
             )
             db.session.add(rating)
 
-
         db.session.commit()
         return redirect("/home")
 

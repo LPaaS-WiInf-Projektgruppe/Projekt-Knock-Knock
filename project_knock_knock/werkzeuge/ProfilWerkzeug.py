@@ -49,6 +49,7 @@ def profil_func():
             drive_offer.location,
             drive_offer.vehicle,
             drive_offer.created_at,
+            drive_offer.creator,
             drive_offer.start_time,
             drive_offer.valid_until,
             drive_offer.kilometerpreis,
@@ -70,6 +71,7 @@ def profil_func():
             com_offer.end_time,
             com_offer.kilometerpreis,
             com_offer.created_at,
+            com_offer.creator,
             0
         )
         user_accepted_com_offers.append(user_accepted_com_offer)
@@ -84,13 +86,15 @@ def profil_func():
         work_times.append(work_time)
 
     # get the rating for a user from the database
-    rating_results = db.session.query(User, DriverOffers, Rating) \
-        .filter(DriverOffers.id == Rating.drive_offer) \
-        .filter_by(username = curr_user) \
+    rating_results = db.session.query(Rating) \
+        .select_from(Rating) \
+        .join(DriverOffers, Rating.drive_offer) \
+        .join(User, DriverOffers.creator) \
+        .filter(User.username == curr_user) \
         .all()
 
     ratings = []
-    for _, _ , r in rating_results:
+    for r in rating_results:
         ratings.append(r.stars)
 
     rating = fw_rating(ratings)
