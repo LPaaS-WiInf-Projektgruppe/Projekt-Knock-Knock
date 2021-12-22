@@ -29,14 +29,13 @@ def profil_func():
         .all()
 
     # query database for every drive offer that the user accepted
-    user_accepted_drive_offers = db.session.query(User, DriverOffers) \
+    user_accepted_drive_offers_query = db.session.query(User, DriverOffers) \
         .filter(User.id == DriverOffers.accepted_by) \
         .filter_by(username = curr_user).all()
 
     # query database for every company offer that the user accepted
-    user_accepted_com_offers = db.session.query(User, ComOffers) \
+    user_accepted_com_offers_query = db.session.query(User, ComOffers) \
         .filter(User.id == ComOffers.accepted_by) \
-        .filter(Rating.drive_offer_id == DriverOffers.id) \
         .filter_by(username = curr_user).all()
 
     # print("accepted drive offers: {} \n" \
@@ -44,14 +43,14 @@ def profil_func():
     #     .format(user_accepted_drive_offers))
 
     user_accepted_drive_offers = []
-    for _, drive_offer in user_accepted_drive_offers:
-        user_drive_offer = DriveOffer(
+    for _, drive_offer in user_accepted_drive_offers_query:
+        user_accepted_drive_offer = DriveOffer(
             drive_offer.id,
             drive_offer.location,
             drive_offer.vehicle,
             drive_offer.created_at,
             drive_offer.start_time,
-            drive_offer.end_time,
+            drive_offer.valid_until,
             drive_offer.kilometerpreis,
             drive_offer.radius,
             drive_offer.text,
@@ -62,15 +61,16 @@ def profil_func():
 
 
     user_accepted_com_offers = []
-    for _, com_offer in user_accepted_com_offers:
-        user_accepted__com_offer = ComOffer(
+    for _, com_offer in user_accepted_com_offers_query:
+        user_accepted_com_offer = ComOffer(
             com_offer.id,
             com_offer.start,
             com_offer.destination,
             com_offer.start_time,
             com_offer.end_time,
             com_offer.kilometerpreis,
-            com_offer.created_at
+            com_offer.created_at,
+            0
         )
         user_accepted_com_offers.append(user_accepted_com_offer)
 
@@ -109,6 +109,13 @@ def profil_func():
     except IndexError:
         # handle case where the are no working_ times saved for the user
         result = User.query.filter_by(username = current_user.username).first()
-        user_profile = Profil(result.username, [], drive_offers,  0, "")
+        user_profile = Profil(
+            result.username,
+            [],
+            user_accepted_drive_offers,
+            user_accepted_com_offers,
+            rating,
+            ""
+        )
 
     return render_template("profil.html", view_name='Profil', profile = user_profile)

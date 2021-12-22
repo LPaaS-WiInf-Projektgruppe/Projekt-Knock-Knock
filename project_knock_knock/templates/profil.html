@@ -24,7 +24,7 @@
 
 <!-- Main Profile -->
 
-<div id="main-profile- container" class="profile">
+<div id="main-profile-container" class="profile">
   <br>
 
 
@@ -40,26 +40,40 @@
       ({{ profile.get_rating().get_rate_count() }})
     <p>
 
+
+      <div class="offer-container">
+
     <p>aktuelle Aufträge und Angebote</p>
 
 
     {% if profile.get_accepted_drive_offers() | length == 0 %}
-    Currently noone accepted any of your drive offers
+    You currently do not have any accepted active drive offers.
     {% endif %}
-
     {% for offer in profile.get_accepted_drive_offers() %}
-    <p> {{ offer.get_location() }} </p>
-    <a  href="/rate_offer/{{ offer.get_id() }} ">Als Beendet Markieren</a>
+    <div class="offer-container">
+      <div class="location-container">
+        {{ offer.get_location() }}
+      </div>
+      <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >x</div>
+      <div style="clear:both"></div>
+    </div>
     {% endfor %}
     <br>
     {% if profile.get_accepted_com_offers() | length == 0 %}
-    Currently noone accepted any of your Company offers
+    You currently do not have any accepted active company offers.
     {% endif %}
 
     {% for offer in profile.get_accepted_com_offers() %}
-    <p> {{ offer.get_location() }} </p>
-    <a  href="/rate_offer/{{ offer.get_id() }} ">Als Beendet Markieren</a>
+    <div class="offer-container">
+      <div class="location-container">
+        {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
+        <!-- TODO: Change name of button to check as completed -->
+      <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >x</div>
+      <div style="clear:both"></div>
+    </div>
     {% endfor %}
+
+    </div>
 
     <br>
     <br>

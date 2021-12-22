@@ -24,7 +24,13 @@ def chat_func(dude_id):
 
     if request.method == 'POST' :
         content_text = request.form['send']
-        new_message = ExchangedMessages(transmitter = self.id, receiver = dude.id, text = content_text, read = False)
+        new_message = ExchangedMessages(
+            transmitter = self.id,
+            receiver = dude.id, 
+            text = content_text,
+            read = False
+        )
+
         try:
             db.session.add(new_message)
             db.session.commit()

@@ -32,7 +32,7 @@ def rate_offer_func(type, offer_id):
         else:
             rating = Rating(
                 stars = form_rating,
-                drive_offer_id = offer_id
+                com_offer_id = offer_id
             )
             db.session.add(rating)
 

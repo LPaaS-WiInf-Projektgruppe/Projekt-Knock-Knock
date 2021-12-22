@@ -1,40 +1,121 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
 body
 {
+
     color: #FFFFFF;
+    font-size: 19px;
+    font-size: 1.2rem;
+    font-family: roboto;
+    font-weight: 300;
+
 }
+
 
 h1
 {
   text-align: center;
 }
 
-.Table
+p
 {
-  align-items: center;
-  color: white;
-  border: thin solid;
-  border-color: white;
-  /*background-color: #8a9da8;*/
+    color: #FFFFFF;
 }
 
-.Label
+h2
 {
-  color: white;
+    color: #FFFFFF;
+}
+
+.content
+{
+    padding: 16px;
+    #background: #33322F;
+    color: white;
+}
+
+.btn
+{
+  border: 1px #79AB64 solid;
+  color: #79AB64;
+  border-radius: 45px;
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 44px;
+}
+
+.offer-container
+{
+  border: solid 1px #7E888A;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 30px;
+  text-align: justify;
+  text-justify: distribute-all-lines;
 }
 
 
-.btn_enddate
-{
-  color: white;
-  border: 1px solid white;
+.box1, .box2, .box3, .box4 {
+    vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+  }
+
+  .stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
 }
 
-#input_end_date
-{
-  display: none;
-}
 
 input
 {
-  color: black;
+    background:  #33322F;
+    color: white;
+    border: 1px #7E888A solid;
+    border-radius: 2px;
+    width: 100%;
+    opacity: 0.7;
+}
+
+input:hover
+{
+  opacity: 1;
+}
+
+.roboto-font
+{
+  font-size: 19px;
+  font-size: 1.2rem;
+  font-family: roboto;
+  font-weight: 300;
+}
+
+.content
+{
+    padding: 16px;
+    background: #33322F;
+}
+
+.alert-box {
+	padding: 15px;
+  width:100%;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    z-index: 1;
+    position: relative;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: none;
+    position: absolute;
 }

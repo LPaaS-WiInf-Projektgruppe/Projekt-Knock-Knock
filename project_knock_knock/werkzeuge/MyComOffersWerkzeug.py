@@ -33,6 +33,7 @@ def my_orders_func():
     for _, offer in results:
 
         com_offer = ComOffer(
+            offer.id,
             offer.start,
             offer.destination,
             offer.start_time,

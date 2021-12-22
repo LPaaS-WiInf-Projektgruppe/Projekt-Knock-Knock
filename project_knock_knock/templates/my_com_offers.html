@@ -9,7 +9,6 @@
 
 {% block header %}
 
-
  {% endblock %}
 
  {% block content %}
@@ -26,7 +25,7 @@
     <div>verfügbar bis: {{ offer.get_end_time() }}</div>
     <div>erstellt am: {{ offer.get_created_at() }}</div>
     <div>Preis: {{ offer.get_kilometerpreis() }}</div>
-    <a href="/delete_com_offer/{{offer.get_id()}}"> Löschen</a>
+    <a href="/deleteComOffer/{{offer.get_id()}}"> Löschen</a>
   </div>
   <br>
   {% endfor %}

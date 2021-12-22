@@ -16,24 +16,43 @@
 
 <div class="content">
 
+<div class="offer-label-container">
+  <p>Username </p>
+  <p>Ort </p>
+  <p>Fahrzeug </p>
+  <p>Verfügbar ab </p>
+  <p>Verfügbar bis </p>
+  <p>Kilometerpreis </p>
+  <p>Umkreis in km </p>
+  <p>erstellt am </p>
+  <p>Bemerkungen </p>
+</div>
 
-<p>Username {{ data.creator.first().username }}</p>
-<p>Ort {{ data.location }}</p>
-<p>Fahrzeug {{ data.vehicle }}</p>
-<p>Verfügbar ab {{ data.start_time }}</p>
-<p>Verfügbar bis {{ data.end_time }}</p>
-<p>Kilometerpreis {{ data.kilometerpreis }}</p>
-<p>Umkreis in km {{ data.radius }}</p>
-<p>erstellt am {{ data.created_at }}</p>
-<p>Bemerkungen {{ data.text }}</p>
 
-<form>
- <input type="button" value="Back" onclick="history.back()" class="button">
-</form>
+<div class="offer-detail-container">
+  <p>{{ data.creator.first().username }}</p
+  <p>{{ data.location }}</p>
+  <p>{{ data.vehicle }}</p>
+  <p>{{ data.start_time }}</p>
+  <p>{{ data.end_time }}</p>
+  <p>{{ data.kilometerpreis }}</p>
+  <p>{{ data.radius }}</p>
+  <p>{{ data.created_at }}</p>
+  <p>{{ data.text }}</p>
+</div>
 
-<a href="/chat/{{data.creator.first().id}}"> Kontakt </a>
+<div class="btn"  onclick="history.back()">
+Back
+</div>
 
-<a href="/accept_drive_offer/{{data.id}}"> Annehmen </a>
+
+<div class="btn" onclick="location.href='/accept_drive_offer/{{data.id}}'">
+Accept
+</div>
+
+<div class="btn" onclick="location.href='/chat/{{data.creator.first().id}}'">
+Contact Company
+</div>
 
   </div>
 
