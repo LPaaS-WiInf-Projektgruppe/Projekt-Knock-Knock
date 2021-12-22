@@ -5,6 +5,7 @@ from extensions import db
 from datetime import datetime, timedelta
 
 from forms.driverOffer_form import DriverOfferForm
+from forms.search_drive_offer_form import SearchDriveOfferForm
 
 driverOffer = Blueprint('driverOffer', __name__)
 
@@ -12,12 +13,14 @@ driverOffer = Blueprint('driverOffer', __name__)
 @driverOffer.route('/driverOffer', methods=['POST', 'GET'])
 @login_required
 def driver_offer():
+    form = SearchDriveOfferForm()
 
     allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
     return render_template(
         'driverOffer.html',
         view_name ='Driver Offer',
-        allDriverOffers=allDriverOffers
+        allDriverOffers=allDriverOffers,
+        form = form
         )
 
 

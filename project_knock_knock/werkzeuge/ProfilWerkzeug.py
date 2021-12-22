@@ -34,18 +34,18 @@ def profil_func():
         .filter_by(username = curr_user).all()
 
     # query database for every company offer that the user accepted
-    # user_accepted_com_offers = db.session.query(User, ComOffers, Rating) \
-    #     .filter(User.id == DriverOffers.accepted_by) \
-    #     .filter(Rating.drive_offer_id == DriverOffers.id) \
-    #     .filter_by(username = curr_user).all()
+    user_accepted_com_offers = db.session.query(User, ComOffers) \
+        .filter(User.id == ComOffers.accepted_by) \
+        .filter(Rating.drive_offer_id == DriverOffers.id) \
+        .filter_by(username = curr_user).all()
 
-    print("accepted drive offers: {} \n" \
-        "accepted company offers:"
-        .format(user_accepted_drive_offers))
+    # print("accepted drive offers: {} \n" \
+    #     "accepted company offers:"
+    #     .format(user_accepted_drive_offers))
 
-    drive_offers = []
+    user_accepted_drive_offers = []
     for _, drive_offer in user_accepted_drive_offers:
-        offer = DriveOffer(
+        user_drive_offer = DriveOffer(
             drive_offer.id,
             drive_offer.location,
             drive_offer.vehicle,
@@ -58,7 +58,21 @@ def profil_func():
             "NULL",
             drive_offer.accepted_by
         )
-        drive_offers.append(offer)
+        user_accepted_drive_offers.append(user_accepted_drive_offer)
+
+
+    user_accepted_com_offers = []
+    for _, com_offer in user_accepted_com_offers:
+        user_accepted__com_offer = ComOffer(
+            com_offer.id,
+            com_offer.start,
+            com_offer.destination,
+            com_offer.start_time,
+            com_offer.end_time,
+            com_offer.kilometerpreis,
+            com_offer.created_at
+        )
+        user_accepted_com_offers.append(user_accepted_com_offer)
 
     work_times = []
     for user, work_time in result:
@@ -86,7 +100,8 @@ def profil_func():
         user_profile = Profil(
             result[0][0].username,
             work_times,
-            drive_offers,
+            user_accepted_drive_offers,
+            user_accepted_com_offers,
             rating,
             result[0][0].username
         )

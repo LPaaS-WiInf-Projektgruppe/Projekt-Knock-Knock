@@ -29,22 +29,13 @@ def my_offers_func():
 
     drive_offers = []
     for _, offer in results:
-    #     work_time = WorkingTime(
-    #         driver_offer.weekday,
-    #         driver_offer.start_time,
-    #         driver_offer.end_time
-    #     )
-    #
-    #     print(driver_offer.vehicle)
-
-
         drive_offer = DriveOffer(
             offer.id,
             offer.location,
             offer.vehicle,
             offer.created_at,
             offer.start_time,
-            offer.end_time,
+            offer.valid_until,
             offer.kilometerpreis,
             offer.radius,
             # TODO: add actual text
