@@ -16,6 +16,7 @@ from werkzeuge.MyComOffersWerkzeug import my_orders
 from werkzeuge.ChatWerkzeug import chat
 from werkzeuge.ConversationsWerkzeug import conversations
 from werkzeuge.RateOfferWerkzeug import rate_offer
+from werkzeuge.MapWerkzeug import map
 
 
 from Models import User
@@ -46,6 +47,7 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(chat)
     app.register_blueprint(conversations)
     app.register_blueprint(rate_offer)
+    app.register_blueprint(map)
 
 
 

@@ -11,6 +11,9 @@ from config import DB_NAME, SQLALCHEMY_DATABASE_URI
 from extensions import db
 from materialien.Database import SQLDatabase
 from Models import User
+from flask_user import UserManager
+from Models import User
+from flask import current_app
 
 
 
@@ -25,13 +28,21 @@ def def_initial_code():
 
     db.create_all()
 
-    #Initialer "User"-Eintrag für den Support Zugang
-    #supportUser = User(id = 99999, username="Support", password="Test2020")
+    #user_manager = current_app.user_manager
+    #password_hash = user_manager.hash_password("Test2020")
+    #supportUser = User(id = -1, username="Support3", password =password_hash)
     #try:
-    #    db.session.add(supportUser)
-    #    db.session.commit()
+    #   db.session.add(supportUser)
+    #   db.session.commit()
     #except:
-    #    pass
+        #return "Fehler beim Anlegen des Support-Zugang!"
+
+    #Sollte das funktionieren, benötigt man lediglich folgenden Inhalt in HTML
+    #um mit dem Support chatten zu können:
+    #<div class="btn" onclick="location.href='/chat/IDdesSUPPORT'">
+    #Contact Support
+    #</div>
+
 
 @todo.route("/todo")
 def todo_func():
