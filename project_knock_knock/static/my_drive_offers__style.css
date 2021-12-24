@@ -24,6 +24,7 @@ input
     border-radius: 2px;
     width: 100%;
     opacity: 0.7;
+
 }
 
 input:hover
@@ -37,6 +38,18 @@ input:hover
   font-size: 1.2rem;
   font-family: roboto;
   font-weight: 300;
+}
+
+.scroll-container
+{
+  overflow-y: scroll;
+  height: 80%;
+}
+
+.scroll-container
+{
+  overflow-y: scroll;
+  height: 80%;
 }
 
 .tab
@@ -57,6 +70,7 @@ input:hover
 {
     padding: 16px;
     background: #33322F;
+    height: 68vh;
 }
 
 
@@ -135,4 +149,23 @@ input:hover
   float: left;
   margin-right: 16px;
   display: inline-block;
+}
+
+#create-offer-btn
+{
+  color: #79AB64;
+  border: solid 1px #79AB64;
+  border-radius: 45px;
+  height: 60px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.spacer-container
+{
+  bottom: 0px;
+  width:100%;
+  position: absolute;
+  margin-left: -16px;
+  padding: 16px;
 }

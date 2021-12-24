@@ -7,14 +7,15 @@ from forms.comOffer_form import ComOfferForm
 from materialien.com_offer import ComOffer
 import re
 
-
 comOffer = Blueprint('comOffer', __name__)
-
 
 @comOffer.route('/comOffer', methods=['POST', 'GET'])
 @login_required
 def createComOffer():
-    allComOffers = ComOffers.query.order_by(ComOffers.id).all()
+    allComOffers = ComOffers.query \
+        .filter_by(accepted_by = None) \
+        .order_by(ComOffers.id) \
+        .all()
 
     com_offers = []
     for offer in allComOffers:
@@ -55,7 +56,6 @@ def delete(id):
             return "You cannot delete an offer that has already been accepted!"
     except:
         return 'The offer could not be deleted :('
-
 
 @comOffer.route('/accept_com_offer/<int:offer_id>')
 def accept_offer(offer_id):
@@ -113,8 +113,6 @@ def create_com_offer():
                 end_time = endZeitAlsPythonObjekt,
                 kilometerpreis = content_geld
             )
-
-
         try:
             db.session.add(com_offer)
             # associate a com_offer with a specific user

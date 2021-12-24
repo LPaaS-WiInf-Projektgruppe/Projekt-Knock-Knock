@@ -33,7 +33,7 @@ class Rating(object):
             avg += value
 
         avg /=  self.get_rate_count()
-        return avg
+        return round(avg, 1)
 
     def get_value(self):
         return self.__value

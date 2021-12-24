@@ -16,21 +16,18 @@
 
 <div class="content">
 
-
   <div class= "tabs">
-   <button id="main-tab" class="tab" onclick="openTab('main-profile- container')">Main Profile</button>
-   <button id="work-time-tab" class="tab" onclick="openTab('work-time-container')">Work Time</button>
- </div>
+   <button id="main-profile-container-tab" class="tab" onclick="openTab('main-profile-container')">Main</button>
+   <button id="my-offers-container-tab" class="tab" onclick="openTab('my-offers-container')">My Offers</button>
+   <button id="my-orders-container-tab" class="tab" onclick="openTab('my-orders-container')">My Orders</button>
+   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Work Time</button>
+
 
 <!-- Main Profile -->
 
 <div id="main-profile-container" class="profile">
   <br>
-
-
-
-    <p>Username: {{profile.get_username()}}<p>
-    <p>
+    <p>Username: {{ profile.get_username() }}</p>
 
       {% if profile.get_rating().get_rate_count() > 0 %}
       Rating: {{ profile.get_rating().calculate_average() }}
@@ -38,51 +35,42 @@
       Rating: N/V
       {% endif %}
       ({{ profile.get_rating().get_rate_count() }})
-    <p>
-
-
-      <div class="offer-container">
 
     <p>You have accepted the following Offers which are still active</p>
 
 
-    {% if profile.get_accepted_drive_offers() | length == 0 %}
-    You currently do not have any accepted active drive offers.
-    {% endif %}
-    {% for offer in profile.get_accepted_drive_offers() %}
-    <div class="offer-container">
-      <div class="location-container">
-        {{ offer.get_location() }}
-      </div>
-      <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >x</div>
-      <div style="clear:both"></div>
+  <div class="scroll-container">
+
+
+  {% if profile.get_accepted_drive_offers() | length == 0 %}
+  You currently do not have any accepted active drive offers.
+  {% endif %}
+
+  {% for offer in profile.get_accepted_drive_offers() %}
+  <div class="offer-container">
+    <div class="location-container">
+      {{ offer.get_location() }}
     </div>
-    {% endfor %}
-    <br>
-    {% if profile.get_accepted_com_offers() | length == 0 %}
-    You currently do not have any accepted active company offers.
-    {% endif %}
+    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >x</div>
+    <div style="clear:both"></div>
+  </div>
+  {% endfor %}
+  <br>
 
-    {% for offer in profile.get_accepted_com_offers() %}
-    <div class="offer-container">
-      <div class="location-container">
-        {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
-        <!-- TODO: Change name of button to check as completed -->
-      <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >x</div>
-      <div style="clear:both"></div>
-    </div>
-    {% endfor %}
+  {% if profile.get_accepted_com_offers() | length == 0 %}
+  You currently do not have any accepted active company offers.
+  {% endif %}
 
-    </div>
-
-    <br>
-    <br>
-
-      <div class="btn" onclick="location.href='/my_offers'">My Offers</div>
-      <br><br>
-      <div class="btn" onclick="location.href='/my_orders'">My Orders</div>
-
-
+  {% for offer in profile.get_accepted_com_offers() %}
+  <div class="offer-container">
+    <div class="location-container">
+      {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
+      <!-- TODO: Change name of button to check as completed -->
+    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >x</div>
+    <div style="clear:both"></div>
+  </div>
+  {% endfor %}
+</div>
 
   </div>
 
@@ -103,6 +91,43 @@
       </div>
     {% endfor %}
         </div>
+</div>
+
+
+
+<div id="my-offers-container" class="profile" style="display:none">
+
+  <br>
+      <div class="">
+
+    {% for work_time in profile.get_working_times() %}
+      <div class="work-times">
+        {{ work_time.weekday_to_string_short() }}
+        <br>
+        {{ work_time.get_start_time() }} bis {{ work_time.get_end_time() }}
+        <br>
+      </div>
+    {% endfor %}
+        </div>
+
+
+</div>
+
+
+<div id="my-orders-container" class="profile" style="display:none">
+
+  <br>
+      <div class="">
+
+    {% for work_time in profile.get_working_times() %}
+      <div class="work-times">
+        {{ work_time.weekday_to_string_short() }}
+        <br>
+        {{ work_time.get_start_time() }} bis {{ work_time.get_end_time() }}
+        <br>
+      </div>
+    {% endfor %}
+        </div>
 
 
 </div>
@@ -110,14 +135,12 @@
 
   </div>
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 
 <script type=text/javascript src="{{url_for('static', filename='profil__script.js') }}"></script>
 
-
+ </div>
 
 
 {% endblock %}
