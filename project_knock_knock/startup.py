@@ -28,14 +28,14 @@ def def_initial_code():
 
     db.create_all()
 
-    #user_manager = current_app.user_manager
-    #password_hash = user_manager.hash_password("Test2020")
-    #supportUser = User(id = -1, username="Support3", password =password_hash)
-    #try:
-    #   db.session.add(supportUser)
-    #   db.session.commit()
-    #except:
-        #return "Fehler beim Anlegen des Support-Zugang!"
+    user_manager = current_app.user_manager
+    password_hash = user_manager.hash_password("Test2020")
+    supportUser = User(username="Support3", password =password_hash, active = 1)
+    try:
+      db.session.add(supportUser)
+      db.session.commit()
+    except:
+        return "Fehler beim Anlegen des Support-Zugang!"
 
     #Sollte das funktionieren, benötigt man lediglich folgenden Inhalt in HTML
     #um mit dem Support chatten zu können:
