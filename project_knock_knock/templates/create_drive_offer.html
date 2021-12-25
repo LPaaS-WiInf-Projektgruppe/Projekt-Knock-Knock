@@ -13,116 +13,205 @@
 
 <div class="content">
 
-
-    <form method ="POST" action="/create_drive_offer">
+    <form method ="POST" id="offer-form" action="/create_drive_offer">
             {{ form.csrf_token }}
-
-
+            <div class="scroll-container">
 
             <div class="label-container">
 
-
-
+            <div class="label-entry-container">
             {{ form.ort.label }}
+              {% for error in form.ort.errors %}
+                 <br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.ort.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
+            <div class="label-entry-container">
             {{ form.fahrzeug.label }}
+              {% for error in form.fahrzeug.errors %}
+               <br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.fahrzeug.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
+            <div class="label-entry-container">
             {{ form.zeit_start.label }}
+              {% for error in form.zeit_start.errors %}
+               <br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.zeit_start.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
+            <div class="label-entry-container">
             {{ form.zeit_ende.label }}
+              {% for error in form.zeit_ende.errors %}
+                <br><br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.zeit_ende.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-
-            <br>
-
-
+            <div class="label-entry-container">
             {{ form.preis.label }}
+              {% for error in form.preis.errors %}
+               <br><br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.preis.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
+            <div class="label-entry-container">
             {{ form.radius.label }}
+              {% for error in form.radius.errors %}
+              <br><br><br><br>
+              {% endfor %}
+            </div>
 
-            <br>
-            {% for error in form.radius.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
+            <div class="label-entry-container">
             {{ form.bemerkungen.label }}
-
-            <br>
-            {% for error in form.bemerkungen.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br>
-
-            {{ form.submit(id='create-save-offer') }}
+              {% for error in form.bemerkungen.errors %}
+              <br>
+              {% endfor %}
+            </div>
 
           </div>
 
-
+          <!-- beginning of the input  -->
 
             <div class="input-container">
-
-
-            {{ form.ort(class_="input") }}
-            <br>
-            {{ form.fahrzeug(class_="input") }}
-            <br>
-            {{ form.zeit_start(class_="input") }}
-            <br>
-            {{ form.zeit_ende(class_="input") }}
-            <br>
-            {{ form.preis(class_="input") }}
-            <br>
-            {{ form.radius(class_="input") }}
-            <br>
-            {{ form.bemerkungen(class_="input") }}
-
-            {{ form.from_zeitMo(class_="input") }}
-            {{ form.from_zeitDi(class_="input") }}
-            {{ form.from_zeitMi(class_="input") }}
-            {{ form.from_zeitDo(class_="input") }}
-            {{ form.from_zeitFr(class_="input") }}
-            {{ form.from_zeitSa(class_="input") }}
-            {{ form.from_zeitSo(class_="input") }}
+            <div class="entry-container">
+            {{ form.ort }}
+              {% for error in form.ort.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
             </div>
+            <div class="entry-container">
+            {{ form.fahrzeug }}
+              {% for error in form.fahrzeug.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+
+            <div class="entry-container">
+            {{ form.zeit_start }}
+              {% for error in form.zeit_start.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+
+            <div class="entry-container">
+            {{ form.zeit_ende }}
+              {% for error in form.zeit_ende.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+
+            <div class="entry-container">
+            {{ form.preis }}
+              {% for error in form.preis.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+
+            <div class="entry-container">
+            {{ form.radius }}
+              {% for error in form.radius.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+
+            <div class="entry-container">
+            {{ form.bemerkungen }}
+              {% for error in form.bemerkungen.errors %}
+                <p style="color: red;"> {{ error }} </p> <br>
+              {% endfor %}
+            </div>
+            </div>
+                <div style="clear: both"></div>
+
+            <!-- beginning of the work time container -->
+
+            <div class="work-time-container">
+
+              <div class="work-time-entry">
+                {{ form.from_zeitMo.label }}
+                <br>
+                {{ form.from_zeitMo(class_="work-time-input") }}
+                {{ form.to_zeitMo(class_="work-time-input") }}
+                {% for error in form.from_zeitMo.errors %}
+                  <p style="color: red;"> {{ error }} </p>
+                {% endfor %}
+              </div>
+
+              <div class="work-time-entry">
+                {{ form.from_zeitDi.label }}
+                <br>
+                {{ form.from_zeitDi(class_="work-time-input") }}
+                {{ form.to_zeitDi(class_="work-time-input") }}
+                {% for error in form.from_zeitDi.errors %}
+                  <p style="color: red;"> {{ error }} </p>
+                {% endfor %}
+              </div>
+
+              <div class="work-time-entry">
+                {{ form.from_zeitMi.label }}
+                <br>
+                {{ form.from_zeitMi(class_="work-time-input") }}
+                {{ form.to_zeitMi(class_="work-time-input") }}
+                {% for error in form.from_zeitMi.errors %}
+                  <p style="color: red;"> {{ error }} </p>
+                {% endfor %}
+              </div>
+
+                 <div class="work-time-entry">
+                   {{ form.from_zeitDo.label }}
+                   <br>
+                   {{ form.from_zeitDo(class_="work-time-input") }}
+                   {{ form.to_zeitDo(class_="work-time-input") }}
+                   {% for error in form.from_zeitDo.errors %}
+                     <p style="color: red;"> {{ error }} </p>
+                   {% endfor %}
+                 </div>
+
+              <div class="work-time-entry">
+                {{ form.from_zeitFr.label }}
+                <br>
+                {{ form.from_zeitFr(class_="work-time-input") }}
+                {{ form.to_zeitFr(class_="work-time-input") }}
+                {% for error in form.from_zeitFr.errors %}
+                  <p style="color: red;"> {{ error }} </p>
+                {% endfor %}
+              </div>
+
+           <div class="work-time-entry">
+             {{ form.from_zeitSa.label }}
+             <br>
+             {{ form.from_zeitSa(class_="work-time-input") }}
+             {{ form.to_zeitSa(class_="work-time-input") }}
+             {% for error in form.from_zeitSa.errors %}
+               <p style="color: red;"> {{ error }} </p>
+            {% endfor %}
+
+           </div>
+
+        <div class="work-time-entry">
+          {{ form.from_zeitSo.label }}
+          <br>
+          {{ form.from_zeitSo(class_="work-time-input") }}
+          {{ form.to_zeitSo(class_="work-time-input") }}
+          {% for error in form.from_zeitSo.errors %}
+            <p style="color: red;"> {{ error }} </p>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div class="spacer-container">
+                {{ form.submit(id='create-offer-btn') }}
+        <div class="space">
+        </div>
+
          </form>
 
 </div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 
 <script type=text/javascript src="{{url_for('static', filename='create_drive_offer__script.js') }}"></script>
-
-
 
 {% endblock %}

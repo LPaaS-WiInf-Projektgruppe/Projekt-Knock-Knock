@@ -18,24 +18,37 @@
 <div class="content">
 
 
-{{form.von(class_="location-input")}} <span>-></span> {{form.nach(class_="location-input")}} {{form.submit(class_="submit-btn")}}
+{{form.von(class_="location-input")}} <span> <div class="arrow-container">
+  ->
+</div>
+</span> {{form.nach(class_="location-input")}} {{form.submit(class_="submit-btn")}}
 <div style="clear:both"></div>
+
+<div class="scroll-container">
+
+
 
   {% for driverOffer in allDriverOffers %}
   <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.id}}'">
-    <div class="box1">
+    <div class="list-entry">
+      <b>Vehicle</b><br>
       {{ driverOffer.vehicle }}
     </div>
-    <div class="box2">
-      {{ driverOffer.kilometerpreis }}
+    <div class="list-entry">
+      <b>€/ km</b><br>
+      {{ driverOffer.kilometerpreis }} €
     </div>
   </div>
   {% endfor %}
 
+  </div>
 
-  <div class="btn" onClick="location.href='/create_drive_offer'"> Create Driver Offer</div>
+<div class="spacer-container">
+
+  <div id="create-offer-btn" class="btn"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</div>
 
 
+</div>
 
 
 </div>

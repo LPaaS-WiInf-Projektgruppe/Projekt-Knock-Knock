@@ -150,6 +150,7 @@ class ComOffers(db.Model):
     :kilometerpreis: - the price the user who created the offer
                        is willing to pay per kilometer
     :created_at: the date and time when the offer was created
+    :ended_at: the time the offer has been given a rating
     :accepted_by foreign_key: - the id of the user who accepted the offer
     '''
     __tablename__ = "com_offers"
@@ -160,6 +161,7 @@ class ComOffers(db.Model):
     end_time = db.Column(db.DateTime, nullable = True)
     kilometerpreis = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
+    completed_at = db.Column(db.DateTime, nullable=True)
     accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     rating = db.relationship("Rating", backref='com_offer')
@@ -178,6 +180,7 @@ class DriverOffers(db.Model):
               user who accepts wants to be driven to
     :vehicle: - the vehicle the driver drives with
     :created_at: - the date and time the offer was created
+    :ended_at: the time the offer has been given a rating
     :start_time: - the date and time the offer should be listed
     :valid_until: - the date and time the offer will be removed from the Offers
     :radius: - the radius around :location: the driver will take offers from
@@ -194,13 +197,14 @@ class DriverOffers(db.Model):
     destination = db.Column(db.String(50), nullable = True)
     vehicle = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
+    completed_at = db.Column(db.DateTime, nullable=True)
     start_time = db.Column(db.DateTime, nullable=False)
-    valid_until = db.Column(db.DateTime, default= "NULL")
+    valid_until = db.Column(db.DateTime, nullable=True)
     kilometerpreis = db.Column(db.Integer, nullable=False, default = 0)
     radius = db.Column(db.Integer, nullable = True)
     text = db.Column(db.String(140), nullable = True)
     accepted_at = db.Column(db.Integer, nullable = True)
-    accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'), default="NULL")
+    accepted_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable= True)
 
     rating = db.relationship("Rating", backref='drive_offer')
 

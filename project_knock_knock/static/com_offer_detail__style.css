@@ -15,6 +15,7 @@ body
     padding: 16px;
     background: #33322F;
     color: white;
+    height: 68vh;
 }
 
 
@@ -43,4 +44,23 @@ body
   text-align: center;
   vertical-align: middle;
   line-height: 44px;
+}
+
+#create-offer-btn
+{
+  color: #79AB64;
+  border: solid 1px #79AB64;
+  border-radius: 45px;
+  height: 60px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.spacer-container
+{
+  bottom: 0px;
+  width:100%;
+  position: absolute;
+  margin-left: -16px;
+  padding: 16px;
 }

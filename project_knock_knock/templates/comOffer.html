@@ -23,28 +23,39 @@
 
 <div class="content">
 
+<div class="scroll-container">
+
+
+
 {% for offer in offers %}
 <div class="offer-container"onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">
 
-  <div class="box1">
+  <div class="list-entry">
+    <b>Route</b> <br>
     {{ offer.get_start() }} -> {{ offer.get_destination() }}
   </div>
-  <div class="box2">
+  <div class="list-entry">
+    <b>Start</b> <br>
       {{ offer.get_start_time() }}
   </div>
-  <div class="box3">
+  <div class="list-entry">
+    <b>End</b> <br>
       {{ offer.get_end_time() }}
   </div>
-  <div class="box4">
+  <div class="list-entry">
+    <b>€ / km</b> <br>
       {{ offer.get_kilometerpreis() }} €
   </div>
 <span class="stretch"></span>
 </div>
 {% endfor %}
 
+</div>
 
-  <div class="btn" onClick="location.href='/create_com_offer'"">
+<div class="spacer-container">
+  <div id = "create-offer-btn" class="btn" onClick="location.href='/create_com_offer'"">
      Create Com Offer
+  </div>
   </div>
 
 

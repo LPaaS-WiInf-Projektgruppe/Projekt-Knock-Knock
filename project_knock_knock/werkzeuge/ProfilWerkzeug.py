@@ -10,11 +10,7 @@ from materialien.profil import Profil
 from materialien.drive_offer import DriveOffer
 from materialien.com_offer import ComOffer
 
-
-
 profil = Blueprint('profil', __name__)
-
-
 
 @profil.route('/profil')
 @login_required
@@ -31,12 +27,16 @@ def profil_func():
     # query database for every drive offer that the user accepted
     user_accepted_drive_offers_query = db.session.query(User, DriverOffers) \
         .filter(User.id == DriverOffers.accepted_by) \
-        .filter_by(username = curr_user).all()
+        .filter(DriverOffers.completed_at == None) \
+        .filter_by(username = curr_user) \
+        .all()
 
     # query database for every company offer that the user accepted
     user_accepted_com_offers_query = db.session.query(User, ComOffers) \
         .filter(User.id == ComOffers.accepted_by) \
-        .filter_by(username = curr_user).all()
+        .filter(ComOffers.completed_at == None) \
+        .filter_by(username = curr_user) \
+        .all()
 
     # print("accepted drive offers: {} \n" \
     #     "accepted company offers:"
@@ -86,15 +86,25 @@ def profil_func():
         work_times.append(work_time)
 
     # get the rating for a user from the database
-    rating_results = db.session.query(Rating) \
+    drive_offer_rating = db.session.query(Rating) \
         .select_from(Rating) \
         .join(DriverOffers, Rating.drive_offer) \
         .join(User, DriverOffers.creator) \
         .filter(User.username == curr_user) \
         .all()
 
+
+    com_offer_rating = db.session.query(Rating) \
+        .select_from(Rating) \
+        .join(ComOffers, Rating.com_offer) \
+        .join(User, ComOffers.creator) \
+        .filter(User.username == curr_user) \
+        .all()
+
     ratings = []
-    for r in rating_results:
+    for r in drive_offer_rating:
+        ratings.append(r.stars)
+    for r in com_offer_rating:
         ratings.append(r.stars)
 
     rating = fw_rating(ratings)
@@ -111,7 +121,7 @@ def profil_func():
         )
 
     except IndexError:
-        # handle case where the are no working_ times saved for the user
+        # handle case where the are no working_times saved for the user
         result = User.query.filter_by(username = current_user.username).first()
         user_profile = Profil(
             result.username,

@@ -23,10 +23,34 @@ zeit_validator = Regexp("^[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]\s[0-9][0-
 dauer_validator = Regexp("^[0-9]{1,2}$", 0, message = DURATION_ERROR)
 
 class ComOfferForm(FlaskForm):
-    von = StringField('from', validators= [location_validator])
-    nach = StringField('to', validators= [location_validator])
-    zeit_start = StringField('gewünschte Zeit', validators= [zeit_validator])
-    zeit_ende = StringField('bis (optional)', validators= [zeit_validator])
-    geld = StringField('Kilometerpreis', validators = [geld_validator])
-    dauer = StringField('Dauer in Tagen', validators= [dauer_validator])
+    von = StringField(
+        'from',
+        validators= [location_validator],
+        render_kw={"placeholder": "e.g 'Lübecker Straße'"}
+    )
+    nach = StringField(
+        'to',
+        validators= [location_validator],
+        render_kw={"placeholder": "e.g. 'Hauptbahnhof'"}
+    )
+    zeit_start = StringField(
+        'gewünschte Zeit',
+        validators= [zeit_validator],
+        render_kw={"placeholder": "e.g '12.03.2022 08:00'"}
+    )
+    zeit_ende = StringField(
+        'bis (optional)',
+        validators= [zeit_validator],
+        render_kw={"placeholder": "e.g '12.03.2022 09:00'"}
+    )
+    geld = StringField(
+        'Kilometerpreis',
+        validators = [geld_validator],
+        render_kw={"placeholder": "e.g '0.99'"}
+    )
+    dauer = StringField(
+        'Dauer in Tagen',
+         validators= [dauer_validator],
+         render_kw={"placeholder": "e.g '2'"}
+    )
     submit = SubmitField('Create Offer')

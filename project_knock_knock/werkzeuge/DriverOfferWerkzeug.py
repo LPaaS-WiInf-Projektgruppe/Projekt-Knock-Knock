@@ -15,7 +15,10 @@ driverOffer = Blueprint('driverOffer', __name__)
 def driver_offer():
     form = SearchDriveOfferForm()
 
-    allDriverOffers = DriverOffers.query.order_by(DriverOffers.id).all()
+    allDriverOffers = DriverOffers.query \
+        .filter_by(accepted_by = None) \
+        .order_by(DriverOffers.id) \
+        .all()
     return render_template(
         'driverOffer.html',
         view_name ='Driver Offer',
@@ -31,8 +34,8 @@ def delete(id):
     '''
     driverOffer_to_delete = DriverOffers.query.get_or_404(id)
     try:
-        if driverOffer_to_delete.accepted_by == "NULL":
-            db.session.delete(driverOffer_to_delete)
+        if driverOffer_to_delete.accepted_by == None:
+            db.session.delete(DriverOffers.driverOffer_to_delete)
             db.session.commit()
             return redirect('/driverOffer')
         else:
@@ -77,7 +80,6 @@ def accept_offer(offer_id):
 def create_drive_offer():
     '''creates a new drive offer
     '''
-
     form = DriverOfferForm()
 
     if form.validate_on_submit():

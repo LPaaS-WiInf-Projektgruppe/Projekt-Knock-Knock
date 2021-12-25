@@ -8,13 +8,15 @@ class SearchDriveOfferForm(FlaskForm):
         '<setting_name>',
         validators=[
             Regexp('[A-z]*', 0, "Not a valid adress")
-        ]
+        ],
+        render_kw={"placeholder": "e.g 'Lübecker Straße'"}
     )
     nach = StringField(
         '<setting_name>',
         validators=[
             Regexp('$[A-z]*^', 0, "Not a valid adress")
-        ]
+        ],
+        render_kw={"placeholder": "e.g 'Hauptbahnhof'"}
     )
 
     submit = SubmitField("Search")
