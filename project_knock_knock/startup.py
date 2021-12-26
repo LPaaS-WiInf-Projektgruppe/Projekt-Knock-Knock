@@ -30,7 +30,7 @@ def def_initial_code():
 
     user_manager = current_app.user_manager
     password_hash = user_manager.hash_password("Test2020")
-    supportUser = User(username="Support3", password =password_hash, active = 1)
+    supportUser = User(username="Support", password =password_hash, active = 1)
     try:
       db.session.add(supportUser)
       db.session.commit()
