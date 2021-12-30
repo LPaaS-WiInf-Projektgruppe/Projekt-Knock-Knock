@@ -37,10 +37,10 @@
             {% else %}
             <td> &nbsp <i style="font-size:16px; color: red;" class="fa">&#xf0a2;</i> &nbsp </td>
             {% endif %}
-            <td> &nbsp {{ data.name }} &nbsp </td>
-            <td> &nbsp {{ data.zeit }} &nbsp </td>
+            <td> &nbsp {{ data.get_name() }} &nbsp </td>
+            <td> &nbsp {{ data.get_zeit() }} &nbsp </td>
             <td>
-              &nbsp <a href="/chat/{{data.id}}">Chat</a> &nbsp
+              &nbsp <a href="/chat/{{data.get_id() }}">Chat</a> &nbsp
             </td>
         </tr>
         {% endfor %}

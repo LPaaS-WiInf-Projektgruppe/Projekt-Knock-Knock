@@ -15,10 +15,8 @@ driverOffer = Blueprint('driverOffer', __name__)
 def driver_offer():
     form = SearchDriveOfferForm()
 
-    allDriverOffers = DriverOffers.query \
-        .filter_by(accepted_by = None) \
-        .order_by(DriverOffers.id) \
-        .all()
+    allDriverOffers = DriverOffers.get_offers()
+
     return render_template(
         'driverOffer.html',
         view_name ='Driver Offer',
@@ -26,114 +24,54 @@ def driver_offer():
         form = form
         )
 
+@driverOffer.route('/drive_offer_detail/<int:offer_id>')
+@login_required
+def driver_offer_detail_func(offer_id):
 
-@driverOffer.route('/deleteDriverOffer/<int:id>')
+    driver_offers = DriverOffers.get_offer(offer_id)
+
+    return render_template(
+        'driver_offer_detail.html',
+        view_name ='Details',
+        drive_offer = driver_offers
+        )
+
+@driverOffer.route('/delete_driver_offer/<int:id>')
 def delete(id):
-    ''' delete the drive offer specified by the id in the url
+    '''Delete the drive offer specified by the id in the url
     :param id int: the id of the drive offer to delete
     '''
-    driverOffer_to_delete = DriverOffers.query.get_or_404(id)
-    try:
-        if driverOffer_to_delete.accepted_by == None:
-            db.session.delete(DriverOffers.driverOffer_to_delete)
-            db.session.commit()
-            return redirect('/driverOffer')
-        else:
-            return "You cannot delete a drive_offer that already has been accepted"
-    except:
+
+    if DriverOffers.delete_offer(id):
+        return redirect("/profil")
+
+    else:
         return 'The offer could not be deleted :('
-
-
 
 @driverOffer.route('/accept_drive_offer/<int:offer_id>')
 def accept_offer(offer_id):
-    ''' accept the drive offer specified by the id in the url by adding the id
+    '''Accept the drive offer specified by the id in the url by adding the id
     of the user who accepted the offer to the respective entry in the drive offer
     "accepted_by" column
-    :param offer_id int: the id of the offer to accept
+    :param offer_id int: The ID of the offer to accept
     '''
 
-
-    # TODO: contact users who accepted an offer
-    # TODO: prevent accepted offers from being deleted
-    # query database for every drive offer that the user accepted
-    user, drive_offer = db.session.query(User, DriverOffers) \
-        .join(User, DriverOffers.creator) \
-        .filter(DriverOffers.id == offer_id) \
-        .first()
-
-
-    # Check if the creator of the drive offer is the current user
-    # to prevent users from accepting their own offers
-    if user.username != current_user.username:
-        drive_offer.accepted_by = current_user.id
-        db.session.commit()
+    if DriverOffers.accept_offer(offer_id, current_user):
         return redirect('/driverOffer')
     else:
-        return "You cannot accept your own offers"
-
-    return redirect('/driverOffer')
-
+        return "Offer Could not be accepted :("
 
 @driverOffer.route("/create_drive_offer", methods=["GET", "POST"])
 @login_required
 def create_drive_offer():
-    '''creates a new drive offer
+    '''Creates a new DriveOffer
     '''
     form = DriverOfferForm()
 
     if form.validate_on_submit():
-        content_ort = request.form['ort']
-        content_fahrzeug = request.form['fahrzeug']
-        content_von = request.form['zeit_start']
-        content_bis = request.form['zeit_ende']
-        content_preis = request.form['preis']
-        content_radius = request.form['radius']
-        content_text = request.form['bemerkungen']
-
-        formatted_start_zeit = content_von[:10] + '-' + content_von[11:]
-        formatted_end_zeit = content_bis[:10] + '-' + content_bis[11:]
-
-        vonAlsPythonObjekt = datetime.strptime(formatted_start_zeit, '%d.%m.%Y-%H:%M')
-        bisAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
-
-
-        i = 0
-        for results in request.form:
-            if (results == "from_zeitMo" or results == "from_zeitDi" or results == "from_zeitMi" or \
-                results == "from_zeitDo" or results == "from_zeitFr" or results == "from_zeitSa" or \
-                results == "from_zeitSo"):
-
-                bis = datetime.strptime(request.form[results],'%H:%M')
-                bis += timedelta(hours=8)
-                bis.strftime('%H:%M')
-                working_time = WorkingTime(
-                    weekday = i,
-                    start_time = request.form[results],
-                    end_time = bis
-                )
-
-                working_time.user.append(current_user)
-                db.session.add(working_time)
-
-                i+=1
-
-        driver_offer = DriverOffers(
-            location = content_ort,
-            vehicle = content_fahrzeug,
-            start_time = vonAlsPythonObjekt,
-            valid_until = bisAlsPythonObjekt,
-            kilometerpreis = content_preis,
-            radius = content_radius,
-            text = content_text
-        )
-
-        try:
-            db.session.add(driver_offer)
-            driver_offer.creator.append(current_user)
-            db.session.commit()
-            return redirect('/driverOffer')
-        except:
+        if DriverOffers.create_offer(form, current_user):
+            return redirect("/driverOffer")
+        else:
             return 'An Error occured, while trying to add your offer :('
 
     return render_template(

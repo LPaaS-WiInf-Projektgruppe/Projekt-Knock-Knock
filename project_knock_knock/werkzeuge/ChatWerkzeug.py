@@ -13,20 +13,18 @@ def chat_test():
 
     return render_template("chat.html", view_name='Chat',)
 
-
-
 @chat.route('/chat/<int:dude_id>', methods=['POST', 'GET'])
 @login_required
 def chat_func(dude_id):
 
     dude = User.query.filter_by(id = dude_id).first()
-    self = current_user
+    user = current_user
 
     if request.method == 'POST' :
         content_text = request.form['send']
         new_message = ExchangedMessages(
-            transmitter = self.id,
-            receiver = dude.id, 
+            transmitter = user,
+            receiver = dude,
             text = content_text,
             read = False
         )
@@ -51,7 +49,7 @@ def chat_func(dude_id):
         # Try Block, da nicht immer schon welche vorhanden
         try:
             message = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(
-                        and_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.receiver == self.id)
+                        and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user)
                         ).first()
             gelesen = ExchangedMessages.query.filter(ExchangedMessages.id == message.id).first().read
 
@@ -63,12 +61,11 @@ def chat_func(dude_id):
 
         # Übergabe der Nachrichten aus dem ausgewählten Chat
         messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(or_(
-                and_(ExchangedMessages.transmitter == dude.id, ExchangedMessages.receiver == self.id),
-                and_(ExchangedMessages.transmitter == self.id, ExchangedMessages.receiver == dude.id)
+                and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user),
+                and_(ExchangedMessages.transmitter == user, ExchangedMessages.receiver == dude)
                     )).all()
 
-
-        return render_template("chat.html", view_name='Chat', dude = dude, self = self, messages = messages)
+        return render_template("chat.html", view_name='Chat', dude = dude, self = user, messages = messages)
 
 
 @chat.route('/update_chat/<int:dude_id>', methods=['POST'])
@@ -97,6 +94,4 @@ def update(dude_id):
                 )).all()
 
     return jsonify('', render_template('chat_refresh.html', view_name='Chat', dude = dude, self = self, messages = messages))
-
-
     #return render_template("chat.html", view_name='Chat', dude = dude, self = self, messages = messages)

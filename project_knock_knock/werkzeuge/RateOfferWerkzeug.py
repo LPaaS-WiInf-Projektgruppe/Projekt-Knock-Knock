@@ -21,29 +21,8 @@ def rate_offer_func(type, offer_id):
 
     if form.validate_on_submit():
         form_rating = form.rating.data
+        Rating.rate_offer(offer_id, type, form_rating)
 
-        # add rating to the offer depending on its type
-        # 0: drive offer
-        # 1: com offer
-        if type == 0:
-            rating = Rating(
-                stars = form_rating,
-                drive_offer_id = offer_id
-            )
-            offer_to_rate = DriverOffers.query.filter_by(id = offer_id).first()
-            offer_to_rate.completed_at = datetime.now()
-            db.session.add(rating)
-
-        else:
-            rating = Rating(
-                stars = form_rating,
-                com_offer_id = offer_id
-            )
-            offer_to_rate = ComOffers.query.filter_by(id = offer_id).first()
-            offer_to_rate.completed_at = datetime.now()
-            db.session.add(rating)
-
-        db.session.commit()
         return redirect("/profil")
 
     else:

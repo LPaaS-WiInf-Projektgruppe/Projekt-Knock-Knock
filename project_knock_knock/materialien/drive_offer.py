@@ -1,24 +1,25 @@
-from Models import User
-import datetime
 
+import datetime
 
 class DriveOffer(object):
     def __init__(
-            self, id, location, vehicle, created_at, creator, start_time, end_time,
-            kilometerpreis, radius, text, rating, accepted_by):
+            self, id, location, vehicle, created_at, creator_id, creator_name, start_time,
+            end_time, kilometerpreis, radius, text, rating, accepted_by_id, accepted_by_name):
 
         self.__id = id
         self.__location = location
         self.__vehicle = vehicle
         self.__created_at = created_at
-        self.__creator = creator
+        self.__creator_id = creator_id
+        self.__creator_name = creator_name
         self.__start_time = start_time
         self.__end_time = end_time
         self.__kilometerpreis = kilometerpreis
         self.__radius = radius
         self.__text = text
         self.__rating = rating
-        self.__accepted_by = accepted_by
+        self.__accepted_by_id = accepted_by_id
+        self.__accepted_by_name = accepted_by_name
 
     def set_id(self, location):
         self.__id = id
@@ -32,8 +33,11 @@ class DriveOffer(object):
     def set_created_at(self, created_at):
         self.__created_at = created_at
 
-    def set_creator(self, creator):
-        self.__creator = creator
+    def set_creator_id(self, creator_id):
+        self.__creator_id = creator_id
+
+    def set_creator_name(self, creator_name):
+        self.__creator_name = creator_name
 
     def set_start_time(self, start_time):
         self.start_time = start_time
@@ -53,15 +57,18 @@ class DriveOffer(object):
     def set_rating(self, rating):
         self.__rating = rating
 
+    def set_accepted_by_id(self, accepted_by_id):
+        self.__accepted_by_id = accepted_by_id
+
+    def set_accepted_by_name(self, accepted_by_name):
+        self.__accepted_by_name = accepted_by_name
+        
 
     def get_id(self):
         return self.__id
 
-    def set_accepted_by(self, accepted_by):
-        self.__accepted_by = accepted_by
-
     def is_accepted(self):
-        return self.__accepted_by != "NULL"
+        return self.__accepted_by_id != None
 
     def get_location(self):
         return self.__location
@@ -72,8 +79,11 @@ class DriveOffer(object):
     def get_created_at(self):
         return self.__created_at
 
-    def get_creator(self):
-        return self.__creator
+    def get_creator_id(self):
+        return self.__creator_id
+
+    def get_creator_name(self):
+        return self.__creator_name
 
     def get_start_time(self):
         return self.__start_time
@@ -93,12 +103,11 @@ class DriveOffer(object):
     def get_rating(self):
         return self.__rating
 
-    def get_accepted_by(self):
-        return self.__accepted_by
+    def get_accepted_by_id(self):
+        return self.__accepted_by_id
 
-    def get_accepted_by_username(self):
-        accepted_by = User.query.filter_by(id = self.__accepted_by).first()
-        return accepted_by.username
+    def get_accepted_by_name(self):
+        return self.__accepted_by_name
 
     def get_formatted_created_at_time(self):
         return self.__created_at.strftime("%H:%M")
