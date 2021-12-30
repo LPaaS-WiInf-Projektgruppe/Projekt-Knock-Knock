@@ -87,35 +87,28 @@ class User(db.Model, UserMixin):
 
         # Erstellung der Objekte für die obige Sammlung
         for contact in allContacts:
+
+
             typ = User.query.filter_by(id = contact.id).first()
-            zeit = ExchangedMessages.query \
-               .order_by(ExchangedMessages.created_at.desc()) \
-               .filter(or_(
-                   and_(ExchangedMessages.transmitter == user,  ExchangedMessages.receiver == typ),
-                   and_(ExchangedMessages.transmitter == typ, ExchangedMessages.receiver == user) \
-               )) \
-               .first().created_at
+            try:
+                zeit = ExchangedMessages.query \
+                   .order_by(ExchangedMessages.created_at.desc()) \
+                   .filter(or_(
+                       and_(ExchangedMessages.transmitter == user,  ExchangedMessages.receiver == typ),
+                       and_(ExchangedMessages.transmitter == typ, ExchangedMessages.receiver == user) \
+                   )) \
+                   .first().created_at
 
-            gelesen = ExchangedMessages.query \
-                .order_by(ExchangedMessages.created_at.desc()) \
-                    .filter( \
-                        and_(ExchangedMessages.transmitter== typ, ExchangedMessages.receiver == user) \
-                    ).first().read \
+                gelesen = ExchangedMessages.query \
+                    .order_by(ExchangedMessages.created_at.desc()) \
+                        .filter( \
+                            and_(ExchangedMessages.transmitter== typ, ExchangedMessages.receiver == user) \
+                        ).first().read \
 
-            infoRow  = Conversation(typ.id, typ.username, zeit, gelesen)
-            toBeDisplayed.append(infoRow)
-            # try:
-            #     zeit = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(or_(
-            #             and_(ExchangedMessages.transmitter == user.id, ExchangedMessages.receiver == typ.id),
-            #             and_(ExchangedMessages.transmitter == typ.id, ExchangedMessages.receiver == user.id)
-            #             )).first().created_at
-            #     gelesen = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(
-            #                 and_(ExchangedMessages.transmitter == typ.id, ExchangedMessages.receiver == self.id)
-            #                 ).first().read
-            #     infoRow  = Conversation(typ.id, typ.username, zeit, gelesen)
-            #     toBeDisplayed.append(infoRow)
-            # except:
-            #     pass
+                infoRow  = Conversation(typ.id, typ.username, zeit, gelesen)
+                toBeDisplayed.append(infoRow)
+            except:
+                pass
                 # Auskommentierter Kommentar zum  Debuging, except und pass müssen aber bleiben
                 # für den Fall von (noch) nicht existierenden Konversationen
                 #return "Eigener Username: " + self.username + " und Nummer: " +str(self.id) + "\n" + "Andererer Dude: " + typ.username + " und Nummer: " +str(typ.id) + "\n" + "Letzte ausgetauschte Nachricht: " + "\n" + str(allContacts)
