@@ -12,12 +12,15 @@ class Rating(object):
 
         return len(self.__value) > 0
 
-
-
     def get_rate_count(self):
         '''Returns the amount of Ratings for a User
         '''
-        return len(self.__value)
+        i = 0
+        print("value: {}".format(self.__value))
+        for value in self.__value:
+            if value != None:
+                i+= 1
+        return i
 
     def calculate_average(self):
         '''Calculates the average over all ratings
@@ -26,13 +29,18 @@ class Rating(object):
         :return avg: the average of all ratings
         '''
 
-
-
         avg = 0
+        kardinalitaet = 0
         for value in self.__value:
-            avg += value
+            if value != None:
+                avg += value
+                kardinalitaet +=1
 
-        avg /=  self.get_rate_count()
+        if kardinalitaet > 0:
+            avg /= kardinalitaet
+        else:
+            return None
+
         return round(avg, 1)
 
     def get_value(self):

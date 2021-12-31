@@ -6,9 +6,7 @@
       <link href="{{url_for('static', filename='driver_offer_detail_style.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-
 {% block header %}
-
 
  {% endblock %}
 
@@ -28,37 +26,32 @@
   <p>Bemerkungen </p>
 </div>
 
-
 <div class="offer-detail-container">
-  <p>{{ data.creator.first().username }}</p
-  <p>{{ data.location }}</p>
-  <p>{{ data.vehicle }}</p>
-  <p>{{ data.start_time }}</p>
-  <p>{{ data.end_time }}</p>
-  <p>{{ data.kilometerpreis }}</p>
-  <p>{{ data.radius }}</p>
-  <p>{{ data.created_at }}</p>
-  <p>{{ data.text }}</p>
+  <p>{{ drive_offer.get_creator_name() }}</p
+  <p>{{ drive_offer.get_location() }}</p>
+  <p>{{ drive_offer.get_vehicle() }}</p>
+  <p>{{ drive_offer.get_start_time() }}</p>
+  <p>{{ drive_offer.get_end_time() }}</p>
+  <p>{{ drive_offer.get_kilometerpreis() }}</p>
+  <p>{{ drive_offer.get_radius() }}</p>
+  <p>{{ drive_offer.get_created_at() }}</p>
+  <p>{{ drive_offer.get_text() }}</p>
 </div>
 
 <div class="btn"  onclick="history.back()">
 Back
 </div>
 
-
-<div class="btn" onclick="location.href='/accept_drive_offer/{{data.id}}'">
+<div class="btn" onclick="location.href='/accept_drive_offer/{{ drive_offer.get_id() }}'">
 Accept
 </div>
 
-<div class="btn" onclick="location.href='/chat/{{data.creator.first().id}}'">
+<div class="btn" onclick="location.href='/chat/{{ drive_offer.get_creator_id() }}'">
 Contact Company
 </div>
 
   </div>
 
   <br>
-
-
-
 
 {% endblock %}

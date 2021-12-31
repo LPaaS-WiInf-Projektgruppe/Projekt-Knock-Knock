@@ -27,13 +27,13 @@
 </div>
 
 <div class="offer-detail-container">
-  <p>{{ data.creator.first().username }}</p>
-  <p>{{ data.start }}</p>
-  <p>{{ data.destination }}</p>
-  <p>{{ data.start_time }}</p>
-  <p>{{ data.start_time }}</p>
-  <p>{{ data.kilometerpreis }}</p>
-  <p>{{ data.created_at }}</p>
+  <p>{{ com_offer.get_creator_name() }}</p>
+  <p>{{ com_offer.get_start() }}</p>
+  <p>{{ com_offer.get_destination() }}</p>
+  <p>{{ com_offer.get_start_time() }}</p>
+  <p>{{ com_offer.get_start_time() }}</p>
+  <p>{{ com_offer.get_kilometerpreis() }}</p>
+  <p>{{ com_offer.get_created_at() }}</p>
 </div>
 
 
@@ -43,11 +43,11 @@ Back
 
 
 
-<div class="btn" onclick="location.href='/accept_com_offer/{{ data.id }}'">
+<div class="btn" onclick="location.href='/accept_com_offer/{{ com_offer.get_id() }}'">
 Accept
 </div>
 
-<div class="btn" onclick="location.href='/chat/{{data.creator.first().id}}'">
+<div class="btn" onclick="location.href='/chat/{{ com_offer.get_creator_id() }}'">
 Contact Company
 </div>
 

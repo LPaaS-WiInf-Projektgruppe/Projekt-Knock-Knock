@@ -128,6 +128,30 @@ input:hover
   margin-right: 16px;
 }
 
+.com-offer-container
+{
+  border: solid 1px #7E888A;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 30px;
+}
+
+.list-entry
+{
+  float: left;
+  margin-right: 16px;
+  display: inline-block;
+}
+
+.drive-offer-container
+{
+  border: solid 1px #7E888A;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 30px;
+}
+
+
 .delete-btn
 {
   border: 1px #79AB64 solid;
