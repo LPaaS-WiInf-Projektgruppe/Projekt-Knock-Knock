@@ -8,7 +8,6 @@ from werkzeuge.SettingsWerkzeug import settings
 from werkzeuge.AboutWerkzeug import about
 from werkzeuge.ComOfferWerkzeug import comOffer
 from werkzeuge.DriverOfferWerkzeug import driverOffer
-from werkzeuge.ComOfferDetailWerkzeug import com_offer_detail
 from werkzeuge.ProfilWerkzeug import profil
 from werkzeuge.ChatWerkzeug import chat
 from werkzeuge.ConversationsWerkzeug import conversations
@@ -35,7 +34,6 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(settings)
     app.register_blueprint(about)
     app.register_blueprint(comOffer)
-    app.register_blueprint(com_offer_detail)
     app.register_blueprint(driverOffer)
     app.register_blueprint(profil)
     app.register_blueprint(chat)

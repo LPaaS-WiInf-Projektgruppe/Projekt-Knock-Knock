@@ -1,7 +1,11 @@
 from datetime import datetime, timedelta
 from flask_user import UserMixin
 
-from sqlalchemy import Column, Integer, String, Boolean, or_, and_
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
+from geopy.distance import distance
+
+from sqlalchemy import Column, Integer, String, Boolean, Float, or_, and_
 from sqlalchemy.sql import func
 
 from extensions import db
@@ -61,7 +65,7 @@ class User(db.Model, UserMixin):
     def get_conversations(user):
         '''Returns the Conversations of a User
         :param user User: The User object to get the conversations from
-        :return toBeDisplayed List<Conversation>: A List containing the Conversations of a USer
+        :return toBeDisplayed List<Conversation>: A List containing the Conversations of a User
         '''
 
         # Ermittelt alle für den User relevanten Konversationen
@@ -114,7 +118,6 @@ class User(db.Model, UserMixin):
                 #return "Eigener Username: " + self.username + " und Nummer: " +str(self.id) + "\n" + "Andererer Dude: " + typ.username + " und Nummer: " +str(typ.id) + "\n" + "Letzte ausgetauschte Nachricht: " + "\n" + str(allContacts)
 
         return toBeDisplayed
-
 
 class Rating(db.Model):
     ''' Represents the Rating of an Offer
@@ -185,16 +188,6 @@ class Rating(db.Model):
 
         db.session.commit()
 
-class Message(db.Model):
-    ''' Represents a Message written by a User
-    '''
-    __tablename__ = "messages"
-    id = db.Column(db.Integer, primary_key= True)
-    created_at = db.Column(db.DateTime, nullable = False)
-    text = db.Column(db.String(500), nullable = False)
-    from_user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    to_user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-
 class WorkingTime(db.Model):
     ''' Represents the Working Time of a user as a driver
 
@@ -206,8 +199,8 @@ class WorkingTime(db.Model):
     '''
     __tablename__ = "working_times"
     id = db.Column(db.Integer, primary_key=True)
-    start_time = db.Column(db.Integer, nullable = True)
-    end_time = db.Column(db.Integer, nullable = True)
+    start_time = db.Column(db.String(5), nullable = True)
+    end_time = db.Column(db.String(5), nullable = True)
     weekday = db.Column(db.Integer, nullable= True)
 
 
@@ -479,6 +472,8 @@ class DriverOffers(db.Model):
     Columns
     :id primary_key: - the unique id of the driver_offer
     :location: - the location from where the driver wants to drive
+    :lat: The Latitude of the Location
+    :long: The Longitude of the Location
     :start: - the start location, default: NULL, gets set by the location the
               user who accepts wants to start from
     :destination: - the destination location, default: NULL, gets set by the location the
@@ -498,6 +493,8 @@ class DriverOffers(db.Model):
     __tablename__ = "driver_offers"
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(50), nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    long = db.Column(db.Float, nullable=False)
     start = db.Column(db.String(50), nullable = True)
     destination = db.Column(db.String(50), nullable = True)
     vehicle = db.Column(db.String(50), nullable=False)
@@ -515,14 +512,60 @@ class DriverOffers(db.Model):
 
 
     def get_offers():
+        '''Returns all DriveOffers that have not been accepted
+        :return drive_offers List<DriveOffer>: A List containing the DriveOffer objects
+        '''
         allDriverOffers = DriverOffers.query \
             .filter_by(accepted_by = None) \
             .order_by(DriverOffers.id) \
             .all()
 
-        # TODO: create drive offer object
+        drive_offers = []
 
-        return allDriverOffers
+        for  drive_offer in allDriverOffers:
+            if drive_offer.accepted_by == None:
+                drive_offer = DriveOffer(
+                    drive_offer.id,
+                    drive_offer.location,
+                    drive_offer.lat,
+                    drive_offer.long,
+                    drive_offer.vehicle,
+                    drive_offer.created_at,
+                    drive_offer.creator,
+                    drive_offer.creator.username,
+                    drive_offer.start_time,
+                    drive_offer.valid_until,
+                    drive_offer.kilometerpreis,
+                    drive_offer.radius,
+                    drive_offer.text,
+                    drive_offer.rating.stars,
+                    None,
+                    None
+                )
+                drive_offers.append(drive_offer)
+
+            else:
+                drive_offer = DriveOffer(
+                    drive_offer.id,
+                    drive_offer.location,
+                    drive_offer.lat,
+                    drive_offer.long,
+                    drive_offer.vehicle,
+                    drive_offer.created_at,
+                    drive_offer.creator,
+                    drive_offer.creator.username,
+                    drive_offer.start_time,
+                    drive_offer.valid_until,
+                    drive_offer.kilometerpreis,
+                    drive_offer.radius,
+                    drive_offer.text,
+                    drive_offer.rating.stars,
+                    drive_offer.accepted_by.id,
+                    drive_offer.accepted_by.username
+                )
+                drive_offers.append(drive_offer)
+
+        return drive_offers
 
     def delete_offer(offer):
         '''Delete the DriveOffer specified by the ID
@@ -581,11 +624,11 @@ class DriverOffers(db.Model):
         content_radius = form.radius.data
         content_text = form.bemerkungen.data
 
-        formatted_start_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
-        formatted_end_zeit = content_end_zeit[:10] + '-' + content_end_zeit[11:]
+        # geocode the location
+        geolocator = Nominatim(user_agent="project_knock_knock")
+        location = geolocator.geocode(content_ort)
 
-        vonAlsPythonObjekt = datetime.strptime(formatted_start_zeit, '%d.%m.%Y-%H:%M')
-        bisAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
+
 
 
         i = 0
@@ -609,8 +652,8 @@ class DriverOffers(db.Model):
         for i in range(len(start_times)):
             working_time = WorkingTime(
                 weekday = i,
-                start_time = start_times[i],
-                end_time = end_times[i]
+                start_time = start_times[i].strftime("%H:%M"),
+                end_time = end_times[i].strftime("%H:%M")
             )
             working_time.user.append(user)
             db.session.add(working_time)
@@ -619,9 +662,11 @@ class DriverOffers(db.Model):
 
         driver_offer = DriverOffers(
             location = content_ort,
+            lat = location.latitude,
+            long = location.longitude,
             vehicle = content_fahrzeug,
-            start_time = vonAlsPythonObjekt,
-            valid_until = bisAlsPythonObjekt,
+            start_time = content_start_zeit,
+            valid_until = content_end_zeit,
             kilometerpreis = content_preis,
             radius = content_radius,
             text = content_text,
@@ -629,12 +674,12 @@ class DriverOffers(db.Model):
             rating = Rating()
         )
 
-        try:
-            db.session.add(driver_offer)
-            db.session.commit()
-            return True
-        except:
-            return False
+        # try:
+        db.session.add(driver_offer)
+        db.session.commit()
+        return True
+        # except:
+        #     return False
 
     def get_user_accepted_offers(user):
         '''Query database for every drive offer that the user accepted
@@ -656,6 +701,8 @@ class DriverOffers(db.Model):
                 user_accepted_drive_offer = DriveOffer(
                     drive_offer.id,
                     drive_offer.location,
+                    drive_offer.lat,
+                    drive_offer.long,
                     drive_offer.vehicle,
                     drive_offer.created_at,
                     drive_offer.creator,
@@ -680,17 +727,20 @@ class DriverOffers(db.Model):
         '''
 
         results = db.session.query(DriverOffers) \
-            .filter(ComOffers.completed_at == None) \
+            .filter(DriverOffers.completed_at == None) \
             .all()
+
+
 
         drive_offers = []
         for offer in results:
-
             if offer.accepted_by == None:
                 if offer.creator.id == user.id:
                     drive_offer = DriveOffer(
                         offer.id,
                         offer.location,
+                        offer.lat,
+                        offer.long,
                         offer.vehicle,
                         offer.created_at,
                         offer.creator,
@@ -710,6 +760,8 @@ class DriverOffers(db.Model):
                     drive_offer = DriveOffer(
                         offer.id,
                         offer.location,
+                        offer.lat,
+                        offer.long,
                         offer.vehicle,
                         offer.created_at,
                         offer.creator,
@@ -724,6 +776,8 @@ class DriverOffers(db.Model):
                         offer.accepted_by.username
                     )
                     drive_offers.append(drive_offer)
+
+        print("user_created_drive_offerss: {}".format(drive_offers))
         return drive_offers
 
     def get_offer(offer_id):
@@ -742,6 +796,8 @@ class DriverOffers(db.Model):
             drive_offer = DriveOffer(
                 drive_offer.id,
                 drive_offer.location,
+                drive_offer.lat,
+                drive_offer.long,
                 drive_offer.vehicle,
                 drive_offer.created_at,
                 drive_offer.creator.id,
@@ -760,6 +816,8 @@ class DriverOffers(db.Model):
             drive_offer = DriveOffer(
                 drive_offer.id,
                 drive_offer.location,
+                drive_offer.lat,
+                drive_offer.long,
                 drive_offer.vehicle,
                 drive_offer.created_at,
                 drive_offer.creator.id,
@@ -776,6 +834,54 @@ class DriverOffers(db.Model):
             )
 
         return drive_offer
+
+    def search_offer_by_location(start, end):
+        '''Search suiting DriverOffers for the provided Route
+        :param start String: The start location of the Route
+        :param end String: The end location of the route
+        :return filtered_drive_offers List<DriverOffer>: A List containing the offers that have
+        radius within the start and end parameters
+        '''
+
+        # get all relevant DriveOffers
+        drive_offers = DriverOffers.get_offers()
+
+        # geocode the start and end locations
+        search = [start, end]
+        geolocator = Nominatim(user_agent="project_knock_knock")
+        rate_limiter = RateLimiter(geolocator.geocode, min_delay_seconds=1)
+        locations = [rate_limiter(s, language="de") for s in search]
+
+        start_location = (locations[0].latitude, locations[0].longitude)
+        end_location = (locations[1].latitude, locations[1].longitude)
+
+        # check if the distance between start and end location of an offer is
+        # smaller than the radius of the DriveOffer for all DriveOffers
+        filtered_drive_offers = []
+        for drive_offer in drive_offers:
+            offer_location = (drive_offer.get_lat(), drive_offer.get_long())
+            print("distance:\nstart -> offer: {}\nend -> offer: {}\nradius: {}" \
+                .format(
+                    distance(offer_location, start_location).km,
+                    distance(offer_location, end_location).km,
+                    drive_offer.get_radius()
+                ))
+
+            if (distance(offer_location, start_location).km < drive_offer.get_radius()) and \
+               (distance(offer_location, end_location).km < drive_offer.get_radius()):
+
+
+               filtered_drive_offers.append(drive_offer)
+
+        print("filtered_drive_offers: {}".format(filtered_drive_offers))
+
+        return filtered_drive_offers
+
+
+        # coord_locations = []
+        # for drive_offer in drive_offers:
+            # location = geolocator.geocode(drive_offer.get_location())
+            # lat.append((location.lat, location.long))
 
 class ExchangedMessages(db.Model):
     '''Database Table for Messages Exchanged between users

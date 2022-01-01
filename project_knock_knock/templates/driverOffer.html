@@ -6,6 +6,7 @@
 
 <link href="{{url_for('static', filename='driverOffer__style.css')}}" rel="stylesheet" type="text/css">
 
+
 {% endblock %}
 
 {% block header %}
@@ -16,27 +17,29 @@
 {% block content %}
 
 <div class="content">
-
-
-{{form.von(class_="location-input")}} <span> <div class="arrow-container">
-  ->
-</div>
-</span> {{form.nach(class_="location-input")}} {{form.submit(class_="submit-btn")}}
-<div style="clear:both"></div>
+<form method ="POST" id="search-form" action="/driverOffer">
+  {{ form.csrf_token }}
+  {{ form.von(class_="location-input", id ="from-input") }}
+  <span>
+    <div class="arrow-container"> -> </div>
+  </span>
+  {{ form.nach(class_="location-input", id="to-input")}} {{form.submit(class_="submit-btn") }}
+  <div style="clear:both"></div>
+</form>
 
 <div class="scroll-container">
 
 
 
   {% for driverOffer in allDriverOffers %}
-  <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.id}}'">
+  <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.get_id()}}'">
     <div class="list-entry">
       <b>Vehicle</b><br>
-      {{ driverOffer.vehicle }}
+      {{ driverOffer.get_vehicle() }}
     </div>
     <div class="list-entry">
       <b>€/ km</b><br>
-      {{ driverOffer.kilometerpreis }} €
+      {{ driverOffer.get_kilometerpreis() }} €
     </div>
   </div>
   {% endfor %}
@@ -55,8 +58,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <script type=text/javascript src="{{url_for('static', filename='driverOffer__script.js') }}"></script>
+
 
 
 {% endblock %}

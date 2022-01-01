@@ -3,11 +3,13 @@ import datetime
 
 class DriveOffer(object):
     def __init__(
-            self, id, location, vehicle, created_at, creator_id, creator_name, start_time,
+            self, id, location, lat, long, vehicle, created_at, creator_id, creator_name, start_time,
             end_time, kilometerpreis, radius, text, rating, accepted_by_id, accepted_by_name):
 
         self.__id = id
         self.__location = location
+        self.__lat = lat
+        self.__long = long
         self.__vehicle = vehicle
         self.__created_at = created_at
         self.__creator_id = creator_id
@@ -26,6 +28,12 @@ class DriveOffer(object):
 
     def set_location(self, location):
         self.__location = location
+
+    def set_lat(self, lat):
+        self.__lat = lat
+
+    def set_long(self, long):
+        self.__long = long
 
     def set_vehicle(self, vehicle):
         self.__vehicle = vehicle
@@ -62,7 +70,7 @@ class DriveOffer(object):
 
     def set_accepted_by_name(self, accepted_by_name):
         self.__accepted_by_name = accepted_by_name
-        
+
 
     def get_id(self):
         return self.__id
@@ -72,6 +80,12 @@ class DriveOffer(object):
 
     def get_location(self):
         return self.__location
+
+    def get_lat(self):
+        return self.__lat
+
+    def get_long(self):
+        return self.__long
 
     def get_vehicle(self):
         return self.__vehicle

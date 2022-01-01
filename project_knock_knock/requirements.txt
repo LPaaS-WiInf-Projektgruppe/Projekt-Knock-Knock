@@ -13,6 +13,8 @@ Flask-Mail==0.9.1
 Flask-SQLAlchemy==2.5.1
 Flask-User==1.0.2.2
 Flask-WTF==1.0.0
+geographiclib==1.52
+geopy==2.2.0
 greenlet==1.1.2
 idna==3.3
 itsdangerous==2.0.1
