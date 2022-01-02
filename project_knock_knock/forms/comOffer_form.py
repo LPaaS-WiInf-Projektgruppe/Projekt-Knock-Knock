@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, DateTimeField, FloatField
+from wtforms.fields import StringField, IntegerField, SubmitField, DateTimeField, FloatField
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Regexp
 
 GELD_ERROR = "Please enter a a valid amount of money! (Must be a number und have a maximum amount of 2 decimal places: e.g 12.99 Euro) "

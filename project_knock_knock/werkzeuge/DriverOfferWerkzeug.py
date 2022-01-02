@@ -15,12 +15,28 @@ driverOffer = Blueprint('driverOffer', __name__)
 def driver_offer():
     form = SearchDriveOfferForm()
 
+    if form.validate_on_submit():
+        driver_offers = DriverOffers.search_offer_by_location(
+            form.von.data,
+            form.nach.data
+        )
+
+        return render_template(
+            'driverOffer.html',
+            view_name ='Driver Offer',
+            allDriverOffers=driver_offers,
+            form = form
+            )
     allDriverOffers = DriverOffers.get_offers()
+
+    driver_offers = []
+
+    # print(allDriverOffers)
 
     return render_template(
         'driverOffer.html',
         view_name ='Driver Offer',
-        allDriverOffers=allDriverOffers,
+        allDriverOffers=driver_offers,
         form = form
         )
 

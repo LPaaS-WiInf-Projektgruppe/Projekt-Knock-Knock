@@ -4,16 +4,15 @@
 
 {% block extra_css %}
      {{ fontawesome_html() }}
-     <link href="{{url_for('static', filename='create_com_offer__style.css')}}" rel="stylesheet" type="text/css">
+     <link href="{{ url_for('static', filename='create_com_offer__style.css') }}" rel="stylesheet" type="text/css">
      <!-- <link href="{{url_for('static', filename='user__style.css')}}" rel="stylesheet" type="text/css"> -->
 {% endblock %}
-
 
  {% block content %}
 
 <div class="content">
 
-  <form method ="POST" id="offer-form"  action="/create_com_offer">
+  <form method ="POST" id="offer-form" action="/create_com_offer">
           {{ form.csrf_token }}
 
           <div class="scroll-container">
@@ -23,7 +22,7 @@
           <div class="from-container">
             {{ form.von.label }}
             <br>
-            {{ form.von }}
+            {{ form.von(id = "from-input") }}
             <br>
             {% for error in form.von.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
@@ -38,7 +37,7 @@
           <div class="to-container">
             {{ form.nach.label }}
             <br>
-            {{ form.nach }}
+            {{ form.nach(id = "to-input") }}
             <br>
             {% for error in form.nach.errors %}
               <p style="color: red;"> {{ error }} </p> <br>
