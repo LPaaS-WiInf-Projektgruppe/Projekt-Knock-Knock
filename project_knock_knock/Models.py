@@ -835,6 +835,25 @@ class DriverOffers(db.Model):
 
         return drive_offer
 
+
+
+    def geocode_location(locations):
+        '''Convert the given locations to their respective lat long Coordinates
+        :param locations List<String>: A List containing the String
+        representations of the locations
+        :return locations List<Location>: A List containing Geopy Location Objects
+        (address<String>, (latitude<Float>, longitude<Float>))
+        '''
+
+        geolocator = Nominatim(user_agent="project_knock_knock")
+        rate_limiter = RateLimiter(geolocator.geocode, min_delay_seconds=1)
+        locations = [rate_limiter(loc, language="de") for loc in locations]
+
+        # start_location = (locations[0].latitude, locations[0].longitude)
+        # end_location = (locations[1].latitude, locations[1].longitude)
+
+        return locations
+
     def search_offer_by_location(start, end):
         '''Search suiting DriverOffers for the provided Route
         :param start String: The start location of the Route
@@ -847,11 +866,7 @@ class DriverOffers(db.Model):
         drive_offers = DriverOffers.get_offers()
 
         # geocode the start and end locations
-        search = [start, end]
-        geolocator = Nominatim(user_agent="project_knock_knock")
-        rate_limiter = RateLimiter(geolocator.geocode, min_delay_seconds=1)
-        locations = [rate_limiter(s, language="de") for s in search]
-
+        locations = DriverOffers.geocode_location([start, end])
         start_location = (locations[0].latitude, locations[0].longitude)
         end_location = (locations[1].latitude, locations[1].longitude)
 

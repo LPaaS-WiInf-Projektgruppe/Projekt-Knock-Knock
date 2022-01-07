@@ -65,7 +65,7 @@ $("document").ready( () =>
 
   $(".submit-btn").on("click", () =>
   {
-    $("#map").css("display", "none"); 
+    $("#map").css("display", "none");
   })
 
 }

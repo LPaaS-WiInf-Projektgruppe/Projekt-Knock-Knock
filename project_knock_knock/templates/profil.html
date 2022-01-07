@@ -41,7 +41,7 @@
 
 
   {% if profile.get_accepted_drive_offers() | length == 0 %}
-  You currently do not have any accepted active drive offers.
+  You you have no accepted any DriveOffers currently
   {% endif %}
 
   {% for offer in profile.get_accepted_drive_offers() %}
@@ -56,7 +56,7 @@
   <br>
 
   {% if profile.get_accepted_com_offers() | length == 0 %}
-  You currently do not have any accepted active company offers.
+  You you have no accepted any ComOffers currently
   {% endif %}
 
   {% for offer in profile.get_accepted_com_offers() %}

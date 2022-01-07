@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, IntegerField, SubmitField, DateTimeField, FloatField
+from wtforms.fields.html5 import DateTimeLocalField, TimeField, TelField
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Regexp
 
 GELD_ERROR = "Please enter a a valid amount of money! (Must be a number und have a maximum amount of 2 decimal places: e.g 12.99 Euro) "
@@ -33,22 +34,22 @@ class ComOfferForm(FlaskForm):
         validators= [location_validator],
         render_kw={"placeholder": "e.g. 'Hauptbahnhof'"}
     )
-    zeit_start = StringField(
+    zeit_start = DateTimeLocalField(
         'gewünschte Zeit',
-        validators= [zeit_validator],
+        format="%Y-%m-%dT%H:%M",
         render_kw={"placeholder": "e.g '12.03.2022 08:00'"}
     )
-    zeit_ende = StringField(
+    zeit_ende = DateTimeLocalField(
         'bis (optional)',
-        validators= [zeit_validator],
+        format="%Y-%m-%dT%H:%M",
         render_kw={"placeholder": "e.g '12.03.2022 09:00'"}
     )
-    geld = StringField(
+    geld = TelField(
         'Kilometerpreis',
         validators = [geld_validator],
         render_kw={"placeholder": "e.g '0.99'"}
     )
-    dauer = StringField(
+    dauer = TelField(
         'Dauer in Tagen',
          validators= [dauer_validator],
          render_kw={"placeholder": "e.g '2'"}

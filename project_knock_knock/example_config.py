@@ -8,3 +8,6 @@ USER_ENABLE_EMAIL = False
 USER_ENABLE_REGISTER = False
 USER_APP_NAME = "app name"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+API_KEY = "mysecretapikey"
