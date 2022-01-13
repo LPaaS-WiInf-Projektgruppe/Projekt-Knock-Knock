@@ -5,14 +5,15 @@
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='profil__style.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
-
+<!-- Googleapi for Icons -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% block header %}
 
  {% endblock %}
 
  {% block content %}
 
-<div class="content">
+<div class="content" style = "width: 600px">
 
   <div class= "tabs">
    <button id="main-profile-container-tab" class="tab" onclick="openTab('main-profile-container')">Main</button>
@@ -34,6 +35,16 @@
       {% endif %}
       ({{ profile.get_rating().get_rate_count() }})
 
+
+      <br>
+      <p> Your Personal Documents</p>
+
+      <form method="post" enctype="multipart/form-data" >
+          <label>To complete your profile upload your documents</label>
+            <input type="file" id="file" name="file" multiple style="height:50px; width: 200px">
+            <button>Submit</button>
+      </form>
+      <br>
     <p>You have accepted the following Offers which are still active</p>
 
 
@@ -49,8 +60,11 @@
     <div class="location-container">
       {{ offer.get_location() }}
     </div>
-    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
+
   </div>
   {% endfor %}
   <br>
@@ -64,8 +78,10 @@
     <div class="location-container">
       {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
       <!-- TODO: Change name of button to check as completed -->
-    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
   </div>
   {% endfor %}
 </div>
@@ -119,7 +135,10 @@
       {{ offer.get_accepted_by_name() }}
     </div>
 
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
     <div class="delete-btn" onClick="location.href='/chat/{{ offer.get_accepted_by_id() }}'"> Chat</div>
     <div style="clear:both"></div>
   </div>
@@ -143,8 +162,10 @@
         <b>Cost</b> <br>
         {{ offer.get_kilometerpreis() }} €
     </div>
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+
     <!-- TODO: remove offer when its end time is reached -->
   </div>
 
@@ -195,10 +216,11 @@
   {{ offer.get_kilometerpreis() }}
 </div>
 
-<div class="delete-btn" onClick="location.href='/deleteComOffer/{{ offer.get_id() }}'">x</div>
-
-  <div style="clear:both">
+<div class="delete-btn"  onClick="location.href='/deleteComOffer/{{ offer.get_id() }}'">
+<i class="material-icons">delete</i></div>
+<div style="clear:both">
 </div>
+
 
 
 </div>
