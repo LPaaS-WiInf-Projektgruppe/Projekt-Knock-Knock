@@ -19,9 +19,10 @@ input
     color: white;
     border: 1px #7E888A solid;
     border-radius: 2px;
-    width: 100%;
+
     opacity: 0.7;
-    height:68vh;
+    height:32px;
+    float: left;
 }
 
 input:hover
@@ -52,6 +53,16 @@ input:hover
   color: #2A6D87;
 }
 
+.submit-btn {
+  margin-left: 16px;
+    background: #33322F;
+    border: 1px #7E888A solid;
+    border-radius: 2px;
+    opacity: 0.7;
+    overflow: hidden;
+
+}
+
 #main-profile-container-tab
 {
   background: white;
@@ -62,6 +73,7 @@ input:hover
     padding: 16px;
     background: #33322F;
     height: 68vh;
+    width: 100%;
 }
 
 .profile
@@ -119,6 +131,8 @@ input:hover
   line-height: 44px;
 }
 
+
+
 .offer-container
 {
   border: solid 1px #7E888A;
@@ -132,7 +146,7 @@ input:hover
 {
   border: solid 1px #7E888A;
   margin-bottom: 16px;
-  padding: 16px;
+  padding-top padding-left padding-right: 16px;
   border-radius: 30px;
 }
 
@@ -147,15 +161,14 @@ input:hover
 {
   border: solid 1px #7E888A;
   margin-bottom: 16px;
-  padding: 16px;
+  padding: 16px 16px 0px 16px;
   border-radius: 30px;
 }
 
-
 .delete-btn
 {
-  border: 1px #79AB64 solid;
-  color: #79AB64;
+  border: 1px #D35F60 solid;
+  color: #D35F60;
   border-radius: 45px;
   text-align: center;
   height: 50px;
@@ -168,6 +181,11 @@ input:hover
 {
 overflow:hidden;
 display: inline-block
+}
+
+i
+{
+  vertical-align: middle;
 }
 
 

@@ -10,16 +10,6 @@ body
 
 }
 
-input
-{
-    background:  #33322F;
-    color: white;
-    border: 1px #7E888A solid;
-    border-radius: 2px;
-    width: 100%;
-    opacity: 0.7;
-    height: 68vh;
-}
 
 input:hover
 {
@@ -37,21 +27,25 @@ input:hover
 {
     padding: 16px;
     background: #33322F;
-    height: 1005;
+    /* height: 100%; */
     margin-right: 16px;
+    width: 100%;
 }
 
 .scroll-container
 {
   overflow-y: scroll;
   height: 68vh;
+  width: 100%;
 }
 
+.bild
+{
+  max-width: 100%
+}
 
-
-
-
-.alert-box {
+.alert-box
+{
 	padding: 15px;
   width:100%;
     margin-bottom: 20px;
