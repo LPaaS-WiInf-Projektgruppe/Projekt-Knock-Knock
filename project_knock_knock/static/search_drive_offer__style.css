@@ -33,6 +33,7 @@ h2
     height: 68vh;
 }
 
+
 .scroll-container
 {
   overflow-y: scroll;
@@ -78,26 +79,7 @@ h2
   line-height: 44px;
 }
 
-.offer-container
-{
-  border: solid 1px #7E888A;
-  margin-bottom: 16px;
-  padding: 16px;
-  border-radius: 30px;
-  text-align: justify;
-  text-justify: distribute-all-lines;
-  margin-right: 16px;
-}
 
-
-.list-entry{
-    vertical-align: top;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    margin-left: 16px;
-
-  }
 
   .stretch {
     width: 100%;
@@ -120,6 +102,7 @@ h2
   height: 32px;
 }
 
+
 span
 {
   float: left;
@@ -131,8 +114,6 @@ span
 {
   margin-right: 16px;
 }
-
-
 
 .submit-btn
 {
@@ -197,6 +178,13 @@ input:hover
   margin-top: 16px;
 }
 
+#map
+{
+   height: 45vh;
+   margin-left: -16px;
+   margin-right: -16px;
+}
+
 .spacer-container
 {
   bottom: 0px;
@@ -204,13 +192,6 @@ input:hover
   position: absolute;
   margin-left: -16px;
   padding: 16px;
-}
-.arrow-container
-{
-  float: left;
-  padding-top: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request, redirect
+from flask import Flask, render_template, Blueprint, request, redirect, jsonify, make_response
 from flask_user import current_user, login_required
 from Models import DriverOffers, WorkingTime, User
 from extensions import db
@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 
 from forms.driverOffer_form import DriverOfferForm
 from forms.search_drive_offer_form import SearchDriveOfferForm
+from config import API_KEY
 
 driverOffer = Blueprint('driverOffer', __name__)
 
@@ -23,9 +24,10 @@ def driver_offer():
 
         return render_template(
             'driverOffer.html',
-            view_name ='Driver Offer',
+            view_name ='Drive Offer',
             allDriverOffers=driver_offers,
-            form = form
+            form = form,
+            api_key = API_KEY
             )
     allDriverOffers = DriverOffers.get_offers()
 
@@ -34,10 +36,11 @@ def driver_offer():
     # print(allDriverOffers)
 
     return render_template(
-        'driverOffer.html',
+        'search_drive_offer.html',
         view_name ='Driver Offer',
         allDriverOffers=driver_offers,
-        form = form
+        form = form,
+        api_key = API_KEY
         )
 
 @driverOffer.route('/drive_offer_detail/<int:offer_id>')
@@ -95,3 +98,15 @@ def create_drive_offer():
         view_name = "Create Driver Offer",
         form = form
     )
+
+@driverOffer.route("/geocode_location/<string:location>", methods=["POST"])
+def geocode_location(location):
+    '''Convert a List of locations to their respective
+    Latitude and Longitude Coordinates
+    '''
+
+    print(location)
+    coord = DriverOffers.geocode_location([location])[0]
+
+
+    return jsonify({"latitude": coord.latitude, "longitude": coord.longitude})

@@ -232,6 +232,10 @@ class ComOffers(db.Model):
     Columns
     :id primary_key: - the unique identifier for the company offer
     :start: - the start location of the offer
+    :start_lat: - The latitude of the start location
+    :start_long: - The Longitude Coordinate of the start location
+    :end_lat: - The latitude of the end location
+    :end_long: - The Longitude of the end location
     :destination: - the destination of the offer
     :start_time: - the date and time when the offer is starting
     :end_time: - the date and time when the offer is ending is
@@ -245,6 +249,10 @@ class ComOffers(db.Model):
     __tablename__ = "com_offers"
     id = db.Column(db.Integer, primary_key=True)
     start = db.Column(db.String(50), nullable=False)
+    start_lat = db.Column(db.Float, nullable=False)
+    start_long = db.Column(db.Float, nullable=False)
+    end_lat = db.Column(db.Float, nullable=False)
+    end_long = db.Column(db.Float, nullable=False)
     destination = db.Column(db.String(50), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable = True)
@@ -339,6 +347,12 @@ class ComOffers(db.Model):
         content_end_zeit = form.zeit_ende.data
         content_geld = form.geld.data
 
+
+        # geocode the location
+        geolocator = Nominatim(user_agent="project_knock_knock")
+        start_location = geolocator.geocode(content_start)
+        end_location = geolocator.geocode(content_ende)
+
         formatted_start_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
         formatted_end_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
 
@@ -347,6 +361,10 @@ class ComOffers(db.Model):
         if content_end_zeit == "":
             com_offer = ComOffers(
                 start = content_start,
+                start_lat = start_location.latitude,
+                start_long = start_location.longitude,
+                end_lat = end_location.latitude,
+                end_long = end_location.longitude,
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
                 kilometerpreis = content_geld,
@@ -357,6 +375,10 @@ class ComOffers(db.Model):
             endZeitAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
             com_offer = ComOffers(
                 start = content_start,
+                start_lat = start_location.latitude,
+                start_long = start_location.longitude,
+                end_lat = end_location.latitude,
+                end_long = end_location.longitude,
                 destination = content_ende,
                 start_time = startZeitAlsPythonObjekt,
                 end_time = endZeitAlsPythonObjekt,
@@ -437,6 +459,17 @@ class ComOffers(db.Model):
 
         return com_offers
 
+    def get_all_coordinates():
+        '''Returns a list of all the coordinates of The COmOffers
+        :return coordinates List<List<int, List<int>>>: A List Containing a List
+        with the Latitude and longitude and the id of the offer
+        '''
+        com_offers = ComOffers.query.all()
+        coordinates = []
+        for offer in com_offers:
+            coordinates.append([offer.id, [offer.start_lat, offer.start_long], [offer.end_lat, offer.end_long]])
+        return coordinates
+
     def get_offer(id):
         '''Returns the ComOffer specified by the ID
         :param id int: The ID of the ComOffer to get
@@ -467,7 +500,7 @@ class ComOffers(db.Model):
 
 # Datenbank-Table für die Angebote der Fahrer
 class DriverOffers(db.Model):
-    '''represents a driver offer as a db table
+    '''Represents a driver offer as a db table
 
     Columns
     :id primary_key: - the unique id of the driver_offer
@@ -635,6 +668,9 @@ class DriverOffers(db.Model):
         start_times = []
         end_times = []
         for results in form:
+
+            # TODO: fix datetime.datetime object is not subscriptable
+
             print("results: {}:{}".format(results.id, results.data))
             if (results.id == "from_zeitMo" or results.id == "from_zeitDi" or results.id == "from_zeitMi" or \
                 results.id == "from_zeitDo" or results.id == "from_zeitFr" or results.id == "from_zeitSa" or \
@@ -835,6 +871,23 @@ class DriverOffers(db.Model):
 
         return drive_offer
 
+    def geocode_location(locations):
+        '''Convert the given locations to their respective lat long Coordinates
+        :param locations List<String>: A List containing the String
+        representations of the locations
+        :return locations List<Location>: A List containing Geopy Location Objects
+        (address<String>, (latitude<Float>, longitude<Float>))
+        '''
+
+        geolocator = Nominatim(user_agent="project_knock_knock")
+        rate_limiter = RateLimiter(geolocator.geocode, min_delay_seconds=1)
+        locations = [rate_limiter(loc, language="de") for loc in locations]
+
+        # start_location = (locations[0].latitude, locations[0].longitude)
+        # end_location = (locations[1].latitude, locations[1].longitude)
+
+        return locations
+
     def search_offer_by_location(start, end):
         '''Search suiting DriverOffers for the provided Route
         :param start String: The start location of the Route
@@ -847,11 +900,7 @@ class DriverOffers(db.Model):
         drive_offers = DriverOffers.get_offers()
 
         # geocode the start and end locations
-        search = [start, end]
-        geolocator = Nominatim(user_agent="project_knock_knock")
-        rate_limiter = RateLimiter(geolocator.geocode, min_delay_seconds=1)
-        locations = [rate_limiter(s, language="de") for s in search]
-
+        locations = DriverOffers.geocode_location([start, end])
         start_location = (locations[0].latitude, locations[0].longitude)
         end_location = (locations[1].latitude, locations[1].longitude)
 

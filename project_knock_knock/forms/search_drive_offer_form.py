@@ -8,14 +8,14 @@ location_reg_ex = "^[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df\s]*([A-z\u00e
 
 
 class SearchDriveOfferForm(FlaskForm):
-    von = SearchField(
+    von = StringField(
         'from',
         validators=[
             Regexp(location_reg_ex, 0, "Not a valid adress")
         ],
         render_kw={"placeholder": "e.g 'Lübecker Straße 18, Hamburg'"}
     )
-    nach = SearchField(
+    nach = StringField(
         'to',
         validators=[
             Regexp(location_reg_ex, 0, "Not a valid adress")

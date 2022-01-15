@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request, redirect, url_for
+from flask import Flask, render_template, Blueprint, request, redirect, url_for, jsonify
 from flask_user import current_user, login_required
 from Models import ComOffers, User
 from extensions import db
@@ -45,7 +45,6 @@ def delete(id):
     else:
         return "Could not delete the Offer!"
 
-
 @comOffer.route('/accept_com_offer/<int:offer_id>')
 @login_required
 def accept_offer(offer_id):
@@ -77,3 +76,9 @@ def create_com_offer():
         view_name = "Create ComOffer",
         form = form
     )
+
+@comOffer.route("/com_offer_coordinates", methods= ["POST"])
+@login_required
+def get_com_offer_coordinates():
+    coordinates = ComOffers.get_all_coordinates()
+    return jsonify(coordinates)
