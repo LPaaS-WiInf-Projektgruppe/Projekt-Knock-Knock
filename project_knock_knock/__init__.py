@@ -12,6 +12,7 @@ from werkzeuge.ProfilWerkzeug import profil
 from werkzeuge.ChatWerkzeug import chat
 from werkzeuge.ConversationsWerkzeug import conversations
 from werkzeuge.RateOfferWerkzeug import rate_offer
+from werkzeuge.Impressum import impressum
 from werkzeuge.MapWerkzeug import map
 
 
@@ -34,11 +35,14 @@ def createApp(config_file= 'config.py'):
     app.register_blueprint(settings)
     app.register_blueprint(about)
     app.register_blueprint(comOffer)
+
     app.register_blueprint(driverOffer)
+
     app.register_blueprint(profil)
     app.register_blueprint(chat)
     app.register_blueprint(conversations)
     app.register_blueprint(rate_offer)
+    app.register_blueprint(impressum)
     app.register_blueprint(map)
 
 

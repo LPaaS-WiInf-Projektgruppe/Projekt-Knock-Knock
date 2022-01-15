@@ -8,7 +8,8 @@
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin=""/>
 {% endblock %}
-
+<!-- Googleapi for Icons -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% block header %}
 
  {% endblock %}
@@ -21,8 +22,9 @@
    <button id="main-profile-container-tab" class="tab" onclick="openTab('main-profile-container')">Main</button>
    <button id="my-offers-container-tab" class="tab" onclick="openTab('my-offers-container')">My Offers</button>
    <button id="my-orders-container-tab" class="tab" onclick="openTab('my-orders-container')">My Orders</button>
-   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Work Time</button>
-   <button id="test-container-tab" class="tab" onclick="openTab('test-container')">Test</button>
+
+   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Documents</button>
+
 
 
 <!-- Main Profile -->
@@ -38,6 +40,10 @@
       {% endif %}
       ({{ profile.get_rating().get_rate_count() }})
 
+
+      <br>
+
+      <br><br><br>
     <p>You have accepted the following Offers which are still active</p>
 
 
@@ -53,8 +59,11 @@
     <div class="location-container">
       {{ offer.get_location() }}
     </div>
-    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
+
   </div>
   {% endfor %}
   <br>
@@ -68,8 +77,10 @@
     <div class="location-container">
       {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
       <!-- TODO: Change name of button to check as completed -->
-    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
   </div>
   {% endfor %}
 </div>
@@ -79,11 +90,12 @@
   <!-- Ende Main Profile -->
 
 
-<!-- WORK TIME Tab -->
+<!-- Documents former WORK TIME SETTINGS -->
+
 
 <div id="work-time-container" class="profile" style="display:none">
 
-  <br>
+  <!-- <br>
       <div class="">
 
     {% for work_time in profile.get_working_times() %}
@@ -94,7 +106,18 @@
         <br>
       </div>
     {% endfor %}
-        </div>
+        </div> -->
+
+        <br>
+
+        <label>To complete your profile, please upload your documents</label>
+        <form  enctype="multipart/form-data" >
+
+              <input type="file"  id="file" name="file" multiple style="clear: both">
+              <input type= "submit" class="submit-btn">
+        </form>
+
+
 </div>
 
 
@@ -130,7 +153,10 @@
       {{ offer.get_accepted_by_name() }}
     </div>
 
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+    </div>
     <div class="delete-btn" onClick="location.href='/chat/{{ offer.get_accepted_by_id() }}'"> Chat</div>
     <div style="clear:both"></div>
   </div>
@@ -154,8 +180,10 @@
         <b>Cost</b> <br>
         {{ offer.get_kilometerpreis() }} €
     </div>
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">x</div>
-    <div style="clear:both"></div>
+    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
+    <i class="material-icons">delete</i></div>
+    <div style="clear:both">
+
     <!-- TODO: remove offer when its end time is reached -->
   </div>
 
@@ -211,9 +239,9 @@
   {{ offer.get_kilometerpreis() }}
 </div>
 
-<div class="delete-btn" onClick="location.href='/deleteComOffer/{{ offer.get_id() }}'">x</div>
-
-  <div style="clear:both">
+<div class="delete-btn"  onClick="location.href='/deleteComOffer/{{ offer.get_id() }}'">
+<i class="material-icons">delete</i></div>
+<div style="clear:both">
 </div>
 
 </div>

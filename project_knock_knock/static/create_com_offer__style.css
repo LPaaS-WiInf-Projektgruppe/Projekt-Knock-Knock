@@ -165,21 +165,36 @@ input:hover
     position: absolute;
 }
 
+select
+{
+  background:  #33322F;
+  color: white;
+  border: 1px #7E888A solid;
+  border-radius: 2px;
+  width: 97%;
+  opacity: 0.7;
+  height: 32px;
+  margin-bottom: 16px;
+
+}
 
 @media only screen and (min-device-width: 736px) {
 
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar
+  {
     border-radius: 10px;
     width: 10px;
   }
 
-  ::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track
+  {
     border-radius: 10px;
     width: 10px;
   }
 
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb
+  {
     background: grey;
     width: 10px;
     border-radius: 10px;
