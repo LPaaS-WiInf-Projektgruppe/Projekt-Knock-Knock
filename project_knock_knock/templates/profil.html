@@ -13,13 +13,13 @@
 
  {% block content %}
 
-<div class="content" style = "width: 600px">
+<div class="content">
 
   <div class= "tabs">
    <button id="main-profile-container-tab" class="tab" onclick="openTab('main-profile-container')">Main</button>
    <button id="my-offers-container-tab" class="tab" onclick="openTab('my-offers-container')">My Offers</button>
    <button id="my-orders-container-tab" class="tab" onclick="openTab('my-orders-container')">My Orders</button>
-   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Work Time</button>
+   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Documents</button>
 
 
 <!-- Main Profile -->
@@ -37,14 +37,6 @@
 
 
       <br>
-      <p> Your Personal Documents</p>
-
-      <label>To complete your profile, please upload your documents</label>
-      <form  enctype="multipart/form-data" >
-
-            <input type="file"  id="file" name="file" multiple style="padding-right: 16px;">
-            <input type= "submit" class="submit-btn">
-      </form>
 
       <br><br><br>
     <p>You have accepted the following Offers which are still active</p>
@@ -91,11 +83,11 @@
   </div>
 
 
-<!-- WORK TIME SETTINGS -->
+<!-- Documents former WORK TIME SETTINGS -->
 
 <div id="work-time-container" class="profile" style="display:none">
 
-  <br>
+  <!-- <br>
       <div class="">
 
     {% for work_time in profile.get_working_times() %}
@@ -106,7 +98,18 @@
         <br>
       </div>
     {% endfor %}
-        </div>
+        </div> -->
+
+        <br>
+
+        <label>To complete your profile, please upload your documents</label>
+        <form  enctype="multipart/form-data" >
+
+              <input type="file"  id="file" name="file" multiple style="clear: both">
+              <input type= "submit" class="submit-btn">
+        </form>
+
+
 </div>
 
 

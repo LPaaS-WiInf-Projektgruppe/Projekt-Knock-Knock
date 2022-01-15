@@ -14,7 +14,7 @@
 
  {% block content %}
 
-   <div class="scroll-container" style = "width: 40vw">
+   <div class="scroll-container" >
 
 <div class="content">
 
@@ -42,9 +42,8 @@
     </p>
   <br>
 
-  <image src="{{ url_for('static', filename='img/homeImage.png') }}"
-          alt="Das hier platzierte Bild konnte leider nicht auf Ihrem Gerät dargestellt werden."
-          style="width:40vw;height:40vw; text-align: center; max-width: 98%">
+  <image class="bild" src="{{ url_for('static', filename='img/homeImage.png') }}"
+          alt="Das hier platzierte Bild konnte leider nicht auf Ihrem Gerät dargestellt werden.">
   <br>
   <br>
 
