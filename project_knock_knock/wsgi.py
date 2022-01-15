@@ -1,3 +1,3 @@
-from __init__ import createApp
+from projektKnockKnockinit import createApp
 
 app = createApp()
