@@ -1,3 +1,8 @@
+// var config = require('config.json')
+// import mapBoxkey from "config.json"
+
+// var mapBoxKey = config.map_box_key
+
 $("document").ready( () =>
 {
 
@@ -13,7 +18,7 @@ $("document").ready( () =>
         id: 'mapbox/dark-v10',
         tileSize: 512,
         zoomOffset: -1,
-        accessToken: 'pk.eyJ1Ijoiam9leTE1MTciLCJhIjoiY2t5MXJwODFyMDIzczJubjExbm90aHc3YSJ9.8Ildv_V7RY38fLBWWxmt2Q'
+        accessToken: mapBoxKey
     }).addTo(map);
 
 
@@ -34,11 +39,13 @@ $("document").ready( () =>
   {
   // var marker = L.marker(coordinates[i][1]).addTo(map);
 
-  if i == 0 or i == 1 or i == 2 or i == 3 or i == 4 or i == 24:
+  if (i == 0 | i == 1 | i == 2 | i == 3 | i == 4 | i == 24)
+  {
     var polygon = L.polygon([
         coordinates[i][1],
         coordinates[i][2]
     ]).addTo(map);
+  }
 
   if (i != 24)
   {
