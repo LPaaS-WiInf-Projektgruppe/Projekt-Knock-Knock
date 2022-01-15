@@ -4,6 +4,9 @@
 {% block extra_css %}
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='profil__style.css')}}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
 {% endblock %}
 
 {% block header %}
@@ -19,6 +22,7 @@
    <button id="my-offers-container-tab" class="tab" onclick="openTab('my-offers-container')">My Offers</button>
    <button id="my-orders-container-tab" class="tab" onclick="openTab('my-orders-container')">My Orders</button>
    <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Work Time</button>
+   <button id="test-container-tab" class="tab" onclick="openTab('test-container')">Test</button>
 
 
 <!-- Main Profile -->
@@ -72,8 +76,10 @@
 
   </div>
 
+  <!-- Ende Main Profile -->
 
-<!-- WORK TIME SETTINGS -->
+
+<!-- WORK TIME Tab -->
 
 <div id="work-time-container" class="profile" style="display:none">
 
@@ -91,6 +97,11 @@
         </div>
 </div>
 
+
+<!-- Ende Work Time tab -->
+
+
+<!-- Start My Offers Tab -->
 
 
 <div id="my-offers-container" class="profile" style="display:none">
@@ -156,6 +167,11 @@
 </div>
 
 
+<!-- Ende My Offers Tab -->
+
+
+<!-- My Orders Tab -->
+
 <div id="my-orders-container" class="profile" style="display:none">
 
   <div class="scroll-container">
@@ -200,7 +216,6 @@
   <div style="clear:both">
 </div>
 
-
 </div>
 
  <!--
@@ -210,15 +225,27 @@
 
 {% endfor %}
 
-
-
 </div>
 
 </div>
+
+<!-- Ende My Orders Tab -->
+
+
+<!-- Tab to test Things out -->
+
+<div id="test-container" class="profile" style="display:none">
+  <div id="map"></div>
+</div>
+
+
   </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&v=3.exp&sensor=false&libraries=places"></script>
 
 <script type=text/javascript src="{{url_for('static', filename='profil__script.js') }}"></script>
 

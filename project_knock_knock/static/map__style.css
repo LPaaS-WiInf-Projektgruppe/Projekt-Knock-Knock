@@ -31,3 +31,11 @@ h2
 {
     color: #FFFFFF;
 }
+#map
+{
+   height: 45vh;
+   margin-left: -16px;
+   margin-right: -16px;
+   max-width: none;
+max-height: none;
+}

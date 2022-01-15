@@ -37,6 +37,15 @@ input:hover
   font-weight: 300;
 }
 
+#map
+{
+   height: 45vh;
+   margin-left: -16px;
+   margin-right: -16px;
+   max-width: none;
+max-height: none;
+}
+
 .scroll-container
 {
   overflow-y: scroll;
