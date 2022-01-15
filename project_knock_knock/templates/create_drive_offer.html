@@ -17,9 +17,8 @@
             {{ form.csrf_token }}
             <div class="scroll-container">
 
-            <div class="label-container">
+            <div>
 
-              <form class="label-container" action="index.html" method="post">
                 <label for="cars">Bitte wählen Sie Ihre Stadt:</label><br>
                 <select name="cities" id="cities">
                   <option value=""></option>
@@ -35,9 +34,10 @@
                   <option value="Bremen">Bremen</option>
                 </select>
                 <br><br>
-                <input type="submit" value="Submit">
-              </form>
 
+
+              </div>
+<div class="label-container">
             <div class="label-entry-container">
             {{ form.ort.label }}
               {% for error in form.ort.errors %}

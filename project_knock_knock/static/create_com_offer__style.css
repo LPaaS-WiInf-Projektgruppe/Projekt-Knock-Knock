@@ -160,6 +160,17 @@ input:hover
     position: absolute;
 }
 
+select
+{
+  background:  #33322F;
+  color: white;
+  border: 1px #7E888A solid;
+  border-radius: 2px;
+  width: 97%;
+  opacity: 0.7;
+  height: 32px;
+
+}
 
 @media only screen and (min-device-width: 736px) {
 
