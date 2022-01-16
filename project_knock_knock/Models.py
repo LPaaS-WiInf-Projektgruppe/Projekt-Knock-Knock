@@ -353,11 +353,8 @@ class ComOffers(db.Model):
         start_location = geolocator.geocode(content_start)
         end_location = geolocator.geocode(content_ende)
 
-        formatted_start_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
-        formatted_end_zeit = content_start_zeit[:10] + '-' + content_start_zeit[11:]
 
-        startZeitAlsPythonObjekt = datetime.strptime(formatted_start_zeit, '%d.%m.%Y-%H:%M')
-
+        # TODO: currently end time needs to be filled in to submit the form
         if content_end_zeit == "":
             com_offer = ComOffers(
                 start = content_start,
@@ -366,13 +363,13 @@ class ComOffers(db.Model):
                 end_lat = end_location.latitude,
                 end_long = end_location.longitude,
                 destination = content_ende,
-                start_time = startZeitAlsPythonObjekt,
+                start_time = content_start_zeit,
                 kilometerpreis = content_geld,
                 creator = user,
                 rating = Rating()
             )
         else:
-            endZeitAlsPythonObjekt = datetime.strptime(formatted_end_zeit, '%d.%m.%Y-%H:%M')
+
             com_offer = ComOffers(
                 start = content_start,
                 start_lat = start_location.latitude,
@@ -380,8 +377,8 @@ class ComOffers(db.Model):
                 end_lat = end_location.latitude,
                 end_long = end_location.longitude,
                 destination = content_ende,
-                start_time = startZeitAlsPythonObjekt,
-                end_time = endZeitAlsPythonObjekt,
+                start_time = content_start_zeit,
+                end_time = content_end_zeit,
                 kilometerpreis = content_geld,
                 creator = user,
                 rating = Rating()
