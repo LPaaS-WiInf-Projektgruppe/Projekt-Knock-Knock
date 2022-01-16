@@ -43,6 +43,7 @@ def driver_offer():
         api_key = API_KEY
         )
 
+
 @driverOffer.route('/drive_offer_detail/<int:offer_id>')
 @login_required
 def driver_offer_detail_func(offer_id):

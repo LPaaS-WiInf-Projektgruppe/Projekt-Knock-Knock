@@ -36,19 +36,6 @@
 
 
 
-  {% for driverOffer in allDriverOffers %}
-  <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.get_id()}}'">
-    <div class="list-entry">
-      <b>Vehicle</b><br>
-      {{ driverOffer.get_vehicle() }}
-    </div>
-    <div class="list-entry">
-      <b>€/ km</b><br>
-      {{ driverOffer.get_kilometerpreis() }} €
-    </div>
-  </div>
-  {% endfor %}
-
   </div>
 
 <div class="spacer-container">
