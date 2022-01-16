@@ -122,7 +122,7 @@ Create a [MapBox](https://www.mapbox.com/) Account
 Create an Api key  
 Navigate to project_knock_knock/static
 `cd project_knock_knock/static`  
-create a new file named 'config.js' 
+create a new file named 'config.js'  
 Create a new entry with the Api Key  
 `var mapBoxKey = "<your_api_key>";`  
 
