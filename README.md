@@ -120,7 +120,7 @@ Mac OS / Linux
 #### Map  
 Create a [MapBox](https://www.mapbox.com/) Account  
 Create an Api key  
-Navigate to project_knock_knock/static
+Navigate to project_knock_knock/static  
 `cd project_knock_knock/static`  
 create a new file named 'config.js'  
 Create a new entry with the Api Key  
