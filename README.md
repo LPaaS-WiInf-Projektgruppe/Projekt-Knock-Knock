@@ -116,8 +116,8 @@ Mac OS / Linux
 `export FLASK_APP=wsgi.py`  
 `export FLASK_ENV=development`  
 
-Optional (to see the map and get location predictions)
-Map  
+### Optional (to see the map and get location predictions)  
+#### Map  
 Create a [MapBox](https://www.mapbox.com/) Account  
 Create an Api key  
 Navigate to project_knock_knock/static
@@ -126,7 +126,7 @@ create a new file named 'config.js'
 Create a new entry with the Api Key  
 `var mapBoxKey = "<your_api_key>";`  
 
-Location Predictions  
+#### Location Predictions  
 Create a [Google Places](https://console.cloud.google.com/google/maps-apis/api-list) Api key  
 In config.py create a new entry  
 `API_KEY = <your api key here>`  
