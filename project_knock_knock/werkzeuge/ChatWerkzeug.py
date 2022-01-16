@@ -65,6 +65,7 @@ def chat_func(dude_id):
                 and_(ExchangedMessages.transmitter == user, ExchangedMessages.receiver == dude)
                     )).all()
 
+
         return render_template("chat.html", view_name='Chat', dude = dude, self = user, messages = messages)
 
 
