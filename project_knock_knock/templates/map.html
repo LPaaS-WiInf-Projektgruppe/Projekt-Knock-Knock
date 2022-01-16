@@ -4,11 +4,13 @@
 {% block extra_css %}
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='map__style.css')}}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
 {% endblock %}
 
 
 {% block header %}
-
 
  {% endblock %}
 
@@ -16,8 +18,18 @@
 
 <div class="content">
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.5070187216334!2d9.982430816002804!3d53.56656726589382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1f2eedd2e8b1f%3A0x5c362839af439375!2sUniversity%20of%20Hamburg!5e0!3m2!1sen!2sde!4v1640256803732!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <div id="map"></div>
+
+<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.5070187216334!2d9.982430816002804!3d53.56656726589382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1f2eedd2e8b1f%3A0x5c362839af439375!2sUniversity%20of%20Hamburg!5e0!3m2!1sen!2sde!4v1640256803732!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
 
 </div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+  <script type=text/javascript src="{{url_for('static', filename='config.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='map__script.js') }}"></script>
 
 {% endblock %}
