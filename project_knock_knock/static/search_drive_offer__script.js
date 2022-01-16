@@ -1,5 +1,3 @@
-
-
 function init() {
    var from_input = document.getElementById('from-input');
    var to_input = document.getElementById('to-input');
@@ -32,7 +30,7 @@ $("document").ready( () =>
       id: 'mapbox/dark-v10',
       tileSize: 512,
       zoomOffset: -1,
-      accessToken: mapBoxKey
+      accessToken: 'pk.eyJ1Ijoiam9leTE1MTciLCJhIjoiY2t5MXJwODFyMDIzczJubjExbm90aHc3YSJ9.8Ildv_V7RY38fLBWWxmt2Q'
   }).addTo(map);
 
   var startCoord;

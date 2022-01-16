@@ -105,6 +105,11 @@ a
   color: #2A6D87;
 }
 
+::-webkit-calendar-picker-indicator
+{
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
 
 input
 {
@@ -160,21 +165,36 @@ input:hover
     position: absolute;
 }
 
+select
+{
+  background:  #33322F;
+  color: white;
+  border: 1px #7E888A solid;
+  border-radius: 2px;
+  width: 97%;
+  opacity: 0.7;
+  height: 32px;
+  margin-bottom: 16px;
+
+}
 
 @media only screen and (min-device-width: 736px) {
 
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar
+  {
     border-radius: 10px;
     width: 10px;
   }
 
-  ::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track
+  {
     border-radius: 10px;
     width: 10px;
   }
 
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb
+  {
     background: grey;
     width: 10px;
     border-radius: 10px;

@@ -9,6 +9,7 @@ from Fachwerte.rating import Rating as fw_rating
 from materialien.profil import Profil
 from materialien.drive_offer import DriveOffer
 from materialien.com_offer import ComOffer
+from config import API_KEY
 
 profil = Blueprint('profil', __name__)
 
@@ -53,4 +54,4 @@ def profil_func():
             "description"
         )
 
-    return render_template("profil.html", view_name='Profil', profile = user_profile)
+    return render_template("profil.html", view_name='Profil', profile = user_profile, api_key = API_KEY)
