@@ -5,6 +5,9 @@
 {% block extra_css %}
 
 <link href="{{url_for('static', filename='driverOffer__style.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
 
 
 
@@ -18,7 +21,17 @@
 {% block content %}
 
 <div class="content">
+  <form method ="POST" id="search-form" action="/driverOffer">
+    {{ form.csrf_token }}
+    {{ form.von(class_="location-input", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+    <span>
+      <div class="arrow-container"> -> </div>
+    </span>
+    {{ form.nach(class_="location-input", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }} {{form.submit(class_="submit-btn") }}
+    <div style="clear:both"></div>
+  </form>
 
+  <div id="map"></div>
 
 
 <div class="scroll-container">
@@ -47,6 +60,9 @@
 
 
 </div>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&v=3.exp&sensor=false&libraries=places"></script>
