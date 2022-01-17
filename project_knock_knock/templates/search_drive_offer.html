@@ -24,6 +24,9 @@
 <form method ="POST" id="search-form" action="/driverOffer">
   {{ form.csrf_token }}
   {{ form.von(class_="location-input", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+  {% for error in form.von.errors %}
+  <p style="color: red;"> {{ error }} </p> <br>
+  {% endfor %}
   <span>
     <div class="arrow-container material-icons">arrow_forwards</div>
   </span>

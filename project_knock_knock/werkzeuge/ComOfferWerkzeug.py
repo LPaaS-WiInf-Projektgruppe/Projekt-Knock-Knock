@@ -66,9 +66,12 @@ def create_com_offer():
     form = ComOfferForm()
 
     if form.validate_on_submit():
+
         if ComOffers.create_offer(form, current_user):
-            redirect('/comOffer')
+            print("Offer created successfully")
+            return redirect('/comOffer')
         else:
+            print("Could not create offer")
             return "Could not create Com Offer"
 
     return render_template(
