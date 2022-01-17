@@ -349,9 +349,12 @@ class ComOffers(db.Model):
 
 
         # geocode the location
-        geolocator = Nominatim(user_agent="project_knock_knock")
-        start_location = geolocator.geocode(content_start)
-        end_location = geolocator.geocode(content_ende)
+        # geolocator = Nominatim(user_agent="project_knock_knock")
+        # start_location = geolocator.geocode(content_start)
+        # end_location = geolocator.geocode(content_ende)
+
+        locations = [content_start, content_ende]
+        start_location, end_location = DriverOffers.geocode_location(locations)
 
 
         # TODO: currently end time needs to be filled in to submit the form
