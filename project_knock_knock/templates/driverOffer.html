@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin=""/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 
@@ -25,13 +26,12 @@
     {{ form.csrf_token }}
     {{ form.von(class_="location-input", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
     <span>
-      <div class="arrow-container"> -> </div>
+      <div class="arrow-container material-icons">arrow_forward</div>
     </span>
     {{ form.nach(class_="location-input", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }} {{form.submit(class_="submit-btn") }}
     <div style="clear:both"></div>
   </form>
 
-  <div id="map"></div>
 
 
 <div class="scroll-container">

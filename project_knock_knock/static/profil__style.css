@@ -177,14 +177,22 @@ max-height: none;
 
 .delete-btn
 {
-  border: 1px #D35F60 solid;
-  color: #D35F60;
+  border: 1px #79AB64 solid;
+  color: #79AB64;
   border-radius: 45px;
   text-align: center;
   height: 50px;
   width: 50px;
   line-height: 45px;
   float:right;
+}
+
+.arrow-container
+{
+  margin: 0 0 0 16px;
+  top: 8px;
+  position: relative;
+
 }
 
 .location-container
