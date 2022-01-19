@@ -5,6 +5,7 @@
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='chat__style.css')}}" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <script type=text/javascript src="{{url_for('static', filename='chat__script.js') }}"></script>
 {% endblock %}
 
 
@@ -15,6 +16,7 @@
 
  {% block content %}
 
+      <script type=text/javascript src="{{url_for('static', filename='chat__script.js') }}"></script>
 
 <div class="content">
 
