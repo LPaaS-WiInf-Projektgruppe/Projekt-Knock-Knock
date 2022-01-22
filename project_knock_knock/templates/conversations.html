@@ -16,88 +16,36 @@
 
 <meta http-equiv="refresh" content="10">
 
+<div class="content">
 
-  <div class="col-sm-6 py-2 justify-content-center">
-      <div class="card h-80">
-          <div class="card-body h-100 text-dark ">
+  <h1>Konversationen</h1>
 
-                          <h1>Konversationen</h1>
-                <table id="Tabelle">
-                    <tr>
-                      <th></th>
-                      <th> &nbsp  Name &nbsp  </th>
-                      <th> &nbsp Zeit &nbsp </th>
-                      <th> &nbsp Öffnen &nbsp </th>
-                    </tr>
-                    {% for data in information %}
-                      <tr>
-                        {% if data.gelesen %}
-                        <td>  </td>
-                        {% else %}
-                        <td> &nbsp <i style="font-size:16px; color: red;" class="fa">&#xf0a2;</i> &nbsp </td>
-                        {% endif %}
-                        <td> &nbsp {{ data.get_name() }} &nbsp </td>
-                        <td> &nbsp {{ data.get_zeit() }} &nbsp </td>
-                        <td>
-                          &nbsp <a href="/chat/{{data.get_id() }}">Chat</a> &nbsp
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
+  <br>
 
-
-    </div>
-    </div>
-    </div>
+    <table id="Tabelle">
+        <tr>
+          <th></th>
+          <th> &nbsp  Name &nbsp  </th>
+          <th> &nbsp Zeit &nbsp </th>
+          <th> &nbsp Öffnen &nbsp </th>
+        </tr>
+        {% for data in information %}
+          <tr>
+            {% if data.gelesen %}
+            <td>  </td>
+            {% else %}
+            <td> &nbsp <i style="font-size:16px; color: red;" class="fa">&#xf0a2;</i> &nbsp </td>
+            {% endif %}
+            <td> &nbsp {{ data.get_name() }} &nbsp </td>
+            <td> &nbsp {{ data.get_zeit() }} &nbsp </td>
+            <td>
+              &nbsp <a href="/chat/{{data.get_id() }}">Chat</a> &nbsp
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
-    <div class="col-sm-6 py-2 justify-content-center">
-        <div class="card h-10 overflow-scroll">
-            <div class="card-body vh-100 text-dark">
-
-              <h1>Chat mit {{ dude.username }}</h1>
-
-              <div id="messages">
-
-                  <table id="Tabelle">
-                      <tr>
-                        <th>Text</th>
-                        <th>Uhrzeit</th>
-                      </tr>
-                      {% for message in messages %}
-                        {% if message.transmitter.id == dude.id %}
-                            <tr>
-                              <td><div class="other-text-container">{{ message.text }}</div></td>
-                              <td ><div class="date-container"> {{ message.created_at }}</div> </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                              <td align="right"><div class="own-text-container">{{ message.text }}</div></td>
-                              <td > <div class="date-container">{{ message.created_at }}</div> </td>
-                            </tr>
-                        {% endif %}
-                      {% endfor %}
-                  </table>
-
-              </div>
-
-
-                <input type="button" class="btn btn-outline-danger" value="Back" onclick="history.back()" class="button" >
-                <form style="color: black; align-items: center;" align= "center" action="/chat/{{dude.id}}" method="POST">
-                <input  type="submit" class="btn btn-outline-success" value="Send"></input>
-                <input class="form-control" type="text" placeholder="Nachricht" name="send" id="send">
-
-              </form>
-
-              <br>
-              <br>
-
-
-
-              </div>
-
-            </div>
-
-            </div>
+</div>
 
 {% endblock %}
