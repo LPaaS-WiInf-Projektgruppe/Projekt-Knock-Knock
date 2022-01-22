@@ -13,3 +13,17 @@ $("#btn_end_date").on('click', () =>
   }
 
 });
+
+
+$(document).ready( function () {
+    $('#com-offer-table').DataTable(
+      {
+        "pageLength": 5,
+        "bLengthChange" : false,
+        "pagingType": "numbers"
+      }
+    );
+}
+
+
+);

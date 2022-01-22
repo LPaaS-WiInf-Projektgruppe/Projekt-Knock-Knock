@@ -94,8 +94,6 @@ $("document").ready( () =>
 
 
 
-
-
 })
 function openTab(name)
 {
@@ -105,8 +103,7 @@ function openTab(name)
   for (var i = 0; i < x.length; i++)
   {
     x[i].style.display = "none";
-    tabs[i].style.background = "#7E888A";
   }
   document.getElementById(name).style.display = "block";
-  document.getElementById(name + "-tab").style.backgroundColor = "white";
+  // document.getElementById(name + "-tab").style.backgroundColor = "white";
 }

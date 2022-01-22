@@ -53,4 +53,4 @@ def def_initial_code():
 def todo_func():
     """return todo page"""
 
-    return "This functionality is unfortunatly not supported yet. Try again later"
+    return render_template("to_do.html")
