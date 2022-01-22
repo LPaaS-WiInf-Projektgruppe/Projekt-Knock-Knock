@@ -16,257 +16,274 @@
 
  {% block content %}
 
-<div class="content">
-
-  <div class= "tabs">
-   <button id="main-profile-container-tab" class="tab" onclick="openTab('main-profile-container')">Main</button>
-   <button id="my-offers-container-tab" class="tab" onclick="openTab('my-offers-container')">My Offers</button>
-   <button id="my-orders-container-tab" class="tab" onclick="openTab('my-orders-container')">My Orders</button>
-
-   <button id="work-time-container-tab" class="tab" onclick="openTab('work-time-container')">Documents</button>
-
-
-
-<!-- Main Profile -->
-
-<div id="main-profile-container" class="profile">
-  <br>
-    <p>Username: {{ profile.get_username() }}</p>
-
-      {% if profile.get_rating().get_rate_count() > 0 %}
-      Rating: {{ profile.get_rating().calculate_average() }}
-      {% else %}
-      Rating: N/V
-      {% endif %}
-      ({{ profile.get_rating().get_rate_count() }})
-
-      <br><br><br>
-
-    <p>You have accepted the following Offers which are still active</p>
+  <div class="card text-center text-dark">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+          <button  class="tab nav-link" onclick="openTab('main-profile-container')">Main</button>
+      </li>
+      <li class="nav-item">
+          <button  class="tab nav-link" onclick="openTab('my-offers-container')">My Offers</button>
+      </li>
+      <li class="nav-item">
+          <button  class="tab nav-link" onclick="openTab('my-orders-container')">My Orders</button>
+      </li>
+      <li class="nav-item">
+          <button  class="tab nav-link" onclick="openTab('work-time-container')">Documents</button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
 
 
-  <div class="scroll-container">
+    <!-- Main Profile -->
+
+    <div id="main-profile-container" class="profile">
+      <br>
+        <p>Username: {{ profile.get_username() }}</p>
+
+          {% if profile.get_rating().get_rate_count() > 0 %}
+          Rating: {{ profile.get_rating().calculate_average() }}
+          {% else %}
+          Rating: N/V
+          {% endif %}
+          ({{ profile.get_rating().get_rate_count() }})
 
 
-  {% if profile.get_accepted_drive_offers() | length == 0 %}
-  You you have no accepted any DriveOffers currently
-  {% endif %}
+        <p>Ongoing Accepted Offers</p>
 
+
+
+      <div class="row">
+
+
+
+      <div class="col-6">
+
+        <h2>Drive Offers</h2>
+
+      <table id="drive-offer-table" class="table table-light">
+        <thead thead-dark>
+          <tr>
+            <th scope="col">Route</th>
+            <th scope="col">Time</th>
+            <th scope="col">Price</th>
+            <th scope="col"> Aktion</th>
+          </tr>
+      </thead>
+
+        <tbody>
   {% for offer in profile.get_accepted_drive_offers() %}
-  <div class="offer-container">
-    <div class="location-container">
-      {{ offer.get_location() }}
-    </div>
-    <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >
-    <i class="material-icons">Check</i></div>
-    <div style="clear:both">
-    </div>
+      <tr>
 
-  </div>
-  {% endfor %}
-  <br>
-
-  {% if profile.get_accepted_com_offers() | length == 0 %}
-  You you have no accepted any ComOffers currently
-  {% endif %}
-
-  {% for offer in profile.get_accepted_com_offers() %}
-  <div class="offer-container">
-    <div class="location-container">
-      {{ offer.get_start() }} <div class="material-icons arrow-container">arrow_forwards</div> {{ offer.get_destination()}} </div>
-      <!-- TODO: Change name of button to check as completed -->
-    <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >
-    <i class="material-icons">check</i></div>
-    <div style="clear:both">
-    </div>
-  </div>
-  {% endfor %}
-</div>
-
-  </div>
-
-  <!-- Ende Main Profile -->
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_start() }} <br> {{ offer.get_destination() }} </td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">{{ offer.get_start_time() }}<br> {{ offer.get_end_time() }} </td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} €</td>
+        <td class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" </td>
+      </tr>
+      {% endfor %}
+        </tbody>
+      </table>
 
 
-<!-- Documents former WORK TIME SETTINGS -->
-
-
-<div id="work-time-container" class="profile" style="display:none">
-
-  <!-- <br>
-      <div class="">
-
-    {% for work_time in profile.get_working_times() %}
-      <div class="work-times">
-        {{ work_time.weekday_to_string_short() }}
-        <br>
-        {{ work_time.get_start_time() }} bis {{ work_time.get_end_time() }}
-        <br>
       </div>
-    {% endfor %}
-        </div> -->
 
-        <br>
+      <div class="col-6">
 
-        <label>To complete your profile, please upload your documents</label>
-        <form  enctype="multipart/form-data" >
+        <h2>Com Offers</h2>
 
-              <input type="file"  id="file" name="file" multiple style="clear: both">
-              <input type= "submit" class="submit-btn">
-        </form>
+      <table id="drive-offer-table" class="table table-light">
+        <thead thead-dark>
+          <tr>
+            <th scope="col">Route</th>
+            <th scope="col">Time</th>
+            <th scope="col">Price</th>
+            <th scope="col"> Aktion</th>
+          </tr>
+      </thead>
+
+        <tbody>
+  {% for offer in profile.get_accepted_com_offers() %}
+      <tr >
+        <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">  {{ offer.get_start() }} <br> {{ offer.get_destination() }} </td>
+        <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">{{ offer.get_start_time() }}<br> {{ offer.get_end_time() }} </td>
+        <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} €</td>
+        <td class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" </td>
+      </tr>
+      {% endfor %}
+        </tbody>
+      </table>
 
 
-</div>
+    </div>
+          </div>
 
-
-<!-- Ende Work Time tab -->
-
-
-<!-- Start My Offers Tab -->
-
-
-<div id="my-offers-container" class="profile" style="display:none">
-
-      <div class="scroll-container">
-    <h3>Akzeptierte Angebote</h3>
-
-
-
-  {% for offer in profile.get_offers() %}
-  {% if offer.is_accepted() %}
-  <div class="drive-offer-container">
-
-    <div class="list-entry">
-        <b>Location</b> <br>
-        {{ offer.get_location() }}
     </div>
 
-    <div class="list-entry">
-        <b>Cost</b> <br>
-        {{ offer.get_kilometerpreis() }}
+      </div>
+
+      <!-- Ende Main Profile -->
+    <!-- Documents former WORK TIME SETTINGS -->
+
+    <div id="work-time-container" class="profile" style="display:none">
+
+      <!-- <br>
+          <div class="">
+
+        {% for work_time in profile.get_working_times() %}
+          <div class="work-times">
+            {{ work_time.weekday_to_string_short() }}
+            <br>
+            {{ work_time.get_start_time() }} bis {{ work_time.get_end_time() }}
+            <br>
+          </div>
+        {% endfor %}
+            </div> -->
+
+            <br>
+
+            <label>To complete your profile, please upload your documents</label>
+            <form  enctype="multipart/form-data" >
+
+                  <input type="file"  id="file" name="file" multiple style="clear: both">
+                  <input type= "submit" class="submit-btn">
+            </form>
+
+
     </div>
-    <!-- TODO: remove offer when its end time is reached -->
-    <div class="list-entry">
-      <b>accepted by</b> <br>
-      {{ offer.get_accepted_by_name() }}
+
+
+    <!-- Ende Work Time tab -->
+
+
+    <!-- Start My Offers Tab -->
+
+
+    <div id="my-offers-container" class="profile" style="display:none">
+
+      <div class="row">
+
+      <div class="col-6">
+
+        <h2>Accepted Offers</h2>
+
+      <table id="drive-offer-table" class="table table-light">
+        <thead thead-dark>
+          <tr>
+            <th scope="col">Route</th>
+            <th scope="col">Time</th>
+            <th scope="col">Price</th>
+            <th scope="col"> Aktion</th>
+          </tr>
+      </thead>
+
+        <tbody>
+      {% for offer in profile.get_offers() %}
+      {% if offer.is_accepted() %}
+      <tr'">
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_vehicle() }} </td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} €</td>
+        <td class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" </td>
+      </tr>
+
+      {% endif %}
+      {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+
+      <div class="col-6">
+
+        <h2>Open Offers</h2>
+
+      <table id="drive-offer-table" class="table table-light">
+        <thead thead-dark>
+          <tr>
+            <th scope="col">Route</th>
+            <th scope="col">Time</th>
+            <th scope="col"> Aktion</th>
+          </tr>
+      </thead>
+
+        <tbody>
+          {% for offer in profile.get_offers() %}
+          {% if not offer.is_accepted() %}
+      <tr >
+        <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">  {{ offer.get_vehicle() }} </td>
+        <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">{{ offer.get_kilometerpreis() }} </td>
+        <td <button class="btn btn-outline-danger"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'"> Delete </button> </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+      </div>
+
     </div>
 
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
-    <i class="material-icons">delete</i></div>
-    <div style="clear:both">
-    </div>
-    <div class="delete-btn" onClick="location.href='/chat/{{ offer.get_accepted_by_id() }}'"> Chat</div>
-    <div style="clear:both"></div>
-  </div>
-  <br>
 
-  {% endif %}
-  {% endfor %}
+    <!-- Ende My Offers Tab -->
 
-  <h3>Offene Angebote</h3>
-  {% for offer in profile.get_offers() %}
-  {% if not offer.is_accepted() %}
+    <!-- My Orders Tab -->
 
-  <div class="drive-offer-container">
-
-    <div class="list-entry">
-        <b>Location</b> <br>
-        {{ offer.get_location() }}
-    </div>
-
-    <div class="list-entry">
-        <b>Cost</b> <br>
-        {{ offer.get_kilometerpreis() }} €
-    </div>
-    <div class="delete-btn" onClick="location.href='/delete_driver_offer/{{ offer.get_id() }}'">
-    <i class="material-icons">delete</i></div>
-    <div style="clear:both">
-
-    <!-- TODO: remove offer when its end time is reached -->
-  </div>
-    <br>
-</div>
-
-  {% endif %}
-  {% endfor %}
+    <div id="my-orders-container" class="profile" style="display:none">
 
 
-</div>
 
+      <div class="row">
 
-<!-- Ende My Offers Tab -->
+      <div class="col-6">
 
+        <h2>Accepted Offers</h2>
 
-<!-- My Orders Tab -->
+      <table id="drive-offer-table" class="table table-light">
+        <thead thead-dark>
+          <tr>
+            <th scope="col">from</th>
+            <th scope="col">to</th>
+            <th scope="col">start time</th>
+            <th scope="col">end time</th>
+            <th scope="col"> €/km</th>
+          </tr>
+      </thead>
 
-<div id="my-orders-container" class="profile" style="display:none">
-
-  <div class="scroll-container">
+        <tbody>
   {% for offer in profile.get_orders() %}
+      <tr'">
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_start() }} </td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_destination() }}</td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_formatted_start_date() }} {{offer.get_formatted_start_time()}}</td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_formatted_end_date() }} {{offer.get_formatted_end_time()}}</td>
+        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} </td>
+      </tr>
+      {% endfor %}
+        </tbody>
+      </table>
 
-<div class="com-offer-container">
+      </div>
+    </div>  <!--end row-->
 
-<div class="list-entry">
-  <b>Start</b> <br>
-{{ offer.get_start() }}
-</div>
+    </div>  <!--end my-orders-->
 
-<div class="list-entry">
-  <br>
-  <b>-></b>
-</div>
+    <!-- Tab to test Things out -->
 
-<div class="list-entry">
-  <b>Ziel</b> <br>
-   {{ offer.get_destination() }}
-</div>
+    <!-- <div id="test-container" class="profile" style="display:none">
+      <div id="map"></div>
+    </div> -->
 
-<div class="list-entry">
-<b>verfügbar von</b><br>
-{{ offer.get_formatted_start_date() }}
-{{ offer.get_formatted_start_time() }}
-</div>
-
-<div class="list-entry">
-<b>verfügbar bis</b><br>
-{{ offer.get_formatted_end_date() }}
-{{ offer.get_formatted_end_time() }}
-</div>
-
-<div class="list-entry">
-  <b>€/ km</b><br>
-  {{ offer.get_kilometerpreis() }}
-</div>
-
-<div class="delete-btn"  onClick="location.href='/deleteComOffer/{{ offer.get_id() }}'">
-<i class="material-icons">delete</i></div>
-<div style="clear:both">
-</div>
-
-</div>
-
- <!--
-  {{ offer.get_end_time() }}
-  {{ offer.get_created_at() }}
-  {{ offer.get_kilometerpreis() }} -->
-
-{% endfor %}
-
-</div>
-
-</div>
-
-<!-- Ende My Orders Tab -->
+    </div>  <!--end card -->
 
 
-<!-- Tab to test Things out -->
-
-<!-- <div id="test-container" class="profile" style="display:none">
-  <div id="map"></div>
-</div> -->
 
 
-  </div>
+
+
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
@@ -276,7 +293,6 @@
 
 <script type=text/javascript src="{{url_for('static', filename='profil__script.js') }}"></script>
 
- </div>
 
 
 {% endblock %}

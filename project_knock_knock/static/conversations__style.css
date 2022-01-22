@@ -1,110 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
-body
-{
-    font-size: 19px;
-    font-size: 1.2rem;
-    font-family: roboto;
-    font-weight: 300;
-
-}
-
-
-h1
-{
-  text-align: center;
-}
-
-p
-{
-    color: #FFFFFF;
-}
-
-h2
-{
-    color: #FFFFFF;
-}
-
-.content
-{
-    padding: 16px;
-    background: #33322F;
-    color: white;
-    overflow: hidden;
-    height:68vh;
-
-}
-
-.scroll-container
-{
-  overflow-y: scroll;
-  height: 80%;
-}
-
-
-.box1, .box2, .box3, .box4 {
-    vertical-align: top;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-  }
-
-  .stretch {
-    width: 100%;
-    display: inline-block;
-    font-size: 0;
-    line-height: 0
-}
-
-
-.input
-{
-    background:  #33322F;
-    color: white;
-    border: 1px #7E888A solid;
-    border-radius: 2px;
-    width: 100%;
-    opacity: 0.7;
-    width: 100%;
-}
-
-
-
-input:hover
-{
-  opacity: 1;
-}
-
-.roboto-font
-{
-  font-size: 19px;
-  font-size: 1.2rem;
-  font-family: roboto;
-  font-weight: 300;
-}
-
-
-
-.alert-box {
-	padding: 15px;
-  width:100%;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    z-index: 1;
-    position: relative;
-}
-
-.success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    display: none;
-    position: absolute;
-}
-
 #Tabelle
 {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 20px;
+}
+.own-text-container
+{
+  color: black;
+  text-align: left;
+  float: right;
+  border-radius: 15px;
+  border-color: green;
+  background-color: #79AB64;
+  padding: 16px 16px 16px 16px;
+  max-width: 40vh;
+  color: white;
+}
+
+.other-text-container
+{
+
+  color: black;
+  text-align: left;
+  border-radius: 15px;
+  border-color: grey;
+  float: left;
+  background-color: #788183;
+  padding: 16px 16px 16px 16px;
+  max-width: 40vh;
+  color: white;
 }

@@ -1,49 +1,3 @@
-body
-{
-    color: #FFFFFF;
-}
-.roboto-font
-{
-  font-size: 19px;
-  font-size: 1.2rem;
-  font-family: roboto;
-  font-weight: 300;
-}
-
-.content
-{
-    padding: 16px;
-    background: #33322F;
-    color: white;
-    height: 68vh;
-}
-
-.btn
-{
-  border: 1px #79AB64 solid;
-  color: #79AB64;
-  background:  #33322F;
-  border-radius: 45px;
-  height: 50px;
-  width:50px;
-  text-align: center;
-  float: right;
-  margin: 10px 0 0 16px;
-
-}
-
-.submit-btn
-{
-  float:left;
-  display: inline-block;
-  background:  #33322F;
-  border: 1px #7E888A solid;
-  border-radius: 2px;
-  opacity: 0.7;
-  overflow: hidden;
-  height: 32px;
-  margin: 20px 0 0 0;
-}
 
 .text-input
 {
@@ -60,25 +14,6 @@ body
   margin: 16px 0 0 0;
   width:60%;
 }
-
-
-h1
-{
-  text-align: center;
-}
-
-p
-{
-    color: #FFFFFF;
-}
-
-h2
-{
-    color: #FFFFFF;
-
-}
-
-
 
 .own-text-container
 {
@@ -123,40 +58,3 @@ h2
     border-spacing: 0 20px;
     word-wrap:break-word;
 }
-
-.scroll-container
-{
-  overflow-y: scroll;
-  height: 70%;
-}
-
-.spacer-container
-{
-  bottom: 0px;
-  width:100%;
-  position: absolute;
-  margin-left: -16px;
-  padding: 16px;
-}
-
-
-
-@media only screen and (min-device-width: 736px) {
-
-  ::-webkit-scrollbar{
-    border-radius: 10px;
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    width: 10px;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: grey;
-    width: 10px;
-    border-radius: 10px;
-  }
-  }

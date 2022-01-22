@@ -15,38 +15,54 @@
 
 {% block header %}
 
-
  {% endblock %}
 
 {% block content %}
 
-<div class="content">
-<form method ="POST" id="search-form" action="/driverOffer">
-  {{ form.csrf_token }}
-  {{ form.von(class_="location-input", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
-  {% for error in form.von.errors %}
-  <p style="color: red;"> {{ error }} </p> <br>
-  {% endfor %}
-  <span>
-    <div class="arrow-container material-icons">arrow_forwards</div>
-  </span>
-  {{ form.nach(class_="location-input", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }} {{form.submit(class_="submit-btn") }}
-  <div style="clear:both"></div>
-</form>
+  <div class="row vh-80">
+      <div class="col-sm-6 py-2">
+        <div class="h-100" id="map"></div>
+      </div>
+      <div class="col-sm-6 py-2">
+          <div class="card h-100 ">
+              <div class="card-body h-100">
 
-<div id="map"></div>
+                <form method ="POST" class="form-inline" action="/driverOffer">
+                  <div class="form-group mb-2 col-5">
+                  {{ form.csrf_token }}
+                  {{ form.von(class_="form-control", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+                  {% for error in form.von.errors %}
+                  <p class="text-warning"> {{ error }} </p> <br>
+                  {% endfor %}
+                  </div><div class="form-group mb-2 col-5">
+                  {{ form.nach(class_="form-control", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }}
 
+                </div>
 
+                {{form.submit(class_="btn btn-outline-success") }}
+                </form>
+                <table id="com-offer-table" class="table table-light">
+                  <thead >
+                    <tr>
+                      <th scope="col">Vehicle</th>
+                      <th scope="col">€/ km</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    {% for driverOffer in allDriverOffers %}
+                     <tr onClick="location.href='/drive_offer_detail/{{driverOffer.get_id()}}'">
+                       <td>   {{ driverOffer.get_vehicle() }}</td>
+                       <td>{{ driverOffer.get_kilometerpreis() }} € </td>
+                     </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+  <button class="btn btn-outline-success"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</button>
+          </div>
+      </div>
+  </div>
+  </div>
 
-<div class="spacer-container">
-
-  <div id="create-offer-btn" class="btn"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</div>
-
-
-</div>
-
-
-</div>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>

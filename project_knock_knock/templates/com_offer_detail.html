@@ -14,45 +14,54 @@
 
  {% block content %}
 
-<div class="content">
+ <div class="col-sm-6 py-2 justify-content-center">
+     <div class="card h-100 ">
+         <div class="card-body h-100 text-dark ">
 
-<div class="offer-label-container">
-  <p>Username </p>
-  <p>von </p>
-  <p>nach </p>
-  <p>gewünschte Uhrzeit </p>
-  <p>bis</p>
-  <p>Kilometerpreis </p>
-  <p>erstellt am </p>
-</div>
+           <div class="row">
 
-<div class="offer-detail-container">
-  <p>{{ com_offer.get_creator_name() }}</p>
-  <p>{{ com_offer.get_start() }}</p>
-  <p>{{ com_offer.get_destination() }}</p>
-  <p>{{ com_offer.get_start_time() }}</p>
-  <p>{{ com_offer.get_start_time() }}</p>
-  <p>{{ com_offer.get_kilometerpreis() }}</p>
-  <p>{{ com_offer.get_created_at() }}</p>
-</div>
+                        <div class="col-5">
+
+                        <p>Username </p>
+                        <p>von </p>
+                        <p>nach </p>
+                        <p>gewünschte Uhrzeit </p>
+                        <p>bis</p>
+                        <p>Kilometerpreis </p>
+                        <p>erstellt am </p>
+
+                      </div>
+                      <div class="col-5">
+<p>{{ com_offer.get_creator_name() }}</p>
+<p>{{ com_offer.get_start() }}</p>
+<p>{{ com_offer.get_destination() }}</p>
+<p>{{ com_offer.get_start_time() }}</p>
+<p>{{ com_offer.get_start_time() }}</p>
+<p>{{ com_offer.get_kilometerpreis() }} €</p>
+<p>{{ com_offer.get_created_at() }}</p>
+         </div>
+
+           </div>
 
 
-<div class="btn" onclick="history.back()">
+
+
+<div class="btn btn-outline-danger" onclick="history.back()">
 Back
 </div>
 
-
-
-<div class="btn" onclick="location.href='/accept_com_offer/{{ com_offer.get_id() }}'">
+<div class="btn btn-outline-success" onclick="location.href='/accept_com_offer/{{ com_offer.get_id() }}'">
 Accept
 </div>
 
-<div class="btn" onclick="location.href='/chat/{{ com_offer.get_creator_id() }}'">
+<div class="btn btn-outline-warning" onclick="location.href='/chat/{{ com_offer.get_creator_id() }}'">
 Contact Company
 </div>
 
 
   </div>
+    </div>
+      </div>
 
 
 {% endblock %}

@@ -23,8 +23,7 @@ def driver_offer():
         )
 
         return render_template(
-            'driverOffer.html',
-            view_name ='Driver Offer',
+            'search_drive_offer.html',
             allDriverOffers=driver_offers,
             api_key = API_KEY,
             form = form
@@ -32,9 +31,7 @@ def driver_offer():
 
     return render_template(
         'search_drive_offer.html',
-        view_name ='Driver Offer',
         api_key = API_KEY,
-        # allDriverOffers=driver_offers,
         form = form
         )
 
@@ -47,7 +44,6 @@ def driver_offer_detail_func(offer_id):
 
     return render_template(
         'driver_offer_detail.html',
-        view_name ='Details',
         drive_offer = driver_offers
         )
 
