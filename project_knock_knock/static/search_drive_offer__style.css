@@ -23,3 +23,9 @@
   background:  #33322F;
   color: white;
 }
+
+body
+{
+    background: url('img/driverOffer.png') ;
+    background-repeat: no-repeat;
+}
