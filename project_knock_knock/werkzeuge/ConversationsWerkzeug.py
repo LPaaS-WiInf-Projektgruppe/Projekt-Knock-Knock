@@ -12,4 +12,4 @@ conversations = Blueprint('conversations', __name__)
 def conversations_func():
     user = current_user
     conversations = User.get_conversations(user)
-    return render_template('conversations.html', view_name ='Conversations', information=conversations)
+    return render_template('conversations.html', information=conversations)
