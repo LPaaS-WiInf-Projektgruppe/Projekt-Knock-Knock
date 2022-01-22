@@ -17,10 +17,56 @@ def chat_test():
 @login_required
 def chat_func(dude_id):
 
+    dude = User.query.filter_by(id = dude_id).first()
     user = current_user
-    messages = ExchangedMessages.get_messages_for_user(user, dude_id)
 
-    return render_template("chat.html", view_name='Chat', dude = dude, self = user, messages = messages)
+    if request.method == 'POST' :
+        content_text = request.form['send']
+        new_message = ExchangedMessages(
+            transmitter = user,
+            receiver = dude,
+            text = content_text,
+            read = False
+        )
+
+        try:
+            db.session.add(new_message)
+            db.session.commit()
+            return redirect("/chat/" + str(dude.id))
+        except:
+            return 'Nachricht konnte nicht versendet werden :/'
+
+    else:
+        #messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(and_(
+        #            or_(ExchangedMessages.transmitter == dude.id),
+        #            or_(ExchangedMessages.transmitter == self.id),
+        #            or_(ExchangedMessages.receiver == dude.id),
+        #            or_(ExchangedMessages.receiver == self.id))
+        #            ).all()
+
+
+        # Setzen des Status der Nachrichten auf gelesen, da sie im Anschluss geöffnet werden
+        # Try Block, da nicht immer schon welche vorhanden
+        try:
+            message = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(
+                        and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user)
+                        ).first()
+            gelesen = ExchangedMessages.query.filter(ExchangedMessages.id == message.id).first().read
+
+            if gelesen == False:
+                ExchangedMessages.query.filter(ExchangedMessages.id == message.id).update({"read": True})
+                db.session.commit()
+        except:
+            pass
+
+        # Übergabe der Nachrichten aus dem ausgewählten Chat
+        messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(or_(
+                and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user),
+                and_(ExchangedMessages.transmitter == user, ExchangedMessages.receiver == dude)
+                    )).all()
+
+
+        return render_template("chat.html", view_name='Chat', dude = dude, self = user, messages = messages)
 
 
 @chat.route('/update_chat/<int:dude_id>', methods=['POST'])
