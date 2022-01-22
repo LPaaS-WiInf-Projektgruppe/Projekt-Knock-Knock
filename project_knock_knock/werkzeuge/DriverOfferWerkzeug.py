@@ -24,24 +24,20 @@ def driver_offer():
 
         return render_template(
             'driverOffer.html',
-            view_name ='Drive Offer',
+            view_name ='Driver Offer',
             allDriverOffers=driver_offers,
-            form = form,
-            api_key = API_KEY
+            api_key = API_KEY,
+            form = form
             )
-    allDriverOffers = DriverOffers.get_offers()
-
-    driver_offers = []
-
-    # print(allDriverOffers)
 
     return render_template(
         'search_drive_offer.html',
         view_name ='Driver Offer',
-        allDriverOffers=driver_offers,
-        form = form,
-        api_key = API_KEY
+        api_key = API_KEY,
+        # allDriverOffers=driver_offers,
+        form = form
         )
+
 
 @driverOffer.route('/drive_offer_detail/<int:offer_id>')
 @login_required

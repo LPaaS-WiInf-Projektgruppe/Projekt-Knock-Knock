@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin=""/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 {% endblock %}
@@ -23,8 +24,11 @@
 <form method ="POST" id="search-form" action="/driverOffer">
   {{ form.csrf_token }}
   {{ form.von(class_="location-input", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+  {% for error in form.von.errors %}
+  <p style="color: red;"> {{ error }} </p> <br>
+  {% endfor %}
   <span>
-    <div class="arrow-container"> -> </div>
+    <div class="arrow-container material-icons">arrow_forwards</div>
   </span>
   {{ form.nach(class_="location-input", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }} {{form.submit(class_="submit-btn") }}
   <div style="clear:both"></div>
@@ -32,24 +36,7 @@
 
 <div id="map"></div>
 
-<div class="scroll-container">
 
-
-
-  {% for driverOffer in allDriverOffers %}
-  <div class="offer-container" onClick="location.href='/drive_offer_detail/{{driverOffer.get_id()}}'">
-    <div class="list-entry">
-      <b>Vehicle</b><br>
-      {{ driverOffer.get_vehicle() }}
-    </div>
-    <div class="list-entry">
-      <b>€/ km</b><br>
-      {{ driverOffer.get_kilometerpreis() }} €
-    </div>
-  </div>
-  {% endfor %}
-
-  </div>
 
 <div class="spacer-container">
 

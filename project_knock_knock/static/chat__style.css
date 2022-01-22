@@ -13,10 +13,54 @@ body
 .content
 {
     padding: 16px;
-    #background: #33322F;
+    background: #33322F;
     color: white;
     height: 68vh;
 }
+
+.btn
+{
+  border: 1px #79AB64 solid;
+  color: #79AB64;
+  background:  #33322F;
+  border-radius: 45px;
+  height: 50px;
+  width:50px;
+  text-align: center;
+  float: right;
+  margin: 10px 0 0 16px;
+
+}
+
+.submit-btn
+{
+  float:left;
+  display: inline-block;
+  background:  #33322F;
+  border: 1px #7E888A solid;
+  border-radius: 2px;
+  opacity: 0.7;
+  overflow: hidden;
+  height: 32px;
+  margin: 20px 0 0 0;
+}
+
+.text-input
+{
+  width: 35%;
+  float: right;
+  margin-bottom: 16px;
+  /* margin-left: 16px; */
+  background:  #33322F;
+  color: white;
+  border: 1px #7E888A solid;
+  border-radius: 15px;
+  opacity: 0.7;
+  height: 40px;
+  margin: 16px 0 0 0;
+  width:60%;
+}
+
 
 h1
 {
@@ -31,33 +75,45 @@ p
 h2
 {
     color: #FFFFFF;
+
 }
 
-a3
-{
-  font-size: 1.5rem;
-  color: black;
-  border-radius: 15px;
-  border-color: green;
-  background-color: lightgreen;
-}
 
-a2
+
+.own-text-container
 {
   color: black;
-  text-align: right;
+  text-align: left;
+  float: right;
   border-radius: 15px;
   border-color: green;
-  background-color: lightgreen;
+  background-color: #79AB64;
+  padding: 16px 16px 16px 16px;
+  max-width: 40vh;
+  color: white;
+
 }
 
-a1
+.other-text-container
 {
+
   color: black;
   text-align: left;
   border-radius: 15px;
   border-color: grey;
-  background-color: lightgrey;
+  float: left;
+  background-color: #788183;
+  padding: 16px 16px 16px 16px;
+  max-width: 40vh;
+  color: white;
+}
+
+
+.date-container
+{
+  font-size: 1.0rem;
+  width: 16vh;
+  padding: 0 32px 0 16px;
 }
 
 #Tabelle
@@ -65,4 +121,42 @@ a1
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 20px;
+    word-wrap:break-word;
 }
+
+.scroll-container
+{
+  overflow-y: scroll;
+  height: 70%;
+}
+
+.spacer-container
+{
+  bottom: 0px;
+  width:100%;
+  position: absolute;
+  margin-left: -16px;
+  padding: 16px;
+}
+
+
+
+@media only screen and (min-device-width: 736px) {
+
+  ::-webkit-scrollbar{
+    border-radius: 10px;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    width: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    width: 10px;
+    border-radius: 10px;
+  }
+  }

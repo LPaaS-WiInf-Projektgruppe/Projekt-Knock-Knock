@@ -8,8 +8,8 @@ LOCATION_ERROR = "Please enter a valid location! (Must be an actual place in the
 TIME_ERROR = "Please enter a valid time! (Must be in the format DD.MM.YYYY HH:MM and can't be in the past)"
 DURATION_ERROR = "Must be a valid duration! (Must be a number and have a maximum amount of 1 decimal place: e.g. 1.5. Furthermore duration has to be be larger than 0 and smaller than 7 in order to be accepted.) "
 
-#"^[A-z]*$"
-location_validator = Regexp("^[A-z]*\s?[0-9]{0,3}$", 0, message = LOCATION_ERROR)
+location_reg_ex = "^[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df\s]*([A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]){1}\s[0-9]{0,3}(,\s?[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]+){1}$"
+location_validator = Regexp(location_reg_ex, 0, message = LOCATION_ERROR)
 
 #"^[0-9]*\.[0-9][0-9]$"
 geld_validator = Regexp("^[0-9]*\.[0-9][0-9]$", 0, message = GELD_ERROR)
@@ -27,12 +27,12 @@ class ComOfferForm(FlaskForm):
     von = StringField(
         'from',
         validators= [location_validator],
-        render_kw={"placeholder": "e.g 'Lübecker Straße'"}
+        render_kw={"placeholder": "e.g 'Lübecker Straße 5, Hamburg'"}
     )
     nach = StringField(
         'to',
         validators= [location_validator],
-        render_kw={"placeholder": "e.g. 'Hauptbahnhof'"}
+        render_kw={"placeholder": "e.g. 'Kieler Straße 5, Hamburg'"}
     )
     zeit_start = DateTimeLocalField(
         'gewünschte Zeit',

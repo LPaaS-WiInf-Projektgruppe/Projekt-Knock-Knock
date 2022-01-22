@@ -13,17 +13,19 @@
 
 <div class="content">
 
+  <div class="rating-container">
 
-  <form action="/rate_offer/{{ type }}/{{ id }}" method="post">
+  <form id ="rating-form" action="/rate_offer/{{ type }}/{{ id }}" method="post">
     {{ form.csrf_token }}
-    {{ type }} {{ id }}
-    {{ form.rating.label }}
-    {{ form.rating }}
 
-    {{ form.submit }}
+    {{ form.rating.label }}
+    {{ form.rating(data_type="range") }}
+
+    {{ form.submit(class_="submit-btn") }}
 
   </form>
 
+</div>
 
 </div>
 

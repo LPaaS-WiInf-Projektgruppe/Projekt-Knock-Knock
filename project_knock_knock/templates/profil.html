@@ -40,10 +40,8 @@
       {% endif %}
       ({{ profile.get_rating().get_rate_count() }})
 
-
-      <br>
-
       <br><br><br>
+
     <p>You have accepted the following Offers which are still active</p>
 
 
@@ -60,7 +58,7 @@
       {{ offer.get_location() }}
     </div>
     <div class="delete-btn" onClick="location.href='/rate_offer/0/{{ offer.get_id()}}'" >
-    <i class="material-icons">delete</i></div>
+    <i class="material-icons">Check</i></div>
     <div style="clear:both">
     </div>
 
@@ -75,10 +73,10 @@
   {% for offer in profile.get_accepted_com_offers() %}
   <div class="offer-container">
     <div class="location-container">
-      {{ offer.get_start() }} -> {{ offer.get_destination()}} </div>
+      {{ offer.get_start() }} <div class="material-icons arrow-container">arrow_forwards</div> {{ offer.get_destination()}} </div>
       <!-- TODO: Change name of button to check as completed -->
     <div class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" >
-    <i class="material-icons">delete</i></div>
+    <i class="material-icons">check</i></div>
     <div style="clear:both">
     </div>
   </div>
@@ -186,12 +184,13 @@
 
     <!-- TODO: remove offer when its end time is reached -->
   </div>
+    <br>
+</div>
 
-  <br>
   {% endif %}
   {% endfor %}
 
-</div>
+
 </div>
 
 
@@ -262,9 +261,9 @@
 
 <!-- Tab to test Things out -->
 
-<div id="test-container" class="profile" style="display:none">
+<!-- <div id="test-container" class="profile" style="display:none">
   <div id="map"></div>
-</div>
+</div> -->
 
 
   </div>

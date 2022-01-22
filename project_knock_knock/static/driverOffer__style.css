@@ -28,7 +28,7 @@ h2
 .content
 {
     padding: 16px;
-    #background: #33322F;
+    background: #33322F;
     color: white;
     height: 68vh;
 }
@@ -162,12 +162,6 @@ input:hover
   font-weight: 300;
 }
 
-.content
-{
-    padding: 16px;
-    background: #33322F;
-}
-
 .alert-box {
 	padding: 15px;
   width:100%;
@@ -208,9 +202,6 @@ input:hover
 .arrow-container
 {
   float: left;
-  padding-top: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 

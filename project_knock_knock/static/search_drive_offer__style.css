@@ -81,11 +81,11 @@ h2
 
 
 
-  .stretch {
-    width: 100%;
-    display: inline-block;
-    font-size: 0;
-    line-height: 0
+.stretch {
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0
 }
 
 .location-input
@@ -110,10 +110,7 @@ span
   margin-left: 16px;
 }
 
-.arrow-container
-{
-  margin-right: 16px;
-}
+
 
 .submit-btn
 {

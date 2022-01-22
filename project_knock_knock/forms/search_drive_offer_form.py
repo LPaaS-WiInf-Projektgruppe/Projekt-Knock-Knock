@@ -4,8 +4,10 @@ from wtforms.fields.html5 import SearchField
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Regexp
 
 
-location_reg_ex = "^[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df\s]*([A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]){1}\s[0-9]{0,3}(,\s?[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]+){1}$"
-
+location_reg_ex = \
+    "^[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df\s]*\s[0-9]{0,3}" + \
+    "(,\s?[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]+){1}" + \
+    "(,\s?[A-z\u00e4\u00c4\u00d6\u00f6\u00dc\u00fc\u00df]*)?$" 
 
 class SearchDriveOfferForm(FlaskForm):
     von = StringField(

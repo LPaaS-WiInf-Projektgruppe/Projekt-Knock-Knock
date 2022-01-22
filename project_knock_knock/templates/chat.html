@@ -4,6 +4,7 @@
 {% block extra_css %}
      {{ fontawesome_html() }}
       <link href="{{url_for('static', filename='chat__style.css')}}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock %}
 
 
@@ -14,82 +15,63 @@
 
  {% block content %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script>
-
-  $(function()
-  {
-    window.setInterval(function()
-    {
-      loadNewChats()
-    }, 1000)
-
-  function loadNewChats()
-  {
-    $.ajax(
-      {
-        url:"/update_chat/{{dude.id}}",
-        type: "POST",
-        dataType: "json",
-        success: function(data)
-        {
-          $(messages).replaceWith(data)
-        }
-      }
-    )
-  }
-});
-
-</script>
+<div class="content">
 
 <h1>Chat mit {{ dude.username }}</h1>
 
-<br>
+
+<div class="scroll-container">
 
 
 <div id="messages">
 
     <table id="Tabelle">
         <tr>
-          <th> &nbsp Text &nbsp </th>
-          <th> &nbsp Uhrzeit &nbsp </th>
+          <th>Text</th>
+          <th>Uhrzeit</th>
         </tr>
         {% for message in messages %}
-          {% if message.transmitter == dude.id %}
+          {% if message.transmitter.id == dude.id %}
               <tr>
-                <td><a1> &nbsp {{ message.text }} &nbsp</a1></td>
-                <td style="font-size: 1.0rem;"> &nbsp {{ message.created_at }} &nbsp </td>
+                <td><div class="other-text-container">{{ message.text }}</div></td>
+                <td ><div class="date-container"> {{ message.created_at }}</div> </td>
               </tr>
           {% else %}
               <tr>
-                <td align="right"><a2>&nbsp {{ message.text }} &nbsp</a2></td>
-                <td style="font-size: 1.0rem;">&nbsp {{ message.created_at }} &nbsp</td>
+                <td align="right"><div class="own-text-container">{{ message.text }}</div></td>
+                <td > <div class="date-container">{{ message.created_at }}</div> </td>
               </tr>
           {% endif %}
         {% endfor %}
     </table>
 
 </div>
+</div>
 
-<br>
-<br>
 
-<p align="center">
-  <a3> &nbsp Neue Nachricht versenden &nbsp</a3>
-</p>
+<div class="spacer-container">
 
+  <form>
+    <input type="button" class="submit-btn" value="Back" onclick="history.back()" class="button" >
+  </form>
 <form style="color: black; align-items: center;" align= "center" action="/chat/{{dude.id}}" method="POST">
-  <input type="text" name="send" id="send"><br><br>
-  <input type="submit" value="Abschicken">
+  <input class = "btn material-icons" type="submit" value="send">
+  <input class="text-input" type="text" placeholder="Nachricht" name="send" id="send">
+
 </form>
 
 <br>
 <br>
 
-<form>
-  <input type="button" value="Back" onclick="history.back()" class="button" style="color: black;" align= "center">
-</form>
 
+
+</div>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{{url_for('static', filename='chat__style.css')}}" >
 
 {% endblock %}
