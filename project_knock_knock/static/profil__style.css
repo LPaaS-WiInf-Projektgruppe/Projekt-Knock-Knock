@@ -96,3 +96,9 @@ i
 {
   vertical-align: middle;
 }
+
+#container
+{
+  width: 1210px;
+  height: 760px;
+}
