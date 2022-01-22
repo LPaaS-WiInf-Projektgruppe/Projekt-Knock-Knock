@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from flask_user import UserMixin
+from flask import request
 
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
@@ -949,3 +950,56 @@ class ExchangedMessages(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     text = db.Column(db.String(200), nullable = False)
     read = db.Column(db.Boolean, nullable = False)
+
+
+
+    def get_messages_for_user(user, other_user):
+
+            dude = User.query.filter_by(id = other_user.id).first()
+
+            if request.method == 'POST' :
+                content_text = request.form['send']
+                new_message = ExchangedMessages(
+                    transmitter = user,
+                    receiver = dude,
+                    text = content_text,
+                    read = False
+                )
+
+                try:
+                    db.session.add(new_message)
+                    db.session.commit()
+                    return redirect("/chat/" + str(dude.id))
+                except:
+                    return 'Nachricht konnte nicht versendet werden :/'
+
+            else:
+                #messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(and_(
+                #            or_(ExchangedMessages.transmitter == dude.id),
+                #            or_(ExchangedMessages.transmitter == self.id),
+                #            or_(ExchangedMessages.receiver == dude.id),
+                #            or_(ExchangedMessages.receiver == self.id))
+                #            ).all()
+
+
+                # Setzen des Status der Nachrichten auf gelesen, da sie im Anschluss geöffnet werden
+                # Try Block, da nicht immer schon welche vorhanden
+                try:
+                    message = ExchangedMessages.query.order_by(ExchangedMessages.created_at.desc()).filter(
+                                and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user)
+                                ).first()
+                    gelesen = ExchangedMessages.query.filter(ExchangedMessages.id == message.id).first().read
+
+                    if gelesen == False:
+                        ExchangedMessages.query.filter(ExchangedMessages.id == message.id).update({"read": True})
+                        db.session.commit()
+                except:
+                    pass
+
+                # Übergabe der Nachrichten aus dem ausgewählten Chat
+                messages = ExchangedMessages.query.order_by(ExchangedMessages.created_at).filter(or_(
+                        and_(ExchangedMessages.transmitter == dude, ExchangedMessages.receiver == user),
+                        and_(ExchangedMessages.transmitter == user, ExchangedMessages.receiver == dude)
+                            )).all()
+
+                return messages

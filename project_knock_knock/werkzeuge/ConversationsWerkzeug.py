@@ -11,5 +11,20 @@ conversations = Blueprint('conversations', __name__)
 @login_required
 def conversations_func():
     user = current_user
+
     conversations = User.get_conversations(user)
-    return render_template('conversations.html', view_name ='Conversations', information=conversations)
+
+    dude = User.query.filter_by(id = conversations[0].get_id()).first()
+
+    # print(f"conversations: {conversations[0].get_id()}")
+    messages = ExchangedMessages.get_messages_for_user(user, dude)
+
+    dude = User.query.filter(user.id == conversations[0].get_id()).first()
+
+    return render_template(
+        'conversations.html',
+        information = conversations,
+        dude = dude,
+        self = user,
+        messages = messages
+    )

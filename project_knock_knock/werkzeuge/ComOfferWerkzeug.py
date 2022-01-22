@@ -15,11 +15,16 @@ def com_offer():
     '''Show all available ComOffers
     '''
 
+    create_com_offer_form = ComOfferForm()
+
+
+
     com_offers = ComOffers.get_available_offers()
 
     return render_template(
         'comOffer.html',
         view_name ='Company Offer',
+        form=create_com_offer_form,
         offers = com_offers,
     )
 
