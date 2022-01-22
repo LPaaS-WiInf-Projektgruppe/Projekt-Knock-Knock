@@ -33,6 +33,7 @@
 
 
 
+
 .offer-container
 {
   border: solid 1px #7E888A;
@@ -95,4 +96,10 @@ display: inline-block
 i
 {
   vertical-align: middle;
+}
+
+body
+{
+    background: url('img/profil.png') ;
+    background-repeat: no-repeat;
 }
