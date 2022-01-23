@@ -5,7 +5,7 @@ body
     font-size: 1.2rem;
     font-family: roboto;
     font-weight: 300;
-    background-image: url('img/support.jpg');
+    background-image: url('img/about.jpg');
     background-repeat: no-repeat;
 }
 
@@ -31,8 +31,9 @@ h2
     background: #FFFFFF;
     color: black;
     overflow: hidden;
-    height:68vh;
-    opacity: 0.95;
+    opacity: 0.90;
+
+
 
 }
 
