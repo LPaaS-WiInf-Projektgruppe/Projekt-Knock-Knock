@@ -1,3 +1,9 @@
+
+#register {
+  width: 625px;
+  height: 760px;
+}
+
 body
 {
     background-image: url('img/home.png');
@@ -70,3 +76,4 @@ body
 }
 
 /* ------------- Pop-Up-Ende ---------------- */
+
