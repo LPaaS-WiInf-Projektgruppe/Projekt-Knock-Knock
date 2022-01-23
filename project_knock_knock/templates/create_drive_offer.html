@@ -11,6 +11,7 @@
 
  {% block content %}
 
+<<<<<<< Updated upstream
 <div class="content">
 
     <form method ="POST" id="offer-form" action="/create_drive_offer">
@@ -183,6 +184,131 @@
                    {{ form.to_zeitDo(class_="work-time-input") }}
                    {% for error in form.from_zeitDo.errors %}
                      <p style="color: red;"> {{ error }} </p>
+=======
+ <div class="col-sm-6 py-2">
+     <div class="card h-100 ">
+         <div class="card-body h-100 text-dark">
+
+           <form method ="POST" id="offer-form" action="/create_drive_offer">
+                   {{ form.csrf_token }}
+
+                   <div class="form-group mb-2 col-5">
+                   {{ form.ort.label }}
+                   {{ form.ort(class_="form-control") }}
+                     {% for error in form.ort.errors %}
+                       <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group mb-2 col-5">
+                   {{ form.fahrzeug.label }}
+                   {{ form.fahrzeug(class_="form-control") }}
+                     {% for error in form.fahrzeug.errors %}
+                      <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group mb-2 col-5">
+                     {{ form.zeit_start.label }}
+                   {{ form.zeit_start(class_="form-control") }}
+                     {% for error in form.zeit_start.errors %}
+                        <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group mb-2 col-5">
+                   {{ form.zeit_ende.label }}
+                   {{ form.zeit_ende(class_="form-control") }}
+                     {% for error in form.zeit_ende.errors %}
+                       <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group mb-2 col-5">
+                   {{ form.preis.label }}
+                   {{ form.preis(class_="form-control") }}
+                     {% for error in form.preis.errors %}
+                       <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group custom-select mb-2 col-5">
+                   {{ form.radius.label }}
+                   {{ form.radius(class_="form-control") }}
+                     {% for error in form.radius.errors %}
+                       <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+                   <div class="form-group mb-2 col-5">
+                   {{ form.bemerkungen.label }}
+                   {{ form.bemerkungen(class_="form-control") }}
+                     {% for error in form.bemerkungen.errors %}
+                       <p class="text-danger"> {{ error }} </p> <br>
+                     {% endfor %}
+                   </div>
+
+
+                   <!-- beginning of the work time container -->
+
+
+                     <div class="form-group mb-2 col-1">
+                       {{ form.from_zeitMo.label }}
+                       {{ form.from_zeitMo(class_="form-control") }}
+                       {{ form.to_zeitMo(class_="form-control") }}
+                       {% for error in form.from_zeitMo.errors %}
+                         <p class="text-danger"> {{ error }} </p>
+                       {% endfor %}
+                     </div>
+
+                     <div class="form-group mb-2 col-1">
+                       {{ form.from_zeitDi.label }}
+                       <br>
+                       {{ form.from_zeitDi(class_="form-control") }}
+                       {{ form.to_zeitDi(class_="form-control") }}
+                       {% for error in form.from_zeitDi.errors %}
+                         <p class="text-danger"> {{ error }} </p>
+                       {% endfor %}
+                     </div>
+
+                     <div class="form-group mb-2 col-1">
+                       {{ form.from_zeitMi.label }}
+                       <br>
+                       {{ form.from_zeitMi(class_="form-control") }}
+                       {{ form.to_zeitMi(class_="form-control") }}
+                       {% for error in form.from_zeitMi.errors %}
+                         <p class="text-danger"> {{ error }} </p>
+                       {% endfor %}
+                     </div>
+
+                        <div class="form-group mb-2 col-1">
+                          {{ form.from_zeitDo.label }}
+                          <br>
+                          {{ form.from_zeitDo(class_="form-control") }}
+                          {{ form.to_zeitDo(class_="form-control") }}
+                          {% for error in form.from_zeitDo.errors %}
+                            <p class="text-danger"> {{ error }} </p>
+                          {% endfor %}
+                        </div>
+
+                     <div class="form-group mb-2 col-1">
+                       {{ form.from_zeitFr.label }}
+                       <br>
+                       {{ form.from_zeitFr(class_="form-control") }}
+                       {{ form.to_zeitFr(class_="form-control") }}
+                       {% for error in form.from_zeitFr.errors %}
+                         <p class="text-danger"> {{ error }} </p>
+                       {% endfor %}
+                     </div>
+
+                  <div class="form-group mb-2 col-1">
+                    {{ form.from_zeitSa.label }}
+                    <br>
+                    {{ form.from_zeitSa(class_="form-control") }}
+                    {{ form.to_zeitSa(class_="form-control") }}
+                    {% for error in form.from_zeitSa.errors %}
+                      <p class="text-danger"> {{ error }} </p>
+>>>>>>> Stashed changes
                    {% endfor %}
                  </div>
 

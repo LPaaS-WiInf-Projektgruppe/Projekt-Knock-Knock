@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
 body,
 html {
@@ -211,4 +212,31 @@ button:focus {
     width: 100%;
     height: 100%;
   }
+=======
+input[type="text"],input[type="password"], textarea {
+
+  background-color : #d1d1d1;
+  border: 1px solid #212529;
+  margin-bottom: 8px;
+
+}
+
+
+
+input[type="submit"] {
+
+  background-color : #0D0D0D;
+  color: #ffffff;
+  border: 1px solid #000000;
+  height: 38px;
+  width: 50%;
+  margin-top: 20px;
+
+
+}
+
+.card{
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+>>>>>>> Stashed changes
 }
