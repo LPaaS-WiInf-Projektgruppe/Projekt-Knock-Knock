@@ -1,27 +1,3 @@
-
-#container {
-  width: 625px;
-  height: 760px;
-  margin-top: 35;
-  position: absolute;
-  right: 100px
-
-}
-
-#containerbreiter{
-  width: 870px;
-  height: 760px;
-  float: left;
-
-}
-
-#com-offer-table{
-  width: 870px;
-  height: 760px;
-  float: right;
-
-}
-
 body
 {
     background: url('img/comOffer.png') ;
@@ -98,4 +74,3 @@ body
     width: 70%;
   }
 }
-
