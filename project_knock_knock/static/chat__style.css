@@ -1,4 +1,13 @@
+body
+{
+    background-image: url('img/support.jpg');
+    background-repeat: no-repeat;
+}
 
+#container
+{
+  opacity: 0.97;
+}
 .own-text-container
 {
   color: black;

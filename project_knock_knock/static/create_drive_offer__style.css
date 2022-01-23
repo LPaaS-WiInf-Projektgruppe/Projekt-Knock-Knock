@@ -1,1 +1,15 @@
+body
+{
+    background: url('img/driverOffer.png') ;
+    background-repeat: no-repeat;
+}
 
+#container
+{
+  opacity: 0.97;
+}
+
+#containerouterlayer
+{
+  position: relative;
+}

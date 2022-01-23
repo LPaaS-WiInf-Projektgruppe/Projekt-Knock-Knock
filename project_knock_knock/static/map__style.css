@@ -1,5 +1,7 @@
 body
 {
+  background-image: url('img/driverOffer.png');
+  background-repeat: no-repeat;
     color: #FFFFFF;
 }
 .roboto-font
@@ -10,6 +12,10 @@ body
   font-weight: 300;
 }
 
+#container
+{
+  opacity: 0.97;
+}
 .content
 {
     padding: 16px;

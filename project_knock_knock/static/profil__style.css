@@ -10,7 +10,10 @@
 
 }
 
-
+#container
+{
+  opacity: 0,97;
+}
 
 .input-div
 {

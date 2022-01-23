@@ -15,9 +15,9 @@
 {% block content %}
 
 
-  <div class="row flex-fill py-3" >
-      <div class="col-lg-6 py-2">
-        <div class="card h-100  m-3 p-3 ">
+  <div id="containerouter" class="row flex-fill py-3" >
+      <div id="container" class="col-lg-6 py-2">
+        <div id="container" class="card h-100  m-3 p-3 ">
             <table id="com-offer-table" class="table table-light">
               <thead thead-dark>
                 <tr>
@@ -58,9 +58,9 @@
                 <!--- Info - Symbol - Ende - -->
     </div>
       </div>
-      <div class="col-lg-6 py-2">
-          <div class="card h-100 m-3">
-              <div class="card-body h-100">
+      <div id="container" class="col-lg-6 py-2">
+          <div id="container" class="card h-100 m-3">
+              <div id="container" class="card-body h-100">
                 <form method ="POST" id="offer-form" action="/create_com_offer">
                         {{ form.csrf_token }}
 
