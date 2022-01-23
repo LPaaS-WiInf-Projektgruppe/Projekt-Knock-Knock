@@ -28,11 +28,6 @@
     overflow: hidden;
 }
 
-
-
-
-
-
 .offer-container
 {
   border: solid 1px #7E888A;
@@ -97,6 +92,7 @@ i
   vertical-align: middle;
 }
 
+
 #container
 {
   width: 1210px;
@@ -124,4 +120,9 @@ i
     top: 100px;
     right: 10px;
     left: 10px;
+=======
+body
+{
+    background: url('img/profil.png') ;
+    background-repeat: no-repeat;
 }

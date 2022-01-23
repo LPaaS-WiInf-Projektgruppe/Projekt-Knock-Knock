@@ -24,8 +24,15 @@
   color: white;
 }
 
+
 #createDriverOffer
 {
   width: 625px;
   height: 760px;
+
+body
+{
+    background: url('img/driverOffer.png') ;
+    background-repeat: no-repeat;
+
 }

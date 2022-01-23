@@ -92,8 +92,6 @@ class User(db.Model, UserMixin):
 
         # Erstellung der Objekte für die obige Sammlung
         for contact in allContacts:
-
-
             typ = User.query.filter_by(id = contact.id).first()
             try:
                 zeit = ExchangedMessages.query \
@@ -117,6 +115,7 @@ class User(db.Model, UserMixin):
                 # Auskommentierter Kommentar zum  Debuging, except und pass müssen aber bleiben
                 # für den Fall von (noch) nicht existierenden Konversationen
                 #return "Eigener Username: " + self.username + " und Nummer: " +str(self.id) + "\n" + "Andererer Dude: " + typ.username + " und Nummer: " +str(typ.id) + "\n" + "Letzte ausgetauschte Nachricht: " + "\n" + str(allContacts)
+
 
         return toBeDisplayed
 

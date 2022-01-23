@@ -30,3 +30,9 @@
   max-width: 40vh;
   color: white;
 }
+
+body
+{
+    background: url('img/conversation.png') ;
+    background-repeat: no-repeat;
+}
