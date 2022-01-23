@@ -20,19 +20,20 @@
           <div class="col-lg-6 py-2 " >
             <div class="card m-3 p-3 ">
 
-              <h2>Warum?</h2>
+              <h2>Why?</h2>
                 <p>
-                  Jeden Tag wird eine immense Anzahl an Personen, Paketen, Materialien, Essen, o.Ä. von diversen Liefer- und Transportdiensten befördert.
-                  Da diese jedoch kaum zusammenarbeiten folgen Ineffizienzen bei der Auslastung, der Reaktionsfähigkeit auf Bedarfsschwankungen, und viele weitere.
-                  Diese Problematik löst Knock Knock, da hier Ressourcen geteilt und mehrere redundante/ähnliche Fahrten gebündelt werden können!
+                  Every day a huge amount of people, packages, materials, food etc. is moved around. Unfortuantly often the involved people are not communicating
+                  to coordinate accordingly and efficiently. This creates an insufficient possibility to react to fluctuations in demand on both ends. To solve this
+                  issue we developed "KnockKnock". The application provides a possibility to share resources and there reduces redundant rides.
+
                 </p>
 
                 <br>
                 <br>
 
 
-    <button type="button" class="btn btn-outline-primary mb-3" name="button"> Ich möchte Fahren!</button>
-      <button type="button" class="btn btn-outline-danger" name="button"> Ich möchte ein Fahrangebot erstellen!</button>
+    <button type="button" class="btn btn-outline-primary mb-3" onClick="location.href='/driverOffer'" name="button"> Search Ride!</button>
+      <button type="button" class="btn btn-outline-danger" onClick="location.href='/comOffer'" name="button"> Search Driver!</button>
 
     Not yet convinced? Here you can find more information about our service!
 
@@ -58,14 +59,9 @@
                   <div class="col-xs-6">
                       <label for="{{ field.id }}" class="control-label">{{ field.label.text }}</label>
                   </div>
-                  <div class="col-xs-6 text-right">
-                      {% if user_manager.USER_ENABLE_REGISTER %}
-                          <a href="{{ url_for('user.login') }}" tabindex='290'>
-                              {%trans%}Already registered? Sign in.{%endtrans%}</a>
-                      {% endif %}
-                  </div>
+
               </div>
-              {{ field(class_='form-control', tabindex=210) }}
+              {{ field(class_='form-control mb-3', tabindex=21) }}
               {% if field.errors %}
                   {% for e in field.errors %}
                       <p class="help-block">{{ e }}</p>
@@ -74,16 +70,25 @@
           </div>
 
           {% if user_manager.USER_ENABLE_EMAIL and user_manager.USER_ENABLE_USERNAME %}
-              {{ render_field(form.email, tabindex=220) }}
+              {{ render_field(form.email, tabindex=220,  class_='mb-3') }}
           {% endif %}
 
-          {{ render_field(form.password, tabindex=230) }}
+          {{ render_field(form.password, tabindex=230, class_='mb-3') }}
 
           {% if user_manager.USER_REQUIRE_RETYPE_PASSWORD %}
-              {{ render_field(form.retype_password, tabindex=240) }}
+              {{ render_field(form.retype_password, tabindex=240, class_='mb-3') }}
           {% endif %}
 
-          {{ render_submit_field(form.submit, tabindex=280) }}
+
+          {{ render_submit_field(form.submit, tabindex=280, class_="btn btn-outline-success") }}
+
+          <div class="col-xs-6 text-right">
+              {% if user_manager.USER_ENABLE_REGISTER %}
+                  <a href="{{ url_for('user.login') }}" tabindex='290'>
+                      {%trans%}Already registered? Sign in.{%endtrans%}</a>
+              {% endif %}
+          </div>
+
       </form>
 
 

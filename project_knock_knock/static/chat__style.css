@@ -1,20 +1,4 @@
 
-.text-input
-{
-  width: 35%;
-  float: right;
-  margin-bottom: 16px;
-  /* margin-left: 16px; */
-  background:  #33322F;
-  color: white;
-  border: 1px #7E888A solid;
-  border-radius: 15px;
-  opacity: 0.7;
-  height: 40px;
-  margin: 16px 0 0 0;
-  width:60%;
-}
-
 .own-text-container
 {
   color: black;
@@ -42,7 +26,6 @@
   max-width: 40vh;
   color: white;
 }
-
 
 .date-container
 {

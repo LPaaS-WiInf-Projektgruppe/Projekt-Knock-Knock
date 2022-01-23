@@ -12,9 +12,13 @@
 
  {% block content %}
 
- <div class="col-sm-6 py-2">
+ <div class="col-sm-6 py-2 justify-content-center">
      <div class="card h-100 ">
-         <div class="card-body h-100">
+         <div class="card-body h-100 text-dark ">
+
+           <div class="row">
+
+                        <div class="col-5">
   <p>Username </p>
   <p>Ort </p>
   <p>Fahrzeug </p>
@@ -25,8 +29,9 @@
   <p>erstellt am </p>
   <p>Bemerkungen </p>
 
+  </div>
+<div class="col-5">
 
-<div class="offer-detail-container">
   <p>{{ drive_offer.get_creator_name() }}</p
   <p>{{ drive_offer.get_location() }}</p>
   <p>{{ drive_offer.get_vehicle() }}</p>
@@ -38,18 +43,20 @@
   <p>{{ drive_offer.get_text() }}</p>
 </div>
 
-<button class="btn btn-outline-danger"  onclick="history.back()">
-Back
-</button>
 
-<button class="btn btn-outline-success" onclick="location.href='/accept_drive_offer/{{ drive_offer.get_id() }}'">
-Accept
-</button>
+  </div>
 
-<button class="btn btn-outline-warning" onclick="location.href='/chat/{{ drive_offer.get_creator_id() }}'">
-Contact Company
-</button>
 
+  <div class="btn btn-outline-danger" onclick="history.back()">
+  Back
+  </div>
+
+  <div class="btn btn-outline-success" onclick="location.href='/accept_drive_offer/{{ drive_offer.get_id() }}'">
+  Accept
+  </div>
+
+  <div class="btn btn-outline-warning" onclick="location.href='/chat/{{ drive_offer.get_creator_id() }}'">
+  Contact Company
   </div>
   </div>
 </div>

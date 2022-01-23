@@ -15,9 +15,14 @@
 
  {% block content %}
 
+
+ <div class="row flex-fill vh-100 py-3" >
+   <div class="col-lg-12 h-100 py-2">
+     <div class="card h-75 m-3 p-3 ">
+
 <h1>Chat mit {{ dude.username }}</h1>
 
-<div id="messages">
+<div id="messages" class="container h-75 overflow-scroll mb-3">
 
     <table id="Tabelle">
         <tr>
@@ -42,24 +47,28 @@
 </div>
 
 
-<div class="spacer-container">
-
-  <form>
-    <input type="button" class="submit-btn" value="Back" onclick="history.back()" class="button" >
-  </form>
-<form style="color: black; align-items: center;" align= "center" action="/chat/{{dude.id}}" method="POST">
-  <input class = "btn material-icons" type="submit" value="send">
-  <input class="text-input" type="text" placeholder="Nachricht" name="send" id="send">
-
+<form class="form-inline " action="/chat/{{dude.id}}" method="POST">
+<div class="input-group">
+    <div class="form-group pr-2">
+        <div>
+            <label class="sr-only" for="send" >
+                Nachricht
+            </label>
+            <input class="form-control mb-2 " type="text" placeholder="Nachricht" name="send" id="send">
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <label class="sr-only"  for="endDate">
+                Sumbit Button
+            </label>
+            <input class = "btn btn-success " type="submit" value="send">
+        </div>
+    </div>
+   </div>
 </form>
 
-<br>
-<br>
-
-
-
-</div>
-
+<button type="button" class="btn btn-danger col-lg-1 col-md-2 col-sm-4" value="Back" onclick="history.back()" class="button">Back</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="{{url_for('static', filename='chat__style.css')}}" >

@@ -12,6 +12,12 @@
 
 {% block content %}
 
+
+
+
+
+
+
   <div class="row flex-fill py-3" >
       <div class="col-lg-6 py-2">
         <div class="card h-100  m-3 p-3 ">
@@ -35,6 +41,24 @@
             {% endfor %}
               </tbody>
             </table>
+
+            <!-- - Info - Symbol - Start --->
+              <a class="btn btn-danger col-2" href="#popup1">
+                <i class="bi bi-question-circle">Help</i></a>
+
+                <div id="popup1" class="overlay" style="z-index: 1">
+                  <div class="popup">
+                    <h2>Help</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="contencd t" style="color: black;">
+                      If you are are driver and look for company offers to carry out, then you can look at the list on the left.
+                      In case you have trouble finding something that suits you, try the search on the top left, or create your
+                      own, unique offer.
+                    </div>
+                    </div>
+                  </div>
+
+                <!--- Info - Symbol - Ende - -->
     </div>
       </div>
       <div class="col-lg-6 py-2">
@@ -45,7 +69,7 @@
 
 
                         <div class="form-group mb-3">
-                          {{ form.von.label }} <span title="Date and time when you want to use the service" class="info"></span>
+                          {{ form.von.label }}
 
                           {{ form.von(class_="form-control") }}
                           {% for error in form.von.errors %}
@@ -56,7 +80,7 @@
 
                         <div class="form-group mb-3">
 
-                          {{ form.nach.label }}<span title="Date and time when you want to use the service" class="info">i</span>
+                          {{ form.nach.label }}
 
                             {{ form.nach(class_="form-control") }}
                             {% for error in form.nach.errors %}
@@ -66,7 +90,7 @@
                         </div>
 
                             <div class="form-group mb-3">
-                                {{ form.zeit_start.label }}<span title="Date and time when you want to use the service" class="info">i</span>
+                                {{ form.zeit_start.label }}<span title="Date and time when you want to use the service" class="info"><i class="bi bi-info-circle"></i></span>
 
                                   {{ form.zeit_start(class_="form-control") }}
                                   {% for error in form.zeit_start.errors %}
@@ -76,7 +100,8 @@
                               </div>
 
                           <div class="form-group mb-3">
-                          {{ form.zeit_ende.label }}<span title="If you have a time frame for when you want to use the service this is the end time (optional)" class="info">i</span>
+                          {{ form.zeit_ende.label }}<span title="If you have a time frame for when you want to use the service this is the end time (optional)" class="info">
+                            <i class="bi bi-info-circle"></i></span>
 
                             {{ form.zeit_ende(class_="form-control") }}
                           {% for error in form.zeit_ende.errors %}
@@ -86,7 +111,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                          {{ form.geld.label }} <span title="The price in Euro you are willing to pay in Euro per kilometer" class="info">i</span>
+                          {{ form.geld.label }} <span title="The price in Euro you are willing to pay in Euro per kilometer" class="info"><i class="bi bi-info-circle"></i></span>
 
                             {{ form.geld(class_="form-control") }}
                           {% for error in form.geld.errors %}
@@ -96,7 +121,7 @@
                             </div>
 
                           <div class="form-group mb-3">
-                          {{ form.dauer.label }}<span title="The days for which the offer should be shown to users" class="info">i</span>
+                          {{ form.dauer.label }}<span title="The days for which the offer should be shown to users" class="info"><i class="bi bi-info-circle"></i></span>
 
                               {{ form.dauer(class_="form-control") }}
                           {% for error in form.dauer.errors %}
@@ -106,33 +131,16 @@
                         </div>
                         {{ form.submit(class_="btn btn-outline-success") }}
                      </form>
+
+
+
           </div>
       </div>
   </div>
   </div>
 
 
-      <!--- Info - Symbol - Start --->
 
-       <div class="box">
-        <a class="button" href="#popup1">
-          <i class="fa fa-question-circle" style="font-size: 1em;color:red"></i></a>
-      </div>
-
-
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Help</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="contencd t" style="color: black;">
-            If you are are driver and look for company offers to carry out, then you can look at the list on the left.
-            In case you have trouble finding something that suits you, try the search on the top left, or create your
-            own, unique offer.
-          </div>
-          </div>
-        </div>
-
-      <!--- Info - Symbol - Ende --->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
