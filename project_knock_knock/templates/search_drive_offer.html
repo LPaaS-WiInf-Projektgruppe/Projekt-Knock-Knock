@@ -38,7 +38,7 @@
                   {{ form.csrf_token }}
                   {{ form.von(class_="form-control", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
                   {% for error in form.von.errors %}
-                  <p class="text-warning"> {{ error }} </p> <br>
+                  <p class="text-danger"> {{ error }} </p> <br>
                   {% endfor %}
                   </div><div class="form-group mb-2 col-5">
                   {{ form.nach(class_="form-control", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }}
@@ -69,8 +69,10 @@
   </div>
   </div>
 
-
   <!--- Info - Symbol - Start --->
+
+
+  <!-- das hier macht meinn layout kaputt -->
 
    <div class="box">
     <a class="button" href="#popup1">
@@ -89,9 +91,9 @@
       </div>
       </div>
     </div>
-  </div>
 
   <!--- Info - Symbol - Ende --->
+
 
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -101,8 +103,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&v=3.exp&sensor=false&libraries=places"></script>
 <script type=text/javascript src="{{url_for('static', filename='search_drive_offer__script.js') }}"></script>
-
-
 
 
 {% endblock %}
