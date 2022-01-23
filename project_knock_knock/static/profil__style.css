@@ -28,12 +28,6 @@
     overflow: hidden;
 }
 
-
-
-
-
-
-
 .offer-container
 {
   border: solid 1px #7E888A;
@@ -98,6 +92,35 @@ i
   vertical-align: middle;
 }
 
+
+#container
+{
+  width: 1210px;
+  height: 760px;
+}
+
+#work-time-container
+{
+  position: absolute;
+  top: 100px;
+
+}
+
+#my-offers-container
+{
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  left: 10px;
+}
+
+#my-orders-container
+{
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    left: 10px;
+=======
 body
 {
     background: url('img/profil.png') ;

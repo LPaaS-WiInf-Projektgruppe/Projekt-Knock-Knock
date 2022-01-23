@@ -4,6 +4,9 @@
 {% from "flask_user/_macros.html" import render_field, render_submit_field %}
 
 
+{% block extra_css %}
+<link href="{{url_for('static', filename='register__style.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 <div class="col-sm-6 py-2 justify-content-center">
     <div class="card h-80">
@@ -21,7 +24,7 @@
 
   <div class="col-sm-6 py-2 justify-content-center">
       <div class="card h-80">
-          <div class="card-body h-100 text-dark ">
+          <div id="register" class="card-body h-100 text-dark ">
 
 <h1>{%trans%}Register{%endtrans%}</h1>
 
