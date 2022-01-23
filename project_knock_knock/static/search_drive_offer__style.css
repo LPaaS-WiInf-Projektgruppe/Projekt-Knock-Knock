@@ -29,7 +29,9 @@
 {
   width: 625px;
   height: 760px;
+  opacity: 95%;
 
+}
 body
 {
     background: url('img/driverOffer.png') ;

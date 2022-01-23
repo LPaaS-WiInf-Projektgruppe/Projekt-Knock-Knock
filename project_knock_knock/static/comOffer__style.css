@@ -1,24 +1,43 @@
+#card{
+  height: 700px;
+  opacity: 95%;
 
-#container {
+}
+
+#containerparent {
   width: 625px;
   height: 760px;
-  margin-top: 35;
+  opacity: 95%;
   position: absolute;
-  right: 100px
-
+  right: 230px;
+  top: 100px;
 }
 
-#containerbreiter{
+#containerchild{
+  opacity: 95%;
+}
+
+#containerwiderparent{
   width: 870px;
-  height: 760px;
-  float: left;
+  height: 748px;
+  position: relative;
+  top: 34px;
+  left: -240px;
+  opacity: 95%;
+  margin-bottom: 100px
+}
+#containerwiderchild
+{
+  position: absolute;
 
 }
+
+
 
 #com-offer-table{
   width: 870px;
-  height: 760px;
-  float: right;
+  height: 690px;
+  opacity: 95%;
 
 }
 
@@ -91,4 +110,3 @@ body
     width: 70%;
   }
 }
-
