@@ -63,6 +63,30 @@
   </div>
   </div>
 
+  <!--- Info - Symbol - Start --->
+
+   <div class="box">
+    <a class="button" href="#popup1">
+      <i class="fa fa-question-circle" style="font-size: 1em;color:red"></i></a>
+  </div>
+
+  <div id="popup1" class="overlay">
+    <div class="popup">
+      <h2>Help</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="contencd t" style="color: black;">
+        Are you a company that is searching for drivers to employ? Then you've come to the right place!
+        Pick the start and the end point of your desired transport route on the right to discover appropriate offers.
+        In the unfortunate case, that there is no such option available, you can nevertheless add your request by clicking
+        "Create Driver Offer" and hopefully potential drivers will contact you soon!
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!--- Info - Symbol - Ende --->
+
+
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
@@ -70,6 +94,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&v=3.exp&sensor=false&libraries=places"></script>
 <script type=text/javascript src="{{url_for('static', filename='search_drive_offer__script.js') }}"></script>
+
 
 
 

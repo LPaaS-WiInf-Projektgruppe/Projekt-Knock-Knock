@@ -29,6 +29,13 @@ body
 }
 
 
+.box
+{
+  margin-left: auto;
+  width: 50%;
+}
+
+
 .button {
   font-size: 2em;
 }
