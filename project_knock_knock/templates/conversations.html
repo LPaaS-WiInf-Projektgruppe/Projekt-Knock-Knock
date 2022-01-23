@@ -19,8 +19,9 @@
 
 
 
-  <div class="row">
-      <div class="col-sm-6 py-2">
+<div class="row flex-fill vh-100 py-3" >
+  <div class="col-lg-12 h-100 py-2">
+    <div class="card h-75 m-3 p-3 ">
 
   <h1>Konversationen</h1>
 
@@ -49,7 +50,36 @@
         {% endfor %}
     </table>
 
+    <br>
+    <!--- Info - Symbol - Start --->
+
+     <div class="box">
+      <a class="button" href="#popup1">
+        <i class="fa fa-question-circle" style="font-size: 1em;color:red"></i></a>
+    </div>
+
+    <div id="popup1" class="overlay">
+      <div class="popup">
+        <h2>Help</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content" style="color: black;">
+          On this page you can see a list of all people you've had contact with. The more recent ones will be displayed
+          at the top and you can identify unread messages by checking wether there is a read bell in front of the element.
+          In case you are not seeing anything you appearently don't have any conversations yet (Open "Com Offers" or
+          "Driver Offers" in the navbar, search for appropriate offers and start conversations with other members!). By clicking
+          on the respective chats, you can open them.
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--- Info - Symbol - Ende --->
+    <br>
+
+
 </div>
+</div>
+
 </div>
 
 {% endblock %}

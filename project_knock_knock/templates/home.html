@@ -16,81 +16,87 @@
 
 
 
-    <div class="container text-center">
+      <div class="row flex-fill vh-100 py-3" >
+          <div class="col-lg-6 py-2 " >
+            <div class="card m-3 p-3 ">
 
-  <div class="row">
-
-    <div  id="containerleft" class="col-sm-6 py-2 justify-content-center">
-        <div  id="containerleft" class="card h-80">
-            <div id="containerleft" class="card-body h-100 text-dark ">
-
-              <h2>Warum?</h2>
+              <h2>Why?</h2>
                 <p>
-                  Jeden Tag wird eine immense Anzahl an Personen, Paketen, Materialien, Essen, o.Ä. von diversen Liefer- und Transportdiensten befördert.
-                  Da diese jedoch kaum zusammenarbeiten folgen Ineffizienzen bei der Auslastung, der Reaktionsfähigkeit auf Bedarfsschwankungen, und viele weitere.
-                  Diese Problematik löst Knock Knock, da hier Ressourcen geteilt und mehrere redundante/ähnliche Fahrten gebündelt werden können!
+                  Every day a huge amount of people, packages, materials, food etc. is moved around. Unfortuantly often the involved people are not communicating
+                  to coordinate accordingly and efficiently. This creates an insufficient possibility to react to fluctuations in demand on both ends. To solve this
+                  issue we developed "KnockKnock". The application provides a possibility to share resources and there reduces redundant rides.
+
                 </p>
 
                 <br>
                 <br>
 
 
-    <button type="button" class="btn btn-outline-primary" name="button"> Ich möchte Fahren!</button>
-      <button type="button" class="btn btn-outline-danger" name="button"> Ich möchte ein Fahrangebot erstellen!</button>
+    <button type="button" class="btn btn-outline-primary mb-3" onClick="location.href='/driverOffer'" name="button"> Search Ride!</button>
+      <button type="button" class="btn btn-outline-danger" onClick="location.href='/comOffer'" name="button"> Search Driver!</button>
+
+    Not yet convinced? Here you can find more information about our service!
+
+    <button type="button" class="btn btn-info" name="button"> More Information</button>
 
   </div>
   </div>
-  </div>
-  <div  id="register" class="col-sm-6 py-2 justify-content-center">
-      <div id="register" class="card h-80">
-          <div id="register" class="card-body h-100 text-dark ">
 
-            <h1>{%trans%}Register{%endtrans%}</h1>
 
-            <form action="/user/register" method="POST" novalidate formnovalidate class="form" role="form">
-                {{ form.hidden_tag() }}
+  <div class="col-lg-6 vh-75 py-2">
+    <div class="card h-75  m-3 p-3 ">
 
-                {# Username or Email #}
-                {% set field = form.username if user_manager.USER_ENABLE_USERNAME else form.email %}
-                <div class="form-group {% if field.errors %}has-error{% endif %}">
-                    {# Label on left, "Already registered? Sign in." on right #}
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <label for="{{ field.id }}" class="control-label">{{ field.label.text }}</label>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            {% if user_manager.USER_ENABLE_REGISTER %}
-                                <a href="{{ url_for('user.login') }}" tabindex='290'>
-                                    {%trans%}Already registered? Sign in.{%endtrans%}</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {{ field(class_='form-control', tabindex=210) }}
-                    {% if field.errors %}
-                        {% for e in field.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+      <h1>{%trans%}Register{%endtrans%}</h1>
 
-                {% if user_manager.USER_ENABLE_EMAIL and user_manager.USER_ENABLE_USERNAME %}
-                    {{ render_field(form.email, tabindex=220) }}
-                {% endif %}
+      <form action="" method="POST" novalidate formnovalidate class="form" role="form">
+          {{ form.hidden_tag() }}
 
-                {{ render_field(form.password, tabindex=230) }}
+          {# Username or Email #}
+          {% set field = form.username if user_manager.USER_ENABLE_USERNAME else form.email %}
+          <div class="form-group {% if field.errors %}has-error{% endif %}">
+              {# Label on left, "Already registered? Sign in." on right #}
+              <div class="row">
+                  <div class="col-xs-6">
+                      <label for="{{ field.id }}" class="control-label">{{ field.label.text }}</label>
+                  </div>
 
-                {% if user_manager.USER_REQUIRE_RETYPE_PASSWORD %}
-                    {{ render_field(form.retype_password, tabindex=240) }}
-                {% endif %}
+              </div>
+              {{ field(class_='form-control mb-3', tabindex=21) }}
+              {% if field.errors %}
+                  {% for e in field.errors %}
+                      <p class="help-block">{{ e }}</p>
+                  {% endfor %}
+              {% endif %}
+          </div>
 
-                {{ render_submit_field(form.submit, tabindex=280) }}
-            </form>
+          {% if user_manager.USER_ENABLE_EMAIL and user_manager.USER_ENABLE_USERNAME %}
+              {{ render_field(form.email, tabindex=220,  class_='mb-3') }}
+          {% endif %}
+
+          {{ render_field(form.password, tabindex=230, class_='mb-3') }}
+
+          {% if user_manager.USER_REQUIRE_RETYPE_PASSWORD %}
+              {{ render_field(form.retype_password, tabindex=240, class_='mb-3') }}
+          {% endif %}
+
+
+          {{ render_submit_field(form.submit, tabindex=280, class_="btn btn-outline-success") }}
+
+          <div class="col-xs-6 text-right">
+              {% if user_manager.USER_ENABLE_REGISTER %}
+                  <a href="{{ url_for('user.login') }}" tabindex='290'>
+                      {%trans%}Already registered? Sign in.{%endtrans%}</a>
+              {% endif %}
+          </div>
+
+      </form>
+
 
 
       </div>
       </div>
       </div>
-  </div>
+
 
   <br>
   <!--- Info - Symbol - Start --->
@@ -102,20 +108,18 @@
 
   <div id="popup1" class="overlay">
     <div class="popup">
-      <h2>Hilfe</h2>
+      <h2>Help</h2>
       <a class="close" href="#">&times;</a>
       <div class="content" style="color: black;">
-        Hier werden Sie in Zukunft Dokumente, wie den Führerschein zur Prüfung hochladen können.
-        Zurzeit ist diese Funktionalität jedoch noch nicht hinterlegt und entsprechende Buttons
-        auf dieser Seite dementsprechend nur Dummys.
+        On the lef thand side of this website you can read what "Project Knock Knock is all about".
+        If you are interested and want to participate, you can either directly pick your desired role
+        below or start with creating a profile on the right.
       </div>
     </div>
   </div>
 
   <!--- Info - Symbol - Ende --->
   <br>
-
-    </div>
 
 
 

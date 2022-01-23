@@ -14,26 +14,20 @@
 
 {% block content %}
 
-
-
-<div class="col-sm-6 py-2 justify-content-center">
-    <div class="card h-80">
-        <div class="card-body h-100 text-dark ">
+<div class="row flex-fill vh-100 py-3" >
+    <div class="col-lg-6  py-2">
+      <div class="card m-3 p-3 ">
 
           <h2>Werde Teil einer unglaublichen Unternehmensgeschichte!</h2>
 
           <h3>Jeder darf diese Plattform kostenlos nutzen! Bevor man allerdings Nachrichten schreiben und Angebote schalten kann , muss man ein Profil erstellen.</h3>
 
-
-
-  </div>
   </div>
   </div>
 
+      <div class="col-lg-6 vh-75 py-2">
+        <div class="card h-75  m-3 p-3 ">
 
-  <div id="login" class="col-sm-6 py-2 justify-content-center">
-      <div id="login" class="card h-10 overflow-scroll">
-          <div  id="login" class="card-body vh-100 text-dark">
 
             <div class='h3'>{%trans%}Sign in{%endtrans%}</div>
             <form action="" method="POST" class="form" role="form">
@@ -47,7 +41,7 @@
                     {# Label on left, "New here? Register." on right #}
 
                     </div>
-                    {{ field(class_='form-control input-line full-width', placeholder='Username', tabindex=110) }}
+                    {{ field(class_='form-control input-line mb-3 full-width', placeholder='Username', tabindex=110) }}
                     {% if field.errors %}
                         {% for e in field.errors %}
                             <p class="help-block">{{ e }}</p>
@@ -70,7 +64,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    {{ field(class_='form-control input-line full-width', placeholder='Password', tabindex=110) }}
+                    {{ field(class_='form-control  mb-3 input-line full-width', placeholder='Password', tabindex=110) }}
                     {% if field.errors %}
                         {% for e in field.errors %}
                             <p class="help-block">{{ e }}</p>
@@ -80,19 +74,17 @@
 
               </div>
 
-                {# Remember me #}
+                <!-- {# Remember me #}
                 {% if user_manager.USER_ENABLE_REMEMBER_ME %}
                 {{ render_checkbox_field(login_form.remember_me, class_='spacing', tabindex=130) }}
-                {% endif %}
+                {% endif %} -->
 
-                <div class="spacing">
+                <div class="spacing  mb-3">
                   {% if user_manager.USER_ENABLE_REGISTER and not user_manager.USER_REQUIRE_INVITATION %}
                       <a class='subtitle' href="{{ url_for('user.register') }}" tabindex='190'>
                           {%trans%}New here? Register.{%endtrans%}</a>
                   {% endif %}
                 </div>
-
-
 
                 {# Submit button #}
                 {{ render_submit_field(form.submit, class_='btn btn-outline-success' , tabindex=180) }}
@@ -104,6 +96,5 @@
 
           </div>
 
-          </div>
 
 {% endblock %}

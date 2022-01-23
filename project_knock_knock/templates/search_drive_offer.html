@@ -19,28 +19,67 @@
 
 {% block content %}
 
-  <div class="row vh-80">
-      <div class="col-sm-6 py-2">
-        <div class="h-100" id="map"></div>
-      </div>
-      <div id="createDriverOffer" class="col-sm-6 py-2">
-          <div id="createDriverOffer" class="card h-100 ">
-              <div id="createDriverOffer" class="card-body h-100">
+
+
+  <div class="row flex-fill vh-100 py-3" >
+    <div class="col-lg-6 h-75 py-2">
+      <div class="card h-75 m-3 p-3 ">
+        <div class="h-100 col-lg-12"  id="map" style="z-index:1"></div>
+        <!-- - Info - Symbol - Start --->
+          <a class="btn btn-danger col-2" href="#popup1">
+            <i class="bi bi-question-circle">Help</i></a>
+
+
+            <div id="popup1" class="overlay" style="z-index:4">
+              <div class="popup">
+                <h2>Help</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="contencd t" style="color: black;">
+                  Are you a company that is searching for drivers to employ? Then you've come to the right place!
+                  Pick the start and the end point of your desired transport route on the right to discover appropriate offers.
+                  In the unfortunate case, that there is no such option available, you can nevertheless add your request by clicking
+                  "Create Driver Offer" and hopefully potential drivers will contact you soon!
+                </div>
+                </div>
+              </div> -->
+
+            <!--- Info - Symbol - Ende --->
+    </div>
+    </div>
+
+        <div class="col-lg-6 h-100 py-2 " >
+          <div class="card h-75 m-3 p-3 ">
+              <div class="card-body  d-flex flex-column  h-75">
 
                 <form method ="POST" class="form-inline" action="/driverOffer">
-                  <div class="form-group mb-2 col-5">
-                  {{ form.csrf_token }}
-                  {{ form.von(class_="form-control", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
-                  {% for error in form.von.errors %}
-                  <p class="text-warning"> {{ error }} </p> <br>
-                  {% endfor %}
-                  </div><div class="form-group mb-2 col-5">
-                  {{ form.nach(class_="form-control", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+                <div class="input-group">
+                    <div class="form-group pr-2 col-6">
+                        <div>
+                            {{ form.csrf_token }}
+                            {{ form.von(class_="form-control", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+                            {% for error in form.von.errors %}
+                            <p class="text-danger"> {{ error }} </p> <br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div>
+                            {{ form.nach(class_="form-control", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }}
+                            {% for error in form.nach.errors %}
+                            <p class="text-danger"> {{ error }} </p> <br>
+                            {% endfor %}
+                        </div>
+                    </div>
 
-                </div>
-
-                {{form.submit(class_="btn btn-outline-success") }}
+                    <div class="form-group">
+                        <div>
+                              {{form.submit(class_="btn btn-outline-success") }}
+                        </div>
+                    </div>
+                   </div>
                 </form>
+
+
                 <table id="com-offer-table" class="table table-light">
                   <thead >
                     <tr>
@@ -57,11 +96,13 @@
                     {% endfor %}
                   </tbody>
                 </table>
-  <button class="btn btn-outline-success"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</button>
+                <button class="btn btn-outline-success mt-auto"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</button>
           </div>
       </div>
   </div>
   </div>
+
+
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -70,7 +111,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&v=3.exp&sensor=false&libraries=places"></script>
 <script type=text/javascript src="{{url_for('static', filename='search_drive_offer__script.js') }}"></script>
-
 
 
 {% endblock %}

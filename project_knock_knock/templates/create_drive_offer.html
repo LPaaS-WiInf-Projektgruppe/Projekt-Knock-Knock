@@ -11,14 +11,21 @@
 
  {% block content %}
 
- <div class="col-sm-6 py-2">
-     <div class="card h-100 ">
-         <div class="card-body h-100 text-dark">
+ <div class="row flex-fill vh-100 py-3" >
+   <div class="col-lg-12 h-100 py-2">
+     <div class="card h-75 col-12 m-3 p-3">
 
-           <form method ="POST" id="offer-form" action="/create_drive_offer">
+
+           <form method ="POST" id="offer-form"  action="/create_drive_offer">
+
+
+             <div class="row align-items-center  justify-content-center" style="border: 1px red solid;">
+
+               <div class="col-lg-6">
+
                    {{ form.csrf_token }}
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.ort.label }}
                    {{ form.ort(class_="form-control") }}
                      {% for error in form.ort.errors %}
@@ -26,7 +33,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.fahrzeug.label }}
                    {{ form.fahrzeug(class_="form-control") }}
                      {% for error in form.fahrzeug.errors %}
@@ -34,7 +41,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                      {{ form.zeit_start.label }}
                    {{ form.zeit_start(class_="form-control") }}
                      {% for error in form.zeit_start.errors %}
@@ -42,7 +49,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.zeit_ende.label }}
                    {{ form.zeit_ende(class_="form-control") }}
                      {% for error in form.zeit_ende.errors %}
@@ -50,7 +57,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.preis.label }}
                    {{ form.preis(class_="form-control") }}
                      {% for error in form.preis.errors %}
@@ -58,7 +65,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.radius.label }}
                    {{ form.radius(class_="form-control") }}
                      {% for error in form.radius.errors %}
@@ -66,7 +73,7 @@
                      {% endfor %}
                    </div>
 
-                   <div class="form-group mb-2 col-5">
+                   <div class="form-group mb-2 ">
                    {{ form.bemerkungen.label }}
                    {{ form.bemerkungen(class_="form-control") }}
                      {% for error in form.bemerkungen.errors %}
@@ -74,81 +81,97 @@
                      {% endfor %}
                    </div>
 
+                   </div>
 
-                   <!-- beginning of the work time container -->
+
+                   <div class="col-6 justify-content-center bg-white">
+
+         {{ form.from_zeitMo.label }}
+<div class="row">
+    <fieldset class="form-inline">
+
+         {{ form.from_zeitMo(class_="input-mini mb-2") }}
+         {{ form.to_zeitMo(class_="input-mini mb-2") }}
+        {% for error in form.from_zeitMo.errors %}
+          <p class="text-danger"> {{ error }} </p>
+        {% endfor %}
+            </fieldset>
+        </div>
+
+        {{ form.from_zeitDi.label }}
+        <div class="row">
+            <fieldset class="form-inline">
+              {{ form.from_zeitDi(class_="input-mini mb-2") }}
+              {{ form.to_zeitDi(class_="input-mini mb-2") }}
+              {% for error in form.from_zeitDi.errors %}
+                <p class="text-danger"> {{ error }} </p>
+              {% endfor %}
+                    </fieldset>
+        </div>
+
+        {{ form.from_zeitMi.label }}
+        <div class="row">
+            <fieldset class="form-inline">
+
+              {{ form.from_zeitMi(class_="input-mini mb-2") }}
+              {{ form.to_zeitMi(class_="input-mini mb-2") }}
+              {% for error in form.from_zeitMi.errors %}
+                <p class="text-danger"> {{ error }} </p>
+              {% endfor %}
+                    </fieldset>
+                </div>
+
+{{ form.from_zeitDo.label }}
+        <div class="row">
+            <fieldset class="form-inline">
+
+              {{ form.from_zeitDo(class_="input-mini mb-2") }}
+              {{ form.to_zeitDo(class_="input-mini mb-2") }}
+              {% for error in form.from_zeitDo.errors %}
+                <p class="text-danger"> {{ error }} </p>
+              {% endfor %}
+                    </fieldset>
+                </div>
 
 
-                     <div class="form-group mb-2 col-1">
-                       {{ form.from_zeitMo.label }}
-                       {{ form.from_zeitMo(class_="form-control") }}
-                       {{ form.to_zeitMo(class_="form-control") }}
-                       {% for error in form.from_zeitMo.errors %}
-                         <p class="text-danger"> {{ error }} </p>
-                       {% endfor %}
-                     </div>
+      {{ form.from_zeitFr.label }}
+      <div class="row">
+          <fieldset class="form-inline">
 
-                     <div class="form-group mb-2 col-1">
-                       {{ form.from_zeitDi.label }}
-                       <br>
-                       {{ form.from_zeitDi(class_="form-control") }}
-                       {{ form.to_zeitDi(class_="form-control") }}
-                       {% for error in form.from_zeitDi.errors %}
-                         <p class="text-danger"> {{ error }} </p>
-                       {% endfor %}
-                     </div>
+            {{ form.from_zeitFr(class_="input-mini mb-2") }}
+            {{ form.to_zeitFr(class_="input-mini mb-2") }}
+            {% for error in form.from_zeitFr.errors %}
+              <p class="text-danger"> {{ error }} </p>
+            {% endfor %}
+                  </fieldset>
+              </div>
 
-                     <div class="form-group mb-2 col-1">
-                       {{ form.from_zeitMi.label }}
-                       <br>
-                       {{ form.from_zeitMi(class_="form-control") }}
-                       {{ form.to_zeitMi(class_="form-control") }}
-                       {% for error in form.from_zeitMi.errors %}
-                         <p class="text-danger"> {{ error }} </p>
-                       {% endfor %}
-                     </div>
+      {{ form.from_zeitSa.label }}
+      <div class="row">
+          <fieldset class="form-inline">
 
-                        <div class="form-group mb-2 col-1">
-                          {{ form.from_zeitDo.label }}
-                          <br>
-                          {{ form.from_zeitDo(class_="form-control") }}
-                          {{ form.to_zeitDo(class_="form-control") }}
-                          {% for error in form.from_zeitDo.errors %}
-                            <p class="text-danger"> {{ error }} </p>
-                          {% endfor %}
-                        </div>
+            {{ form.from_zeitSa(class_="input-mini mb-2") }}
+            {{ form.to_zeitSa(class_="input-mini mb-2") }}
+            {% for error in form.from_zeitSa.errors %}
+              <p class="text-danger"> {{ error }} </p>
+           {% endfor %}
+                  </fieldset>
+              </div>
 
-                     <div class="form-group mb-2 col-1">
-                       {{ form.from_zeitFr.label }}
-                       <br>
-                       {{ form.from_zeitFr(class_="form-control") }}
-                       {{ form.to_zeitFr(class_="form-control") }}
-                       {% for error in form.from_zeitFr.errors %}
-                         <p class="text-danger"> {{ error }} </p>
-                       {% endfor %}
-                     </div>
+      {{ form.from_zeitSo.label }}
+      <div class="row">
+          <fieldset class="form-inline">
 
-                  <div class="form-group mb-2 col-1">
-                    {{ form.from_zeitSa.label }}
-                    <br>
-                    {{ form.from_zeitSa(class_="form-control") }}
-                    {{ form.to_zeitSa(class_="form-control") }}
-                    {% for error in form.from_zeitSa.errors %}
-                      <p class="text-danger"> {{ error }} </p>
-                   {% endfor %}
+            {{ form.from_zeitSo(class_="input-mini mb-2") }}
+            {{ form.to_zeitSo(class_="input-mini mb-2") }}
+            {% for error in form.from_zeitSo.errors %}
+              <p class="text-danger"> {{ error }} </p>
+            {% endfor %}
+                  </fieldset>
+              </div>
 
-                  </div>
 
-               <div class="form-group mb-2 col-1">
-                 {{ form.from_zeitSo.label }}
-                 <br>
-                 {{ form.from_zeitSo(class_="form-control") }}
-                 {{ form.to_zeitSo(class_="form-control") }}
-                 {% for error in form.from_zeitSo.errors %}
-                   <p class="text-danger"> {{ error }} </p>
-                 {% endfor %}
-
-               </div>
-
+             </div>
                 </form>
 <button class="btn btn-outline-success"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</button>
      </div>

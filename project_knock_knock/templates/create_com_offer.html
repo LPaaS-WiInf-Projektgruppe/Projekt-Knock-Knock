@@ -10,130 +10,81 @@
 
  {% block content %}
 
-<div class="content">
-
-  <form method ="POST" id="offer-form" action="/create_com_offer">
-          {{ form.csrf_token }}
-
-          <div class="scroll-container">
-
-          <div class="route-container">
-
-          <div class="from-container">
-            {{ form.von.label }}
-            <br>
-            {{ form.von(id = "from-input") }}
-            <br>
-            {% for error in form.von.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-          </div>
-
-          <div class="arrow-container">
-            <br>
-            ->
-          </div>
-
-          <div class="to-container">
-            {{ form.nach.label }}
-            <br>
-            {{ form.nach(id = "to-input") }}
-            <br>
-            {% for error in form.nach.errors %}
-              <p style="color: red;"> {{ error }} </p> <br>
-            {% endfor %}
-            <br><br>
-          </div>
-
-        </div>
+ <div class="col-lg-6 py-2">
+     <div class="card h-75 m-3">
+         <div class="card-body h-75">
+           <form method ="POST" id="offer-form" action="/create_com_offer">
+                   {{ form.csrf_token }}
 
 
-          <div class="label-container">
-            <div class="label-entry-container">
+                   <div class="form-group mb-3">
+                     {{ form.von.label }}
 
-            {{ form.zeit_start.label }}<span title="Date and time when you want to use the service" class="info">i</span>
-            {% for error in form.zeit_start.errors %}
-            <br><br><br>
-            {% endfor %}
+                     {{ form.von(class_="form-control") }}
+                     {% for error in form.von.errors %}
+                       <p class="text-warning"> {{ error }} </p> <br>
+                     {% endfor %}
 
-          </div>
+                   </div>
 
-            <div class="label-entry-container">
+                   <div class="form-group mb-3">
 
-            {{ form.zeit_ende.label }}<span title="If you have a time frame for when you want to use the service this is the end time (optional)" class="info">i</span>
-            {% for error in form.zeit_ende.errors %}
-              <br><br><br>
-            {% endfor %}
+                     {{ form.nach.label }}
 
-          </div>
+                       {{ form.nach(class_="form-control") }}
+                       {% for error in form.nach.errors %}
+                         <p class="text-warning"> {{ error }} </p> <br>
+                       {% endfor %}
 
-            <div class="label-entry-container">
+                   </div>
 
-            {{ form.geld.label }} <span title="The price in Euro you are willing to pay in Euro per kilometer" class="info">i</span>
+                       <div class="form-group mb-3">
+                           {{ form.zeit_start.label }}<span title="Date and time when you want to use the service" class="info"><i class="bi bi-info-circle"></i></span>
 
-            {% for error in form.geld.errors %}
-              <br><br><br>
-            {% endfor %}
-            </div>
+                             {{ form.zeit_start(class_="form-control") }}
+                             {% for error in form.zeit_start.errors %}
+                               <p class="text-warning"> {{ error }} </p> <br>
+                             {% endfor %}
+
+                         </div>
+
+                     <div class="form-group mb-3">
+                     {{ form.zeit_ende.label }}<span title="If you have a time frame for when you want to use the service this is the end time (optional)" class="info">
+                       <i class="bi bi-info-circle"></i></span>
+
+                       {{ form.zeit_ende(class_="form-control") }}
+                     {% for error in form.zeit_ende.errors %}
+                     <p class="text-warning"> {{ error }} </p> <br>
+                     {% endfor %}
+
+                   </div>
+
+                   <div class="form-group mb-3">
+                     {{ form.geld.label }} <span title="The price in Euro you are willing to pay in Euro per kilometer" class="info"><i class="bi bi-info-circle"></i></span>
+
+                       {{ form.geld(class_="form-control") }}
+                     {% for error in form.geld.errors %}
+                     <p class="text-warning"> {{ error }} </p> <br>
+                     {% endfor %}
+
+                       </div>
+
+                     <div class="form-group mb-3">
+                     {{ form.dauer.label }}<span title="The days for which the offer should be shown to users" class="info"><i class="bi bi-info-circle"></i></span>
+
+                         {{ form.dauer(class_="form-control") }}
+                     {% for error in form.dauer.errors %}
+                     <p class="text-warning"> {{ error }} </p> <br>
+                     {% endfor %}
+
+                   </div>
+                   {{ form.submit(class_="btn btn-outline-success") }}
+                </form>
 
 
-            <div class="label-entry-container">
 
-            {{ form.dauer.label }}<span title="The days for which the offer should be shown to users" class="info">i</span>
-            {% for error in form.dauer.errors %}
-              <br>
-            {% endfor %}
-            </div>
-          </div>
-
-
-          <!-- beginning of the input container -->
-
-          <div class="input-container">
-
-            <div class="entry-container">
-              {{ form.zeit_start }}
-              {% for error in form.zeit_start.errors %}
-                <p style="color: red;"> {{ error }} </p>
-              {% endfor %}
-            </div>
-
-            <div class="entry-container">
-              {{ form.zeit_ende }}
-              {% for error in form.zeit_ende.errors %}
-                <p style="color: red;"> {{ error }} </p>
-              {% endfor %}
-            </div>
-
-            <div class="entry-container">
-              {{ form.geld }}
-              {% for error in form.geld.errors %}
-                <p style="color: red;"> {{ error }} </p>
-              {% endfor %}
-            </div>
-
-            <div class="entry-container">
-              {{ form.dauer }}
-              {% for error in form.dauer.errors %}
-                <p style="color: red;"> {{ error }} </p>
-              {% endfor %}
-            </div>
-          </div>
-
-          <div style="clear:both"></div>
-
-                    </div>
-
-          <div class="spacer-container">
-                    {{ form.submit(id='create-offer-btn') }}
-            <div class="space">
-
-            </div>
-
-          </div>
-
-       </form>
-
+     </div>
+ </div>
 </div>
 
 
