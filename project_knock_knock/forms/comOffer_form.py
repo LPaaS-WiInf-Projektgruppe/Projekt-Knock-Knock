@@ -25,32 +25,32 @@ dauer_validator = Regexp("^[0-9]{1,2}$", 0, message = DURATION_ERROR)
 
 class ComOfferForm(FlaskForm):
     von = StringField(
-        'from',
+        'From',
         validators= [location_validator],
         render_kw={"placeholder": "e.g 'Lübecker Straße 5, Hamburg'"}
     )
     nach = StringField(
-        'to',
+        'To',
         validators= [location_validator],
         render_kw={"placeholder": "e.g. 'Kieler Straße 5, Hamburg'"}
     )
     zeit_start = DateTimeLocalField(
-        'gewünschte Zeit',
+        'Desired time',
         format="%Y-%m-%dT%H:%M",
         render_kw={"placeholder": "e.g '12.03.2022 08:00'"}
     )
     zeit_ende = DateTimeLocalField(
-        'bis (optional)',
+        'Until at the latest (optional)',
         format="%Y-%m-%dT%H:%M",
         render_kw={"placeholder": "e.g '12.03.2022 09:00'"}
     )
     geld = TelField(
-        'Kilometerpreis',
+        'Price per kilometer',
         validators = [geld_validator],
         render_kw={"placeholder": "e.g '0.99'"}
     )
     dauer = TelField(
-        'Dauer in Tagen',
+        'Duration (in days)',
          validators= [dauer_validator],
          render_kw={"placeholder": "e.g '2'"}
     )
