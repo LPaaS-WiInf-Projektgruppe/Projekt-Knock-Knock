@@ -30,6 +30,11 @@ body
     background-repeat: no-repeat;
 }
 
+#container
+{
+  opacity: 0.97;
+}
+
 
 /* ------------- Pop-Up-Start ---------------- */
 

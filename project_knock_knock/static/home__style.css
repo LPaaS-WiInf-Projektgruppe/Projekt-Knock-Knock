@@ -1,7 +1,8 @@
 
-#register {
-  width: 625px;
-  height: 760px;
+
+
+#container{
+  opacity: 0.90;
 }
 
 body
@@ -76,4 +77,3 @@ body
 }
 
 /* ------------- Pop-Up-Ende ---------------- */
-

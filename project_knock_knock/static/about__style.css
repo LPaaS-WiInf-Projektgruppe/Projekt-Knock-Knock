@@ -5,7 +5,8 @@ body
     font-size: 1.2rem;
     font-family: roboto;
     font-weight: 300;
-
+    background-image: url('img/about.jpg');
+    background-repeat: no-repeat;
 }
 
 
@@ -16,21 +17,23 @@ h1
 
 p
 {
-    color: #FFFFFF;
+    color: black;
 }
 
 h2
 {
-    color: #FFFFFF;
+    color: black;
 }
 
 .content
 {
     padding: 16px;
-    background: #33322F;
-    color: white;
+    background: #FFFFFF;
+    color: black;
     overflow: hidden;
-    height:68vh;
+    opacity: 0.90;
+
+
 
 }
 

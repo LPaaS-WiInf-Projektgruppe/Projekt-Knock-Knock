@@ -1,4 +1,13 @@
-#register {
-  width: 625px;
-  height: 760px;
+#container1
+{
+  opacity: 0.70;
+}
+#container2{
+  opacity: 0.80;
+}
+
+body
+{
+    background-image: url('img/regist.png');
+    background-repeat: no-repeat;
 }

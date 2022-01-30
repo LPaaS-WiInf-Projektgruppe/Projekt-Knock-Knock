@@ -4,6 +4,11 @@
     border-collapse: separate;
     border-spacing: 0 20px;
 }
+
+#container
+{
+  opacity: 0.97;
+}
 .own-text-container
 {
   color: black;
