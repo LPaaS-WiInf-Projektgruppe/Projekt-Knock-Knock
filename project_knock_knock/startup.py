@@ -31,7 +31,7 @@ def def_initial_code():
     user_manager = current_app.user_manager
     password_hash = user_manager.hash_password("Test2020")
 
-    support_exists = db.session.query(User).filter_by(username = "Support3").first()
+    support_exists = db.session.query(User).filter_by(username = "Support").first()
 
     if not support_exists:
         supportUser = User(username="Support3", password =password_hash, active = 1)
