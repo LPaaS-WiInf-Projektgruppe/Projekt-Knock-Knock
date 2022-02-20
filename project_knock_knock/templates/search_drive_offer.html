@@ -22,28 +22,17 @@
 
 
   <div id="container" class="row flex-fill vh-100 py-3" >
-    <div id="container" class="col-lg-6 h-75 py-2">
+    <div id="container" class="col-lg-6 h-100 py-2">
       <div id="container" class="card h-75 m-3 p-3 ">
-        <div class="h-100 col-lg-12"  id="map" style="z-index:1"></div>
-        <!-- - Info - Symbol - Start --->
-          <a class="btn btn-danger col-2" href="#popup1">
-            <i class="bi bi-question-circle">Help</i></a>
 
 
-            <div id="popup1" class="overlay" style="z-index:4">
-              <div class="popup">
-                <h2>Help</h2>
-                <a class="close" href="#">&times;</a>
-                <div class="contencd t" style="color: black;">
-                  Are you a company that is searching for drivers to employ? Then you've come to the right place!
-                  Pick the start and the end point of your desired transport route on the right to discover appropriate offers.
-                  In the unfortunate case, that there is no such option available, you can nevertheless add your request by clicking
-                  "Create Driver Offer" and hopefully potential drivers will contact you soon!
-                </div>
-                </div>
-              </div> -->
+        <div class="h-75 col-lg-12 mb-3"  id="map" style="z-index:1"></div>
+        <a class="btn btn-danger col-2 mt-auto" href="#popup1"> Help</a>
+        <div class="clearfix">
 
-            <!--- Info - Symbol - Ende --->
+      </div>
+
+
     </div>
     </div>
 
@@ -51,9 +40,9 @@
           <div id="container" class="card h-75 m-3 p-3 ">
               <div id="container" class="card-body  d-flex flex-column  h-75">
 
-                <form method ="POST" class="form-inline" action="/driverOffer">
+                <form method ="POST" class="form-inline mb-3" action="/driverOffer">
                 <div class="input-group">
-                    <div class="form-group pr-2 col-6">
+                    <div class="form-group pr-2 col-4 mx-auto">
                         <div>
                             {{ form.csrf_token }}
                             {{ form.von(class_="form-control", id ="from-input", onClick="this.setSelectionRange(0, this.value.length)") }}
@@ -62,7 +51,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-4 mx-auto">
                         <div>
                             {{ form.nach(class_="form-control", id="to-input", onClick="this.setSelectionRange(0, this.value.length)") }}
                             {% for error in form.nach.errors %}
@@ -71,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group align-right">
                         <div>
                               {{form.submit(class_="btn btn-outline-success") }}
                         </div>
@@ -96,12 +85,28 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                <button class="btn btn-outline-success mt-auto"  onClick="location.href='/create_drive_offer'"> Create Driver Offer</button>
+                <button class="btn btn-outline-success mt-auto"  onClick="location.href='/create_drive_offer'">Create Driver Offer</button>
           </div>
       </div>
   </div>
   </div>
 
+
+
+              <div id="popup1" class="overlay" style="z-index:4">
+                <div class="popup">
+                  <h2>Help</h2>
+                  <a class="close" href="#">&times;</a>
+                  <div class="contencd t" style="color: black;">
+                    Are you a company that is searching for drivers to employ? Then you've come to the right place!
+                    Pick the start and the end point of your desired transport route on the right to discover appropriate offers.
+                    In the unfortunate case, that there is no such option available, you can nevertheless add your request by clicking
+                    "Create Driver Offer" and hopefully potential drivers will contact you soon!
+                  </div>
+                  </div>
+                </div> -->
+
+              <!--- Info - Symbol - Ende --->
 
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"

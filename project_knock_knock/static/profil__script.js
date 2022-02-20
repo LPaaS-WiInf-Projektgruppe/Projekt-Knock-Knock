@@ -3,6 +3,9 @@
 $("document").ready( () =>
 {
 
+  $(".active").removeClass("active");
+  $("#link-profil").addClass("active");
+
   // response = await fetch("/com_offer_coordinates", {method: "POST"})
   // coordinates = await response.json()
 

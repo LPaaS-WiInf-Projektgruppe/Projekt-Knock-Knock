@@ -6,13 +6,9 @@ body
 
 }
 
-
-
 /**
  * Star Rating Using HTML <input type="range">
  */
-
-
 
 input[name="rating"] {
   background-color: transparent;

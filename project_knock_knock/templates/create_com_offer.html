@@ -22,7 +22,7 @@
 
                      {{ form.von(class_="form-control") }}
                      {% for error in form.von.errors %}
-                       <p class="text-warning"> {{ error }} </p> <br>
+                       <p class="text-danger"> {{ error }} </p>
                      {% endfor %}
 
                    </div>
@@ -33,7 +33,7 @@
 
                        {{ form.nach(class_="form-control") }}
                        {% for error in form.nach.errors %}
-                         <p class="text-warning"> {{ error }} </p> <br>
+                         <p class="text-danger"> {{ error }} </p>
                        {% endfor %}
 
                    </div>
@@ -43,7 +43,7 @@
 
                              {{ form.zeit_start(class_="form-control") }}
                              {% for error in form.zeit_start.errors %}
-                               <p class="text-warning"> {{ error }} </p> <br>
+                               <p class="text-danger"> {{ error }} </p>
                              {% endfor %}
 
                          </div>
@@ -54,7 +54,7 @@
 
                        {{ form.zeit_ende(class_="form-control") }}
                      {% for error in form.zeit_ende.errors %}
-                     <p class="text-warning"> {{ error }} </p> <br>
+                     <p class="text-danger"> {{ error }} </p>
                      {% endfor %}
 
                    </div>
@@ -64,7 +64,7 @@
 
                        {{ form.geld(class_="form-control") }}
                      {% for error in form.geld.errors %}
-                     <p class="text-warning"> {{ error }} </p> <br>
+                     <p class="text-danger"> {{ error }} </p>
                      {% endfor %}
 
                        </div>
@@ -74,7 +74,7 @@
 
                          {{ form.dauer(class_="form-control") }}
                      {% for error in form.dauer.errors %}
-                     <p class="text-warning"> {{ error }} </p> <br>
+                     <p class="text-danger"> {{ error }} </p>
                      {% endfor %}
 
                    </div>
@@ -86,8 +86,6 @@
      </div>
  </div>
 </div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>

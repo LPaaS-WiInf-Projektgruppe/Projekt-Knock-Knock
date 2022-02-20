@@ -16,8 +16,10 @@
 
 
   <div id="containerouter" class="row flex-fill py-3" >
+
       <div id="container" class="col-lg-6 py-2">
         <div id="container" class="card h-100  m-3 p-3 ">
+
             <table id="com-offer-table" class="table table-light">
               <thead thead-dark>
                 <tr>
@@ -39,8 +41,9 @@
               </tbody>
             </table>
 
+
             <!-- - Info - Symbol - Start --->
-              <a class="btn btn-danger col-2" href="#popup1">
+              <a class="btn btn-danger col-2 mt-auto" href="#popup1">
                 <i class="bi bi-question-circle">Help</i></a>
 
                 <div id="popup1" class="overlay" style="z-index: 1">
@@ -54,6 +57,7 @@
                     </div>
                     </div>
                   </div>
+
 
                 <!--- Info - Symbol - Ende - -->
     </div>
@@ -69,7 +73,7 @@
 
                           {{ form.von(class_="form-control") }}
                           {% for error in form.von.errors %}
-                            <p class="text-warning"> {{ error }} </p> <br>
+                            <p class="text-warning"> {{ error }} </p>
                           {% endfor %}
 
                         </div>
@@ -80,7 +84,7 @@
 
                             {{ form.nach(class_="form-control") }}
                             {% for error in form.nach.errors %}
-                              <p class="text-warning"> {{ error }} </p> <br>
+                              <p class="text-warning"> {{ error }} </p>
                             {% endfor %}
 
                         </div>
@@ -90,7 +94,7 @@
 
                                   {{ form.zeit_start(class_="form-control") }}
                                   {% for error in form.zeit_start.errors %}
-                                    <p class="text-warning"> {{ error }} </p> <br>
+                                    <p class="text-warning"> {{ error }} </p>
                                   {% endfor %}
 
                               </div>
@@ -101,7 +105,7 @@
 
                             {{ form.zeit_ende(class_="form-control") }}
                           {% for error in form.zeit_ende.errors %}
-                          <p class="text-warning"> {{ error }} </p> <br>
+                          <p class="text-warning"> {{ error }} </p>
                           {% endfor %}
 
                         </div>
@@ -111,7 +115,7 @@
 
                             {{ form.geld(class_="form-control") }}
                           {% for error in form.geld.errors %}
-                          <p class="text-warning"> {{ error }} </p> <br>
+                          <p class="text-warning"> {{ error }} </p>
                           {% endfor %}
 
                             </div>
@@ -121,11 +125,11 @@
 
                               {{ form.dauer(class_="form-control") }}
                           {% for error in form.dauer.errors %}
-                          <p class="text-warning"> {{ error }} </p> <br>
+                          <p class="text-warning"> {{ error }} </p>
                           {% endfor %}
 
                         </div>
-                        {{ form.submit(class_="btn btn-outline-success") }}
+                        {{ form.submit(class_="btn btn-outline-success mt-auto w-100") }}
                      </form>
 
 

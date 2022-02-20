@@ -23,6 +23,10 @@ $(document).ready( function () {
         "pagingType": "numbers"
       }
     );
+
+
+    $(".active").removeClass("active");
+    $("#link-com-offer").addClass("active");
 }
 
 

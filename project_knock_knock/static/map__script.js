@@ -7,6 +7,10 @@ $("document").ready( () =>
 {
 
 
+  $(".active").removeClass("active");
+  $("#link-map").addClass("active");
+
+
   var map = L.map('map', {preferCanvas: true}).setView([53.599813099076165, 9.932808452732685], 13);
   // var marker = L.marker([53.599813099076165, 9.932808452732685]).addTo(map);
 
