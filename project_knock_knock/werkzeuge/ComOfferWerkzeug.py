@@ -17,8 +17,6 @@ def com_offer():
 
     create_com_offer_form = ComOfferForm()
 
-
-
     com_offers = ComOffers.get_available_offers()
 
     return render_template(

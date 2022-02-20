@@ -10,7 +10,7 @@ home = Blueprint('home', __name__)
 index = Blueprint('index', __name__)
 
 
-@index.route('/')
+@index.route('/', methods=["GET", "POST"])
 # @login_required
 def redirect_home():
 
@@ -20,7 +20,7 @@ def redirect_home():
 
 
 
-@home.route('/home')
+@home.route('/home', methods=["GET", "POST"])
 # @login_required
 def home_func():
 
