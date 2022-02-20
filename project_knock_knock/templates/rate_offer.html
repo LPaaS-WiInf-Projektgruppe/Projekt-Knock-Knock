@@ -11,23 +11,26 @@
 
  {% block content %}
 
-<div class="content">
+ <div id="container" class="row flex-fill vh-100 py-3" >
+   <div id="containerouterlayer" class="col-lg-12 h-100 py-2">
+     <div id="container" class="card h-75 col-12 m-3 p-3 align-items-center">
 
-  <div class="rating-container">
 
-  <form id ="rating-form" action="/rate_offer/{{ type }}/{{ id }}" method="post">
+  <form id ="rating-form" class="my-auto" action="/rate_offer/{{ type }}/{{ id }}" method="post">
     {{ form.csrf_token }}
 
-    {{ form.rating.label }}
-    {{ form.rating(data_type="range") }}
+    {{ form.rating.label(class_="mb-3") }} <br>
+    {{ form.rating(data_type="range") }} <br>
 
-    {{ form.submit(class_="submit-btn") }}
+    {{ form.submit(class_="btn btn-outline-success") }}
 
   </form>
 
 </div>
-
 </div>
+</div>
+
+
 
 
 

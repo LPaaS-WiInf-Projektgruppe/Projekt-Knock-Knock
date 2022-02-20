@@ -3,37 +3,10 @@ body
 {
     background-image: url('img/profil.png');
     background-repeat: no-repeat;
-    color: #FFFFFF;
-    font-size: 19px;
-    font-size: 1.2rem;
-    font-family: roboto;
-    font-weight: 300;
-}
-.rating-container
-{
-  width: 100%;
-  margin: auto;
-  left: 40%;
-  top: 40%;
-  position: absolute;
-}
-
-.submit-btn {
-    background: #33322F;
-    border: 1px #7E888A solid;
-    border-radius: 2px;
-    opacity: 0.7;
-    overflow: hidden;
-    margin: 16px 0px 0px 0px;
 
 }
 
-.content
-{
-    padding: 16px;
-    background: #33322F;
-    height: 68vh;
-}
+
 
 /**
  * Star Rating Using HTML <input type="range">
@@ -54,6 +27,7 @@ input[name="rating"] {
   vertical-align: top;
   width: 80px;
   z-index: 2;
+  margin: 0 0 16px 0;
 
   -webkit-appearance: none;
 }

@@ -68,7 +68,6 @@
       <table id="drive-offer-table" class="table table-light">
         <thead thead-dark>
           <tr>
-            <th scope="col">Route</th>
             <th scope="col">Time</th>
             <th scope="col">Price</th>
             <th scope="col"> Aktion</th>
@@ -78,11 +77,9 @@
         <tbody>
   {% for offer in profile.get_accepted_drive_offers() %}
       <tr>
-
-        <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_start() }} <br> {{ offer.get_destination() }} </td>
         <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">{{ offer.get_start_time() }}<br> {{ offer.get_end_time() }} </td>
         <td onClick="location.href='/drive_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} €</td>
-        <td class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" </td>
+        <td   onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'"> <button type="button" name="button" class="btn btn-outline-success">Completed</button> </td>
       </tr>
       {% endfor %}
         </tbody>
@@ -111,7 +108,7 @@
         <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">  {{ offer.get_start() }} <br> {{ offer.get_destination() }} </td>
         <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">{{ offer.get_start_time() }}<br> {{ offer.get_end_time() }} </td>
         <td onClick="location.href='/com_offer_detail/{{offer.get_id()}}'">  {{ offer.get_kilometerpreis() }} €</td>
-        <td class="delete-btn"  onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'" </td>
+        <td onClick="location.href='/rate_offer/1/{{ offer.get_id() }}'"> <button type="button" name="button" class="btn btn-outline-success">Completed</button> </td>
       </tr>
       {% endfor %}
         </tbody>
